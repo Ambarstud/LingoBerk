@@ -1,9 +1,26 @@
 # LingoBerk — Product Requirements Document (PRD)
 
-> **Version:** 1.0
-> **Date:** 15 May 2026
+> **Version:** 1.2
+> **Oluşturulma:** 15 May 2026
+> **Son güncelleme:** 15 May 2026
 > **Author:** Berkay
 > **Purpose:** This document is the single source of truth for any AI coding agent (Claude Code, Gemini, Codex, Cursor, etc.) building this project. Follow this document exactly.
+
+---
+
+## 0. Proje durumu (canlı özet)
+
+| Durum | Detay |
+|-------|-------|
+| **Canlı URL** | https://lingoberk.vercel.app |
+| **GitHub** | https://github.com/Ambarstud/LingoBerk |
+| **Vercel project** | `denbat/lingoberk` |
+| **Phase 1** | ✅ Tamamlandı — 2026-05-15 |
+| **Phase 2** | 🔄 Kodlanıyor (AI/Grammar/Reading/Chat) |
+| **Phase 3** | 🔄 Kodlanıyor (Conversation/Stats) |
+| **Claude API key** | ✅ `.env.local` + Vercel Production & Development'a eklendi |
+| **OpenAI API key** | ⏳ Henüz eklenmedi |
+| **Google AI key** | ⏳ Henüz eklenmedi |
 
 ---
 
@@ -21,7 +38,7 @@ The app is designed for a single user (the developer) and must feel like a polis
 - **Secondary use case:** Maritime English vocabulary (COLREG, bridge communication, IMO terms)
 - **Deployment:** Vercel — https://lingoberk.vercel.app
 - **GitHub:** https://github.com/Ambarstud/LingoBerk
-- **Data storage:** Browser localStorage (Phase 1), optional Supabase migration later
+- **Data storage:** Browser localStorage (Phase 1–3), optional Supabase migration later
 
 ---
 
@@ -37,66 +54,69 @@ The app is designed for a single user (the developer) and must feel like a polis
 | AI backend | **Next.js Route Handlers** (`app/api/`) | Server-side API calls to LLM providers |
 | AI providers | **Anthropic (Claude)**, **OpenAI (GPT)**, **Google (Gemini)** | Abstracted behind a unified interface |
 | Deployment | **Vercel** | Auto-deploy from GitHub main branch |
-| PWA | **next-pwa** or manual service worker | Installable on mobile home screen |
+| PWA | **next-pwa** | Installable on mobile home screen |
 | Icons | **Lucide React** | Consistent icon set |
 | Charts | **Recharts** | Progress/statistics visualizations |
 | Animations | **Framer Motion** | Page transitions and micro-interactions |
 
-### Project structure
+### Gerçek proje yapısı (oluşturulan dosyalar)
 
 ```
 lingoberk/
 ├── app/
-│   ├── layout.tsx              # Root layout with bottom nav
-│   ├── page.tsx                # Dashboard (home)
+│   ├── layout.tsx                  ✅ Root layout, bottom nav, dark mode, iOS safe area
+│   ├── page.tsx                    ✅ Dashboard (home)
 │   ├── flashcards/
-│   │   └── page.tsx            # Flashcard module
+│   │   └── page.tsx                ✅ SM-2 flashcard modülü
 │   ├── grammar/
-│   │   └── page.tsx            # Grammar exercises
+│   │   └── page.tsx                🔄 Phase 2'de tam modüle dönüştürülüyor
 │   ├── reading/
-│   │   └── page.tsx            # Reading comprehension
+│   │   └── page.tsx                🔄 Phase 2'de tam modüle dönüştürülüyor
 │   ├── conversation/
-│   │   └── page.tsx            # Daily conversation patterns
+│   │   └── page.tsx                🔄 Phase 3'te oluşturuluyor
 │   ├── chat/
-│   │   └── page.tsx            # AI free chat
+│   │   └── page.tsx                🔄 Phase 2'de tam modüle dönüştürülüyor
 │   ├── stats/
-│   │   └── page.tsx            # Detailed statistics
+│   │   └── page.tsx                🔄 Phase 3'te oluşturuluyor
 │   ├── settings/
-│   │   └── page.tsx            # Settings & data management
+│   │   └── page.tsx                ✅ Ayarlar (daily goal, dark mode, export/import)
 │   └── api/
 │       ├── ai/
-│       │   └── route.ts        # Unified AI endpoint
+│       │   └── route.ts            🔄 Phase 2'de oluşturuluyor
 │       ├── generate-exercise/
-│       │   └── route.ts        # AI exercise generation
+│       │   └── route.ts            🔄 Phase 2'de oluşturuluyor
 │       └── check-answer/
-│           └── route.ts        # AI answer checking
+│           └── route.ts            🔄 Phase 2'de oluşturuluyor
 ├── components/
-│   ├── ui/                     # Reusable UI components
-│   ├── dashboard/              # Dashboard-specific components
-│   ├── flashcard/              # Flashcard components
-│   ├── grammar/                # Grammar components
-│   ├── reading/                # Reading components
-│   └── layout/                 # Navigation, header, etc.
+│   ├── ui/
+│   │   ├── ProgressRing.tsx        ✅ SVG dairesel ilerleme
+│   │   ├── Card.tsx                ✅ Yeniden kullanılabilir kart
+│   │   └── Button.tsx              ✅ primary/secondary/danger/success/ghost varyantları
+│   └── layout/
+│       ├── BottomNav.tsx           ✅ 5 öğeli alt navigasyon
+│       └── StoreInitializer.tsx    ✅ Zustand hydration
 ├── lib/
-│   ├── storage.ts              # localStorage abstraction layer
-│   ├── ai-provider.ts          # Unified AI provider interface
-│   ├── spaced-repetition.ts    # SM-2 algorithm implementation
-│   ├── xp-system.ts            # XP and leveling logic
-│   ├── streak.ts               # Streak tracking logic
-│   └── types.ts                # Shared TypeScript types
+│   ├── storage.ts                  ✅ localStorage katmanı (prefix: lingoberk_)
+│   ├── ai-provider.ts              🔄 Phase 2'de oluşturuluyor
+│   ├── spaced-repetition.ts        ✅ SM-2 algoritması
+│   ├── xp-system.ts                ✅ XP ve seviye sistemi
+│   ├── streak.ts                   ✅ Streak takibi
+│   └── types.ts                    ✅ Tüm TypeScript tipleri
 ├── data/
-│   ├── yds-words.json          # YDS frequent vocabulary (curated list)
-│   ├── grammar-topics.json     # Grammar topics & rules
-│   ├── reading-passages.json   # Reading comprehension texts
-│   └── conversation-patterns.json # Daily conversation scenarios
+│   ├── yds-words.json              ✅ 205 YDS kelimesi
+│   ├── grammar-topics.json         🔄 Phase 2'de oluşturuluyor
+│   ├── reading-passages.json       🔄 Phase 2'de oluşturuluyor
+│   └── conversation-patterns.json  🔄 Phase 3'te oluşturuluyor
+├── store/
+│   └── useStore.ts                 ✅ Zustand store
 ├── public/
-│   ├── manifest.json           # PWA manifest
-│   └── icons/                  # App icons (192x192, 512x512)
-├── .env.local                  # API keys (never commit)
-├── tailwind.config.ts
-├── tsconfig.json
-├── next.config.js
-└── package.json
+│   └── manifest.json               ✅ PWA manifest
+├── .env.local                       ✅ API keyleri (commit edilmez)
+├── .env.example                     ✅ Örnek env dosyası
+├── tailwind.config.ts               ✅
+├── tsconfig.json                    ✅ (strict mode)
+├── next.config.js                   ✅ (next-pwa entegreli)
+└── package.json                     ✅
 ```
 
 ---
@@ -104,11 +124,28 @@ lingoberk/
 ## 3. Environment variables
 
 ```env
-# .env.local — never commit this file
+# .env.local — ASLA commit etme
+# Claude Haiku 4.5 — eklendi ✅
 ANTHROPIC_API_KEY=sk-ant-...
+
+# OpenAI gpt-4o-mini — henüz eklenmedi
 OPENAI_API_KEY=sk-...
+
+# Google Gemini Flash — henüz eklenmedi
 GOOGLE_AI_API_KEY=AIza...
+
+# Model sabitleri (Phase 2'de kullanılacak)
+CLAUDE_MODEL=claude-haiku-4-5-20251001
+OPENAI_MODEL=gpt-4o-mini
+GEMINI_MODEL=gemini-2.0-flash
 ```
+
+**Vercel env durumu:**
+- `ANTHROPIC_API_KEY` → ✅ Production, ✅ Development
+- `OPENAI_API_KEY` → ⏳ Eklenmedi
+- `GOOGLE_AI_API_KEY` → ⏳ Eklenmedi
+
+Yeni key eklemek için: `vercel env add KEY_ADI production`
 
 All API calls happen server-side through Next.js Route Handlers. API keys must never be exposed to the client.
 
@@ -136,34 +173,31 @@ All API calls happen server-side through Next.js Route Handlers. API keys must n
 
 - **Max width:** 480px centered on desktop, full-width on mobile
 - **Bottom navigation bar:** 5 items — Home, Flashcards, Grammar, Reading, Chat
+- **Conversation ve Stats:** Dashboard kartlarından erişilir (alt nav'da değil)
 - **No hamburger menus** — everything from bottom nav or dashboard cards
 - **Touch targets:** Minimum 44x44px
 - **Safe areas:** Respect iOS safe areas with `env(safe-area-inset-bottom)`
 
 ### Dark mode
 
-- Support both light and dark themes
-- Use `prefers-color-scheme` media query with a manual toggle in settings
-- Store preference in localStorage
+- Class-based dark mode (`dark` class on `<html>`)
+- Manual toggle in settings, stored in localStorage
+- Her bileşende `dark:` Tailwind prefixleri kullanılıyor
 
 ---
 
 ## 5. Modules
 
-### 5.1 Dashboard (Home)
+### 5.1 Dashboard (Home) ✅
 
 The first screen. Shows daily progress and quick access to all modules.
 
 **Components:**
 
 1. **Header bar** — App name "LingoBerk" (left), streak fire icon + count (right), settings gear (right)
-
-2. **Daily progress card** — Circular progress ring (0–100%), XP earned today / daily goal (e.g., "120 / 200 XP"), current level with progress bar
-
+2. **Daily progress card** — Circular progress ring (0–100%), XP earned today / daily goal, current level with progress bar
 3. **Streak card** — Current streak count, calendar heatmap for last 30 days, best streak record
-
-4. **Module cards** (tappable grid) — Each shows: icon, name, status (e.g., "12 words due"), badge for due items count
-
+4. **Module cards** (tappable 2-column grid, 3 rows = 6 cards) — Flashcards, Grammar, Reading, AI Chat, Conversations, Stats
 5. **Quick stats row** — Total words learned, exercises completed, average accuracy %
 
 **XP system:**
@@ -173,6 +207,7 @@ The first screen. Shows daily progress and quick access to all modules.
 | Flashcard review (per card) | 5 XP (10 XP if streak ≥7 days) |
 | Grammar exercise (correct) | 15 XP |
 | Reading passage (completed) | 20 XP |
+| Conversation scenario (completed) | 5 XP |
 | AI Chat (per 5 messages) | 10 XP |
 | Daily goal | 200 XP (configurable) |
 
@@ -185,7 +220,7 @@ The first screen. Shows daily progress and quick access to all modules.
 
 ---
 
-### 5.2 Flashcards module
+### 5.2 Flashcards module ✅
 
 Spaced repetition vocabulary learning using the SM-2 algorithm.
 
@@ -196,13 +231,12 @@ interface FlashCard {
   id: string;
   english: string;
   turkish: string;
-  example: string;           // Example sentence in English
+  example: string;
   category: 'yds' | 'maritime' | 'daily' | 'academic';
   difficulty: 'A2' | 'B1' | 'B2' | 'C1';
   tags: string[];
-  // SM-2 fields
-  interval: number;          // Days until next review
-  repetition: number;        // Successful review count
+  interval: number;
+  repetition: number;
   easeFactor: number;        // Default 2.5
   nextReview: string;        // ISO date
   lastReview: string | null;
@@ -227,29 +261,23 @@ nextReview = today + interval days
 ```
 
 **UI flow:**
-1. Review queue screen → due card count, "Start Review" button
+1. Review queue → due count, category filter, search, "Start Review" button
 2. Card front → English word, large centered. Tap to reveal.
 3. Card back → Turkish translation + example. Four buttons: Again (red), Hard (orange), Good (green), Easy (blue)
 4. Session complete → summary: cards reviewed, accuracy, XP earned
 
-**Features:**
-- "Add custom card" button
-- Filter by category (YDS, Maritime, Daily, Academic)
-- Search all cards
-- Progress bar during review
-
-**Initial data:** 200+ curated YDS high-frequency words in `data/yds-words.json`. Each: english, turkish, example, category, difficulty, tags.
+**Initial data:** 205 curated YDS words in `data/yds-words.json`.
 
 ---
 
-### 5.3 Grammar module
+### 5.3 Grammar module 🔄
 
 Interactive exercises mirroring YDS question types.
 
 **Exercise types:**
 
 1. **Gap fill (cloze):** Sentence with blank, 4 options
-2. **Sentence completion:** First half given, choose correct completion from 4 options
+2. **Sentence completion:** First half given, choose correct completion
 3. **Error correction:** Sentence with error, select correct version
 4. **Sentence rewriting:** Choose paraphrase preserving meaning (YDS "yakın anlamlı")
 
@@ -268,12 +296,11 @@ Interactive exercises mirroring YDS question types.
 | inversion | Inversion | negative_adverbs, conditional_inversion |
 | noun_clauses | Noun Clauses | that_clauses, wh_clauses, subjunctive |
 
-**AI integration — wrong answer explanation prompt:**
+**AI — wrong answer explanation prompt:**
 
 ```
 You are an English grammar tutor helping a Turkish speaker prepare for the YDS exam.
 
-The student answered this question:
 Question: {question}
 Their answer: {userAnswer}
 Correct answer: {correctAnswer}
@@ -287,21 +314,17 @@ Explain in clear, simple English:
 Keep it concise. The student is at B1-B2 level.
 ```
 
-**AI exercise generation:** User can request new exercises for any topic. Route Handler calls AI with structured prompt, returns JSON array of exercises stored in localStorage.
-
 **UI flow:**
-1. Topic selection grid → progress % and exercise count per topic
-2. Exercise screen → one question, A/B/C/D buttons
-3. Feedback panel → slides up, green/red header, AI explanation if wrong
-4. Topic summary → accuracy, time, XP
+1. Topic selection grid → progress %, accuracy, weak topics highlighted
+2. Exercise screen → one question, A/B/C/D buttons, progress bar
+3. Feedback panel → slides up, AI explanation if wrong
+4. Topic summary → accuracy, XP
 
 ---
 
-### 5.4 Reading module
+### 5.4 Reading module 🔄
 
 YDS-style paragraph questions.
-
-**Data structures:**
 
 ```typescript
 interface ReadingPassage {
@@ -313,46 +336,20 @@ interface ReadingPassage {
   questions: ReadingQuestion[];
   vocabulary: VocabularyItem[];
 }
-
-interface ReadingQuestion {
-  id: string;
-  type: 'main_idea' | 'detail' | 'inference' | 'vocabulary_in_context' | 'author_purpose';
-  question: string;
-  options: string[];               // 4 options
-  correctIndex: number;            // 0-3
-  explanation: string;
-}
-
-interface VocabularyItem {
-  word: string;
-  definition: string;
-  turkishTranslation: string;
-}
 ```
 
-**Question types (YDS format):**
-- Main idea: "What is the main point of the passage?"
-- Detail: "According to the passage, which is true?"
-- Inference: "It can be inferred from the passage that..."
-- Vocabulary in context: "The word '___' in line X is closest in meaning to..."
-- Author's purpose: "The author mentions X in order to..."
-
 **UI flow:**
-1. Passage list → title, difficulty badge, category, completion status
-2. Reading screen → passage text with tappable words (definition popup), questions below
-3. Results → score, time, vocabulary words auto-added to flashcards
+1. Passage list → difficulty filter, completion status
+2. Reading screen → tappable words (definition popup), questions below
+3. Results → score, vocabulary → add to flashcards
 
-**AI integration:** Word definition on tap (if not in predefined list), passage generation on request.
-
-**Initial data:** 10+ passages in `data/reading-passages.json` with 5 questions each.
+**Initial data:** 12 passages (2 maritime) in `data/reading-passages.json`.
 
 ---
 
-### 5.5 Conversation module
+### 5.5 Conversation module 🔄
 
 Scenario-based dialogues and key phrases.
-
-**Data structure:**
 
 ```typescript
 interface ConversationScenario {
@@ -367,23 +364,21 @@ interface ConversationScenario {
 }
 ```
 
-**Categories:** Travel, Work, Social, Maritime, Academic, Daily
+**Initial data:** 16 scenarios (4 maritime) in `data/conversation-patterns.json`.
 
 **UI flow:**
-1. Scenario grid → category tabs, scenario cards with difficulty + completion
-2. Dialogue view → chat-bubble layout, tap bubble for Turkish translation, key phrases section
-3. "Practice with AI" button → opens AI Chat with scenario context
-4. Key phrases drill → flashcard-style review
-
-**Initial data:** 15+ scenarios in `data/conversation-patterns.json`.
+1. Scenario grid → category tabs (All/Travel/Work/Maritime/Daily/Academic/Social)
+2. Dialogue view → chat bubbles, tap for Turkish translation, key phrases accordion
+3. "Practice with AI" → /chat?scenario=... ile AI Chat'e geçiş
+4. Key phrases drill → flashcard-style
 
 ---
 
-### 5.6 AI Chat module
+### 5.6 AI Chat module 🔄
 
 Free-form English conversation with real-time grammar correction.
 
-**System prompt (works with any LLM):**
+**System prompt:**
 
 ```
 You are a friendly English conversation partner helping a Turkish-speaking naval officer improve their English. The user is at B1-B2 level and preparing for the YDS exam.
@@ -401,93 +396,43 @@ Rules:
 4. If grammatically correct, do NOT add a correction section
 5. Keep responses concise (2-4 sentences)
 6. Occasionally suggest useful phrases related to the topic
-7. If user seems stuck, offer a topic or question
 
 Context: {scenarioContext or "free conversation"}
 ```
 
 **UI:**
-- Standard chat interface with message bubbles
-- Corrections in highlighted box below AI response
-- Topic suggestion chips: "Daily life", "Travel", "Work", "News", "Maritime", "Random"
-- Provider selector in header (Claude / GPT / Gemini)
-- Store last 10 conversations in localStorage
+- Chat bubbles, corrections in amber box
+- Provider selector: Claude / GPT / Gemini
+- Topic chips: Daily life / Travel / Work / Maritime / YDS Exam / Random
+- Last 10 conversations in localStorage
 
 ---
 
-### 5.7 Statistics module
-
-**Track:**
-- Cumulative: totalXP, cards reviewed, exercises completed, passages read, chat messages, study minutes
-- Streaks: current, best, last active date
-- Daily log: xp, cards, exercises, accuracy, minutes per day
-- Flashcard stats: total, mastered (>21 day interval), learning, new, avg ease factor
-- Grammar stats: accuracy per topic, weak topics (<60%)
-- Reading stats: avg score, passages completed, vocabulary collected
-
-**UI sections:**
-1. Overview cards (level, XP, time, accuracy)
-2. Streak calendar (GitHub-style heatmap, 90 days)
-3. Weekly XP bar chart (Recharts)
-4. Module breakdown chart
-5. Grammar weak areas (sorted by accuracy, "Practice" button)
-6. Vocabulary growth line chart
-7. YDS readiness score
+### 5.7 Statistics module 🔄
 
 **YDS readiness formula:**
 ```
-ydsEstimate = (
-  flashcardMasteryRate * 25 +     // Vocabulary: 25%
-  grammarAccuracy * 30 +           // Grammar: 30%
-  readingAccuracy * 35 +           // Reading: 35%
-  min(10, chatMessages / 10)       // Practice bonus: 10%
+ydsScore = (
+  flashcardMasteryRate * 25 +   // Vocabulary: 25%
+  grammarAccuracy * 30 +         // Grammar: 30%
+  readingAccuracy * 35 +         // Reading: 35%
+  min(10, chatMessages / 10)     // Practice bonus: 10%
 )
 ```
+
+**UI sections:**
+1. Overview cards (level, XP, study days, accuracy)
+2. YDS readiness score (büyük dairesel gösterge)
+3. Streak calendar (GitHub heatmap, 90 gün)
+4. Weekly XP bar chart (Recharts)
+5. Module breakdown (flashcards/grammar/reading/conversations/chat)
+6. Weak grammar topics (accuracy <70%, "Practice" link)
 
 ---
 
 ## 6. Data layer
 
-### Storage abstraction
-
-All persistence through a single utility class (swappable to Supabase later):
-
-```typescript
-// lib/storage.ts
-interface StorageProvider {
-  get<T>(key: string): T | null;
-  set<T>(key: string, value: T): void;
-  remove(key: string): void;
-  clear(): void;
-}
-
-class LocalStorageProvider implements StorageProvider {
-  private prefix = 'lingoberk_';
-  
-  get<T>(key: string): T | null {
-    const raw = localStorage.getItem(this.prefix + key);
-    return raw ? JSON.parse(raw) as T : null;
-  }
-  
-  set<T>(key: string, value: T): void {
-    localStorage.setItem(this.prefix + key, JSON.stringify(value));
-  }
-  
-  remove(key: string): void {
-    localStorage.removeItem(this.prefix + key);
-  }
-  
-  clear(): void {
-    Object.keys(localStorage)
-      .filter(k => k.startsWith(this.prefix))
-      .forEach(k => localStorage.removeItem(k));
-  }
-}
-
-export const storage: StorageProvider = new LocalStorageProvider();
-```
-
-### Storage keys
+### Storage keys (güncel)
 
 | Key | Type | Description |
 |-----|------|-------------|
@@ -499,15 +444,20 @@ export const storage: StorageProvider = new LocalStorageProvider();
 | `user_stats` | `UserStats` | Aggregated statistics |
 | `settings` | `UserSettings` | App settings |
 | `streak` | `StreakData` | Streak tracking |
+| `conversation_progress` | `Record<scenarioId, boolean>` | Tamamlanan senaryolar ✅ eklendi |
+
+### TypeScript tipleri (güncel — lib/types.ts)
+
+Phase 2/3 için eklenen tipler:
+- `GrammarTopicProgress` — topicId, totalAttempts, correctAttempts, accuracy, lastPracticed ✅ eklendi
+- `ChatConversation` — id, messages, createdAt, provider ✅ mevcut
 
 ---
 
 ## 7. AI provider abstraction
 
-Unified interface — any module calls any AI provider without knowing specifics.
-
 ```typescript
-// lib/ai-provider.ts
+// lib/ai-provider.ts (Phase 2'de oluşturulacak)
 type AIProvider = 'claude' | 'gpt' | 'gemini';
 
 interface AIRequest {
@@ -523,18 +473,21 @@ interface AIResponse {
   content: string;
   provider: AIProvider;
   tokensUsed?: number;
+  error?: string;             // API key eksikse hata mesajı döner
 }
 ```
 
-**Provider details (server-side only):**
+**Provider detayları (server-side only):**
 
-| Provider | Endpoint | Model | Auth |
-|----------|----------|-------|------|
-| Claude | `api.anthropic.com/v1/messages` | **claude-haiku-4-5-20251001** | `x-api-key` header |
-| GPT | `api.openai.com/v1/chat/completions` | gpt-4o-mini | `Authorization: Bearer` |
-| Gemini | `generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent` | gemini-2.0-flash | `key` query param |
+| Provider | Model | Auth |
+|----------|-------|------|
+| Claude | **claude-haiku-4-5-20251001** | `x-api-key: ANTHROPIC_API_KEY` |
+| GPT | **gpt-4o-mini** | `Authorization: Bearer OPENAI_API_KEY` |
+| Gemini | **gemini-2.0-flash** | `?key=GOOGLE_AI_API_KEY` |
 
-> **Model seçimi notu:** B1–B2 seviye eğitim uygulaması için en hızlı ve en ucuz modeller seçildi. Haiku 4.5, grammar explanation ve AI chat için fazlasıyla yeterli.
+> **Model seçim gerekçesi:** B1–B2 eğitim uygulaması için en ucuz ve hızlı modeller yeterli. Haiku 4.5, grammar açıklama ve AI sohbet için fazlasıyla kapasiteli.
+
+**Eksik key davranışı:** API key yoksa UI'da "API key gerekli" mesajı gösterir, uygulama çökmez.
 
 ---
 
@@ -556,7 +509,7 @@ interface AIResponse {
 }
 ```
 
-**Service worker:** Cache static assets + JSON data for offline. Network-first for AI calls.
+Service worker: next-pwa ile otomatik. Statik varlıklar + JSON data offline cache'lenir. AI çağrıları network-first.
 
 ---
 
@@ -565,42 +518,41 @@ interface AIResponse {
 ### Phase 1 — Foundation + Flashcards ✅ TAMAMLANDI (2026-05-15)
 
 - [x] Next.js project: TypeScript + Tailwind + Zustand
-- [x] Project structure (Section 2)
-- [x] Storage utility (lib/storage.ts)
-- [x] Bottom navigation
-- [x] Dashboard with XP, streak, level
-- [x] Flashcard module with SM-2
+- [x] Project structure
+- [x] Storage utility (lib/storage.ts) — prefix: `lingoberk_`
+- [x] Bottom navigation (5 items)
+- [x] Dashboard with XP ring, streak calendar, module cards
+- [x] Flashcard module with SM-2 algorithm + flip animation
 - [x] XP and streak system
-- [x] PWA manifest + service worker
+- [x] PWA manifest + service worker (next-pwa)
 - [x] YDS vocabulary dataset (205 words)
 - [x] Deploy to Vercel → https://lingoberk.vercel.app
-- [x] Dark mode
+- [x] Dark mode (class-based)
+- [x] Settings page (daily goal, dark mode toggle, export/import/clear)
+- [x] GitHub repo → https://github.com/Ambarstud/LingoBerk
 
-### Phase 2 — AI + Grammar + Reading (Week 3–5)
+### Phase 2 — AI + Grammar + Reading + Chat 🔄 KODLANIYÖR (2026-05-15)
 
 - [ ] AI provider abstraction (lib/ai-provider.ts)
-- [ ] API Route Handlers
-- [ ] Grammar module (4 exercise types)
-- [ ] Grammar AI explanations
-- [ ] Reading module (passages + questions)
-- [ ] Tappable word definitions
-- [ ] AI Chat with corrections
-- [ ] Provider selector (Claude/GPT/Gemini)
-- [ ] Grammar dataset
-- [ ] Reading dataset (10+ passages)
+- [ ] API Route Handler: POST /api/ai
+- [ ] API Route Handler: POST /api/generate-exercise
+- [ ] API Route Handler: POST /api/check-answer
+- [ ] Grammar module tam implementasyon (4 exercise type, AI açıklama)
+- [ ] Grammar dataset (data/grammar-topics.json — 10 konu, 8+ alıştırma/konu)
+- [ ] Reading module tam implementasyon (tappable words, question flow)
+- [ ] Reading dataset (data/reading-passages.json — 12 pasaj, 2 maritime)
+- [ ] AI Chat (sohbet balonları, grammar düzeltme kutusu, provider seçici)
+- [ ] Anthropic API key → ✅ `.env.local` ve Vercel'e eklendi
 
-### Phase 3 — Conversations + Stats + Polish (Week 6–8)
+### Phase 3 — Conversations + Stats + Polish 🔄 KODLANIYOR (2026-05-15)
 
-- [ ] Conversation module with dialogues
-- [ ] Key phrases drill
-- [ ] "Practice with AI" from conversation context
-- [ ] Statistics page with charts
-- [ ] YDS readiness score
-- [ ] Streak heatmap
-- [ ] Settings (daily goal, dark mode, export/import)
-- [ ] Data export/import JSON
-- [ ] Maritime English vocabulary
-- [ ] Conversation dataset (15+ scenarios)
+- [ ] Conversation module (senaryo grid, diyalog görünümü, key phrases drill)
+- [ ] Conversation dataset (data/conversation-patterns.json — 16 senaryo, 4 maritime)
+- [ ] "Practice with AI" — conversation'dan chat'e geçiş (/chat?scenario=...)
+- [ ] Statistics page (YDS skoru, heatmap, Recharts grafikleri)
+- [ ] Dashboard güncelleme (6 modül kartı: +Conversations, +Stats)
+- [ ] STORAGE_KEYS.CONVERSATION_PROGRESS → ✅ lib/storage.ts'e eklendi
+- [ ] GrammarTopicProgress tipi → ✅ lib/types.ts'e eklendi
 
 ---
 
@@ -610,13 +562,13 @@ Before any module is complete:
 
 - [ ] Works on mobile (375px width)
 - [ ] Works on desktop (centered, max 480px)
-- [ ] Dark mode correct
+- [ ] Dark mode correct (light AND dark variants)
 - [ ] Touch targets ≥44px
-- [ ] localStorage reads/writes work
-- [ ] XP awarded correctly
+- [ ] localStorage reads/writes work (via storage abstraction)
+- [ ] XP awarded correctly (via useStore().addXP)
 - [ ] Loading states during AI calls
-- [ ] Error states handled (network, AI failures)
-- [ ] No TypeScript errors
+- [ ] Error states handled — missing API key shows friendly message, not crash
+- [ ] No TypeScript errors (`npm run build` clean)
 - [ ] No console errors
 
 ---
@@ -627,18 +579,22 @@ Before any module is complete:
 
 2. **Mobile-first.** Design for 375px first. Use `max-w-lg mx-auto` to center on desktop.
 
-3. **Cheap AI calls.** Use smallest capable model per provider. These are educational prompts.
+3. **Cheap AI calls.** Use smallest capable model per provider (Haiku, gpt-4o-mini, gemini-flash). Never use Sonnet/Opus/GPT-4o for educational prompts.
 
 4. **Offline capability.** Flashcards and grammar with preloaded data must work without internet.
 
 5. **Data portability.** Export/import JSON must include ALL user data.
 
-6. **YDS focus.** Prioritize YDS-relevant material. Connectors (however, nevertheless, moreover, although, despite) are especially important.
+6. **YDS focus.** Prioritize YDS-relevant material. Connectors (however, nevertheless, moreover, although, despite, furthermore, consequently, whereas, thus, hence, albeit) are especially important.
 
 7. **UI language.** English interface. Turkish translations available for vocabulary and tooltips.
 
 8. **Do not over-engineer.** No ORMs, no complex state machines, no microservices.
 
-9. **Content data files.** The JSON files in `data/` must be well-structured with enough initial content. An app without content is useless.
+9. **Content data files.** The JSON files in `data/` must be well-structured with real, educational content. An app without content is useless.
 
-10. **Use storage abstraction.** Never call localStorage directly from components. Always use `lib/storage.ts`.
+10. **Use storage abstraction.** Never call localStorage directly from components. Always use `storage` from `lib/storage.ts`.
+
+11. **Never expose API keys.** All AI calls go through `app/api/` Route Handlers. No key in any client file.
+
+12. **Graceful degradation.** If an API key is missing, show a clear Turkish/English message: "Bu özellik için API key gerekli." Don't throw unhandled errors.
