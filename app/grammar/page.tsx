@@ -12,6 +12,8 @@ import grammarTopicsData from '@/data/grammar-topics.json';
 interface GrammarTopic {
   id: string;
   name: string;
+  summary: string;
+  keyRules: string[];
   subtopics: string[];
   exercises: GrammarExercise[];
 }
@@ -62,6 +64,23 @@ export default function GrammarPage() {
     const saved = storage.get<GrammarProgress>(STORAGE_KEYS.GRAMMAR_PROGRESS);
     if (saved) setProgress(saved);
   }, []);
+
+  const getTopicStats = (topic: GrammarTopic) => {
+    const p = progress[topic.id];
+    const totalExercises = topic.exercises.length;
+    const answered = Math.min(p?.total ?? 0, totalExercises);
+    const completion = totalExercises > 0 ? Math.round((answered / totalExercises) * 100) : 0;
+    const accuracy = p && p.total > 0 ? Math.round((p.correct / p.total) * 100) : null;
+
+    return {
+      answered,
+      totalExercises,
+      completion,
+      accuracy,
+      isComplete: totalExercises > 0 && answered >= totalExercises,
+      attempts: p?.total ?? 0,
+    };
+  };
 
   const getAccuracy = (topicId: string) => {
     const p = progress[topicId];
@@ -225,50 +244,74 @@ export default function GrammarPage() {
               </div>
             )}
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3">
               {sortedTopics.map((topic) => {
-                const acc = getAccuracy(topic.id);
-                const isWeak = acc !== null && acc < 60;
+                const stats = getTopicStats(topic);
+                const isWeak = stats.attempts >= 3 && stats.accuracy !== null && stats.accuracy < 60;
                 return (
                   <div
                     key={topic.id}
                     className="bg-white dark:bg-[#242424] rounded-xl border border-gray-100 dark:border-gray-800 p-3 shadow-sm"
                   >
                     <div className="flex items-start justify-between mb-2">
-                      <span className="text-2xl">{TOPIC_ICONS[topic.id] ?? '📖'}</span>
-                      {isWeak && <AlertTriangle size={14} className="text-warning mt-0.5" />}
-                    </div>
-                    <p className="text-sm font-semibold text-[#1A1A1A] dark:text-[#F5F5F5] mb-1">{topic.name}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{topic.exercises.length} exercises</p>
-
-                    {acc !== null && (
-                      <div className="mb-2">
-                        <div className="flex justify-between text-xs mb-1">
-                          <span className={isWeak ? 'text-warning' : 'text-success'}>{acc}%</span>
-                        </div>
-                        <div className="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                          <div
-                            className={`h-full rounded-full ${isWeak ? 'bg-warning' : 'bg-success'}`}
-                            style={{ width: `${acc}%` }}
-                          />
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl">{TOPIC_ICONS[topic.id] ?? '📖'}</span>
+                        <div>
+                          <p className="text-sm font-semibold text-[#1A1A1A] dark:text-[#F5F5F5]">{topic.name}</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                            {stats.answered}/{stats.totalExercises} answered
+                            {stats.accuracy !== null ? ` • ${stats.accuracy}% correct` : ''}
+                          </p>
                         </div>
                       </div>
-                    )}
+                      {isWeak ? (
+                        <AlertTriangle size={16} className="text-warning mt-0.5" />
+                      ) : stats.isComplete ? (
+                        <CheckCircle size={16} className="text-success mt-0.5" />
+                      ) : null}
+                    </div>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-2">{topic.summary}</p>
 
-                    <button
-                      onClick={() => startTopic(topic)}
-                      className="w-full text-xs py-1.5 rounded-lg bg-accent text-white font-medium min-h-[32px] active:scale-95 transition-transform mb-1"
-                    >
-                      Practice
-                    </button>
-                    <button
-                      onClick={() => handleGenerateNew(topic)}
-                      disabled={generating}
-                      className="w-full text-xs py-1.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-medium min-h-[32px] active:scale-95 transition-transform flex items-center justify-center gap-1 disabled:opacity-50"
-                    >
-                      {generating ? <Loader2 size={12} className="animate-spin" /> : <Zap size={12} />}
-                      AI New
-                    </button>
+                    <div className="flex flex-wrap gap-1.5 mb-2">
+                      {topic.keyRules.slice(0, 2).map((rule) => (
+                        <span
+                          key={rule}
+                          className="text-[11px] px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
+                        >
+                          {rule}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="mb-2">
+                      <div className="flex justify-between text-xs mb-1 text-gray-500 dark:text-gray-400">
+                        <span>Topic progress</span>
+                        <span>{stats.completion}%</span>
+                      </div>
+                      <div className="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full rounded-full ${isWeak ? 'bg-warning' : stats.isComplete ? 'bg-success' : 'bg-accent'}`}
+                          style={{ width: `${stats.completion}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => startTopic(topic)}
+                        className="w-full text-xs py-1.5 rounded-lg bg-accent text-white font-medium min-h-[34px] active:scale-95 transition-transform"
+                      >
+                        Practice
+                      </button>
+                      <button
+                        onClick={() => handleGenerateNew(topic)}
+                        disabled={generating}
+                        className="w-full text-xs py-1.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-medium min-h-[34px] active:scale-95 transition-transform flex items-center justify-center gap-1 disabled:opacity-50"
+                      >
+                        {generating ? <Loader2 size={12} className="animate-spin" /> : <Zap size={12} />}
+                        AI New
+                      </button>
+                    </div>
                   </div>
                 );
               })}
@@ -288,16 +331,23 @@ export default function GrammarPage() {
               <div className="flex-1">
                 <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
                   <span>{selectedTopic?.name}</span>
-                  <span>{currentIndex + 1} / {exercises.length}</span>
+                  <span>Question {currentIndex + 1} / {exercises.length}</span>
                 </div>
                 <div className="h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-accent rounded-full transition-all duration-300"
-                    style={{ width: `${((currentIndex + 1) / exercises.length) * 100}%` }}
+                    style={{ width: `${(currentIndex / exercises.length) * 100}%` }}
                   />
                 </div>
               </div>
             </div>
+
+            {selectedTopic?.keyRules[0] && (
+              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-xl p-3 mb-4">
+                <p className="text-xs font-semibold text-accent mb-1">Quick rule</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{selectedTopic.keyRules[0]}</p>
+              </div>
+            )}
 
             <div className="bg-white dark:bg-[#242424] rounded-xl p-4 border border-gray-100 dark:border-gray-800 mb-4">
               <span className="inline-block text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-accent px-2 py-0.5 rounded-full mb-3">

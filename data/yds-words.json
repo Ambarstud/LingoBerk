@@ -2698,5 +2698,455 @@
     "category": "yds",
     "difficulty": "B2",
     "tags": ["verb", "academic", "organization"]
+  },
+  {
+    "id": "yds-301",
+    "english": "inhibit",
+    "turkish": "engellemek, baskılamak",
+    "example": "High temperatures can inhibit the growth of certain bacteria.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "science"]
+  },
+  {
+    "id": "yds-302",
+    "english": "inspect",
+    "turkish": "incelemek, denetlemek",
+    "example": "Engineers inspected the bridge before reopening it to traffic.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "evaluation"]
+  },
+  {
+    "id": "yds-303",
+    "english": "legislation",
+    "turkish": "mevzuat, yasa",
+    "example": "New legislation was introduced to reduce industrial pollution.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["noun", "academic", "law"]
+  },
+  {
+    "id": "yds-304",
+    "english": "maintain",
+    "turkish": "sürdürmek, korumak",
+    "example": "Regular exercise helps maintain physical and mental health.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "continuity"]
+  },
+  {
+    "id": "yds-305",
+    "english": "permit",
+    "turkish": "izin vermek; izin",
+    "example": "The regulations do not permit the release of untreated waste into rivers.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "noun", "academic"]
+  },
+  {
+    "id": "yds-306",
+    "english": "pose",
+    "turkish": "oluşturmak, ortaya koymak",
+    "example": "Air pollution poses a serious threat to public health.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "risk"]
+  },
+  {
+    "id": "yds-307",
+    "english": "refine",
+    "turkish": "arıtmak, geliştirmek",
+    "example": "The researchers refined their model after collecting more data.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "improvement"]
+  },
+  {
+    "id": "yds-308",
+    "english": "release",
+    "turkish": "salmak, yayımlamak; salınım",
+    "example": "The company released a detailed report on its environmental impact.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "noun", "academic"]
+  },
+  {
+    "id": "yds-309",
+    "english": "resolve",
+    "turkish": "çözmek, karara bağlamak",
+    "example": "Negotiators failed to resolve the dispute before the deadline.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "solution"]
+  },
+  {
+    "id": "yds-310",
+    "english": "revenue",
+    "turkish": "gelir",
+    "example": "Tourism provides an important source of revenue for coastal towns.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["noun", "academic", "economy"]
+  },
+  {
+    "id": "yds-311",
+    "english": "scenario",
+    "turkish": "senaryo, olası durum",
+    "example": "The report describes a scenario in which sea levels rise rapidly.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["noun", "academic", "prediction"]
+  },
+  {
+    "id": "yds-312",
+    "english": "scheme",
+    "turkish": "plan, program, düzen",
+    "example": "The scholarship scheme supports students from low-income families.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["noun", "academic", "policy"]
+  },
+  {
+    "id": "yds-313",
+    "english": "seek",
+    "turkish": "aramak, istemek",
+    "example": "Many workers seek better opportunities in urban areas.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "aim"]
+  },
+  {
+    "id": "yds-314",
+    "english": "submit",
+    "turkish": "sunmak, teslim etmek",
+    "example": "Applicants must submit all documents before the closing date.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "process"]
+  },
+  {
+    "id": "yds-315",
+    "english": "substitute",
+    "turkish": "yerine koymak; ikame",
+    "example": "Solar energy can substitute for fossil fuels in some regions.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "noun", "academic"]
+  },
+  {
+    "id": "yds-316",
+    "english": "suspend",
+    "turkish": "askıya almak, durdurmak",
+    "example": "The service was suspended because of severe weather conditions.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "interruption"]
+  },
+  {
+    "id": "yds-317",
+    "english": "transmit",
+    "turkish": "iletmek, aktarmak",
+    "example": "Viruses can be transmitted through close physical contact.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "communication"]
+  },
+  {
+    "id": "yds-318",
+    "english": "undertake",
+    "turkish": "üstlenmek, girişmek",
+    "example": "The university undertook a large-scale study of coastal erosion.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "research"]
+  },
+  {
+    "id": "yds-319",
+    "english": "vary",
+    "turkish": "değişmek, farklılık göstermek",
+    "example": "The results vary depending on age, income, and education level.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "variation"]
+  },
+  {
+    "id": "yds-320",
+    "english": "violate",
+    "turkish": "ihlal etmek, çiğnemek",
+    "example": "The factory was fined for violating environmental standards.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "law"]
+  },
+  {
+    "id": "yds-321",
+    "english": "abandon",
+    "turkish": "terk etmek, bırakmak",
+    "example": "Several villages were abandoned after repeated flooding.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "change"]
+  },
+  {
+    "id": "yds-322",
+    "english": "absorb",
+    "turkish": "emmek, içine almak",
+    "example": "Forests absorb large amounts of carbon dioxide from the atmosphere.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "environment"]
+  },
+  {
+    "id": "yds-323",
+    "english": "accompany",
+    "turkish": "eşlik etmek, beraberinde olmak",
+    "example": "Economic growth is often accompanied by changes in employment patterns.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "relation"]
+  },
+  {
+    "id": "yds-324",
+    "english": "acknowledge",
+    "turkish": "kabul etmek, tanımak",
+    "example": "The authors acknowledge that their study has several limitations.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "argument"]
+  },
+  {
+    "id": "yds-325",
+    "english": "adjust",
+    "turkish": "ayarlamak, uyum sağlamak",
+    "example": "Students need time to adjust to a new learning environment.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "adaptation"]
+  },
+  {
+    "id": "yds-326",
+    "english": "appeal",
+    "turkish": "cazip gelmek; başvuru",
+    "example": "The proposal may appeal to voters concerned about education.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "noun", "academic"]
+  },
+  {
+    "id": "yds-327",
+    "english": "approximate",
+    "turkish": "yaklaşık; yaklaşmak",
+    "example": "The approximate cost of the project is expected to exceed two million dollars.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["adjective", "verb", "academic"]
+  },
+  {
+    "id": "yds-328",
+    "english": "assemble",
+    "turkish": "toplamak, bir araya getirmek",
+    "example": "The team assembled evidence from multiple independent sources.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "research"]
+  },
+  {
+    "id": "yds-329",
+    "english": "assist",
+    "turkish": "yardım etmek",
+    "example": "Digital tools can assist learners in reviewing vocabulary more efficiently.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "support"]
+  },
+  {
+    "id": "yds-330",
+    "english": "assume",
+    "turkish": "varsaymak, üstlenmek",
+    "example": "Researchers should not assume that correlation proves causation.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "reasoning"]
+  },
+  {
+    "id": "yds-331",
+    "english": "attach",
+    "turkish": "eklemek, bağlamak",
+    "example": "Please attach a copy of the certificate to your application.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "process"]
+  },
+  {
+    "id": "yds-332",
+    "english": "benefit",
+    "turkish": "fayda; fayda sağlamak",
+    "example": "Early diagnosis can benefit patients by improving treatment outcomes.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["noun", "verb", "academic"]
+  },
+  {
+    "id": "yds-333",
+    "english": "capable",
+    "turkish": "yetenekli, muktedir",
+    "example": "Modern AI systems are capable of detecting complex patterns in data.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["adjective", "academic", "ability"]
+  },
+  {
+    "id": "yds-334",
+    "english": "capacity",
+    "turkish": "kapasite, yeti",
+    "example": "The hospital increased its capacity during the emergency.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["noun", "academic", "ability"]
+  },
+  {
+    "id": "yds-335",
+    "english": "civil",
+    "turkish": "sivil, medeni",
+    "example": "Civil society organizations played a key role in the campaign.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["adjective", "academic", "society"]
+  },
+  {
+    "id": "yds-336",
+    "english": "code",
+    "turkish": "kod, yasa, kurallar bütünü",
+    "example": "The new safety code applies to all commercial vessels.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["noun", "academic", "law"]
+  },
+  {
+    "id": "yds-337",
+    "english": "commit",
+    "turkish": "işlemek; kendini adamak",
+    "example": "Governments must commit resources to long-term climate adaptation.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "dedication"]
+  },
+  {
+    "id": "yds-338",
+    "english": "community",
+    "turkish": "topluluk",
+    "example": "The project was designed with input from the local community.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["noun", "academic", "society"]
+  },
+  {
+    "id": "yds-339",
+    "english": "complex",
+    "turkish": "karmaşık",
+    "example": "Migration is a complex issue influenced by economic and political factors.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["adjective", "academic", "complexity"]
+  },
+  {
+    "id": "yds-340",
+    "english": "component",
+    "turkish": "bileşen, parça",
+    "example": "Sleep is an essential component of healthy cognitive function.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["noun", "academic", "composition"]
+  },
+  {
+    "id": "yds-341",
+    "english": "concentrate",
+    "turkish": "yoğunlaşmak, odaklanmak",
+    "example": "The study concentrates on the effects of pollution in coastal regions.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "focus"]
+  },
+  {
+    "id": "yds-342",
+    "english": "conclude",
+    "turkish": "sonuca varmak, bitirmek",
+    "example": "The researchers concluded that further evidence was necessary.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "argument"]
+  },
+  {
+    "id": "yds-343",
+    "english": "conflict",
+    "turkish": "çatışma, uyuşmazlık",
+    "example": "Resource scarcity can lead to conflict between neighboring communities.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["noun", "academic", "problem"]
+  },
+  {
+    "id": "yds-344",
+    "english": "consume",
+    "turkish": "tüketmek",
+    "example": "Industrialized countries consume a large share of global energy.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "academic", "economy"]
+  },
+  {
+    "id": "yds-345",
+    "english": "convert",
+    "turkish": "dönüştürmek",
+    "example": "Plants convert sunlight into chemical energy through photosynthesis.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "change"]
+  },
+  {
+    "id": "yds-346",
+    "english": "distribute",
+    "turkish": "dağıtmak",
+    "example": "Food aid was distributed to families affected by the earthquake.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "resources"]
+  },
+  {
+    "id": "yds-347",
+    "english": "document",
+    "turkish": "belgelemek; belge",
+    "example": "Scientists documented changes in sea temperature over several decades.",
+    "category": "yds",
+    "difficulty": "B1",
+    "tags": ["verb", "noun", "academic"]
+  },
+  {
+    "id": "yds-348",
+    "english": "emphasis",
+    "turkish": "vurgu, önem",
+    "example": "The course places strong emphasis on reading comprehension.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["noun", "academic", "importance"]
+  },
+  {
+    "id": "yds-349",
+    "english": "encounter",
+    "turkish": "karşılaşmak",
+    "example": "Researchers may encounter unexpected problems during fieldwork.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "experience"]
+  },
+  {
+    "id": "yds-350",
+    "english": "enhance",
+    "turkish": "geliştirmek, artırmak",
+    "example": "Regular feedback can enhance students' motivation and performance.",
+    "category": "yds",
+    "difficulty": "B2",
+    "tags": ["verb", "academic", "improvement"]
   }
 ]

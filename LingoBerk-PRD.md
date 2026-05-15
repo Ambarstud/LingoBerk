@@ -103,7 +103,7 @@ lingoberk/
 │   ├── streak.ts                   ✅ Streak takibi
 │   └── types.ts                    ✅ Tüm TypeScript tipleri
 ├── data/
-│   ├── yds-words.json              ✅ 300 YDS kelimesi
+│   ├── yds-words.json              ✅ 350 YDS kelimesi
 │   ├── grammar-topics.json         🔄 Phase 2'de oluşturuluyor
 │   ├── reading-passages.json       🔄 Phase 2'de oluşturuluyor
 │   └── conversation-patterns.json  🔄 Phase 3'te oluşturuluyor
@@ -266,7 +266,7 @@ nextReview = today + interval days
 3. Card back → Turkish translation + example. Four buttons: Again (red), Hard (orange), Good (green), Easy (blue)
 4. Session complete → summary: cards reviewed, accuracy, XP earned
 
-**Initial data:** 300 unique curated YDS words in `data/yds-words.json`.
+**Initial data:** 350 unique curated YDS words in `data/yds-words.json`.
 
 **Seed data update behavior:** `ensureCardsLoaded()` must merge the current `data/yds-words.json` seed list into `localStorage` on page load. Existing seed cards keep their SM-2 progress fields (`interval`, `repetition`, `easeFactor`, `nextReview`, `lastReview`), newly added seed cards are initialized with default SM-2 values, and non-seed/custom cards remain untouched. This prevents older installs with the original 205-card dataset from missing newly added YDS cards.
 
@@ -298,6 +298,11 @@ Interactive exercises mirroring YDS question types.
 | inversion | Inversion | negative_adverbs, conditional_inversion |
 | noun_clauses | Noun Clauses | that_clauses, wh_clauses, subjunctive |
 
+Each topic in `data/grammar-topics.json` includes:
+- `summary`: one short B1-B2 explanation of what the topic tests
+- `keyRules`: 2-3 compact rules shown before practice
+- `exercises`: YDS-style questions with explanations
+
 **AI — wrong answer explanation prompt:**
 
 ```
@@ -317,8 +322,8 @@ Keep it concise. The student is at B1-B2 level.
 ```
 
 **UI flow:**
-1. Topic selection grid → progress %, accuracy, weak topics highlighted
-2. Exercise screen → one question, A/B/C/D buttons, progress bar
+1. Topic selection list → answered count, topic completion %, separate accuracy %, weak topics highlighted only after real attempts
+2. Exercise screen → quick grammar rule, one question, A/B/C/D buttons, progress bar based on answered questions
 3. Feedback panel → slides up, AI explanation if wrong
 4. Topic summary → accuracy, XP
 
@@ -440,7 +445,7 @@ ydsScore = (
 |-----|------|-------------|
 | `flashcards` | `FlashCard[]` | All seed + custom cards with SM-2 fields; seed cards are merged from `data/yds-words.json` without losing review progress |
 | `custom_cards` | `FlashCard[]` | User-added cards |
-| `grammar_progress` | `Record<topicId, ExerciseResult[]>` | Exercise history |
+| `grammar_progress` | `Record<topicId, { correct: number; total: number; lastPlayed: string }>` | Topic-level grammar attempts; completion and accuracy must be displayed separately |
 | `reading_progress` | `Record<passageId, ReadingResult>` | Completion data |
 | `chat_history` | `ChatConversation[]` | Last 10 conversations |
 | `user_stats` | `UserStats` | Aggregated statistics |
@@ -529,7 +534,7 @@ Service worker: next-pwa ile otomatik. Statik varlıklar + JSON data offline cac
 - [x] Flashcard module with SM-2 algorithm + flip animation
 - [x] XP and streak system
 - [x] PWA manifest + service worker (next-pwa)
-- [x] YDS vocabulary dataset (300 unique words) + seed merge for existing localStorage installs
+- [x] YDS vocabulary dataset (350 unique words) + seed merge for existing localStorage installs
 - [x] Deploy to Vercel → https://lingoberk.vercel.app
 - [x] Dark mode (class-based)
 - [x] Settings page (daily goal, dark mode toggle, export/import/clear)
@@ -541,8 +546,8 @@ Service worker: next-pwa ile otomatik. Statik varlıklar + JSON data offline cac
 - [ ] API Route Handler: POST /api/ai
 - [ ] API Route Handler: POST /api/generate-exercise
 - [ ] API Route Handler: POST /api/check-answer
-- [ ] Grammar module tam implementasyon (4 exercise type, AI açıklama)
-- [ ] Grammar dataset (data/grammar-topics.json — 10 konu, 8+ alıştırma/konu)
+- [x] Grammar module tam implementasyon (4 exercise type, AI açıklama, completion vs accuracy ayrımı)
+- [x] Grammar dataset (data/grammar-topics.json — 10 konu, 8+ alıştırma/konu, summary/keyRules)
 - [ ] Reading module tam implementasyon (tappable words, question flow)
 - [ ] Reading dataset (data/reading-passages.json — 12 pasaj, 2 maritime)
 - [ ] AI Chat (sohbet balonları, grammar düzeltme kutusu, provider seçici)

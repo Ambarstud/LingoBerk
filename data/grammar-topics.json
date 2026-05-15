@@ -2,6 +2,8 @@
   {
     "id": "tenses",
     "name": "Tenses",
+    "summary": "Choose tense by time relationship: before now, before another past action, or before a future point.",
+    "keyRules": ["Present perfect avoids finished-time words like yesterday.", "Past perfect marks the earlier past action.", "Future perfect means completed before a future deadline."],
     "subtopics": ["present_perfect", "past_perfect", "future_perfect", "mixed"],
     "exercises": [
       {
@@ -99,6 +101,8 @@
   {
     "id": "conditionals",
     "name": "Conditionals",
+    "summary": "Conditionals connect a condition with a result; YDS often tests tense pairs and unless/provided that.",
+    "keyRules": ["If + present, will + verb for real future results.", "If + past, would + verb for unreal present.", "If + past perfect, would have + V3 for unreal past."],
     "subtopics": ["zero", "first", "second", "third", "mixed"],
     "exercises": [
       {
@@ -196,6 +200,8 @@
   {
     "id": "passive",
     "name": "Passive Voice",
+    "summary": "Passive voice highlights the action or result when the doer is unknown, obvious, or less important.",
+    "keyRules": ["Passive form is be + V3.", "Keep the original tense in the verb be.", "Use by only when the agent matters."],
     "subtopics": ["simple", "perfect", "continuous", "modal"],
     "exercises": [
       {
@@ -293,6 +299,8 @@
   {
     "id": "relative_clauses",
     "name": "Relative Clauses",
+    "summary": "Relative clauses add information about nouns and often test who/which/that/where/whose choices.",
+    "keyRules": ["Who is for people; which is for things.", "Whose shows possession.", "Where is for places when it means in/at which."],
     "subtopics": ["defining", "non_defining", "reduced"],
     "exercises": [
       {
@@ -390,6 +398,8 @@
   {
     "id": "connectors",
     "name": "Connectors & Transitions",
+    "summary": "Connectors show contrast, reason, result, purpose, addition, or condition between ideas.",
+    "keyRules": ["Although + clause; despite + noun/gerund.", "Therefore/consequently signal result.", "In order to/so as to signal purpose."],
     "subtopics": ["contrast", "addition", "result", "concession", "comparison"],
     "exercises": [
       {
@@ -532,6 +542,8 @@
   {
     "id": "modals",
     "name": "Modal Verbs",
+    "summary": "Modals express obligation, possibility, deduction, advice, and past criticism.",
+    "keyRules": ["Must suggests strong deduction or obligation.", "Should have + V3 criticizes a past action.", "May/might/could show possibility."],
     "subtopics": ["ability", "obligation", "possibility", "deduction", "past_modals"],
     "exercises": [
       {
@@ -629,6 +641,8 @@
   {
     "id": "gerund_infinitive",
     "name": "Gerund & Infinitive",
+    "summary": "Some verbs are followed by -ing, some by to + verb, and some change meaning depending on the form.",
+    "keyRules": ["Avoid, enjoy, consider + V-ing.", "Decide, hope, aim + to V.", "Stop/remember/regret can change meaning with -ing vs to V."],
     "subtopics": ["gerund_after_verbs", "infinitive_after_verbs", "meaning_changes"],
     "exercises": [
       {
@@ -726,6 +740,8 @@
   {
     "id": "reported_speech",
     "name": "Reported Speech",
+    "summary": "Reported speech shifts statements, questions, and commands into indirect form.",
+    "keyRules": ["Backshift tense when the reporting verb is past.", "Reported questions use statement word order.", "Commands use told/asked + object + to V."],
     "subtopics": ["statements", "questions", "commands", "tense_backshift"],
     "exercises": [
       {
@@ -823,6 +839,8 @@
   {
     "id": "inversion",
     "name": "Inversion",
+    "summary": "Inversion is formal emphasis: negative or restrictive adverbs move first, then auxiliary + subject follows.",
+    "keyRules": ["Never/Rarely/Hardly at the start triggers inversion.", "Use auxiliary + subject + main verb.", "Not only requires inversion in the first clause."],
     "subtopics": ["negative_adverbials", "conditional_inversion", "so_such"],
     "exercises": [
       {
@@ -920,6 +938,8 @@
   {
     "id": "noun_clauses",
     "name": "Noun Clauses",
+    "summary": "Noun clauses act as subject, object, or complement and often use that, whether, if, or question words.",
+    "keyRules": ["Embedded questions use statement word order.", "Whether is safer than if before or not.", "That clauses can be subject or object."],
     "subtopics": ["that_clauses", "wh_clauses", "whether_if"],
     "exercises": [
       {
