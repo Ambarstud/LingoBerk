@@ -1,0 +1,1017 @@
+[
+  {
+    "id": "tenses",
+    "name": "Tenses",
+    "subtopics": ["present_perfect", "past_perfect", "future_perfect", "mixed"],
+    "exercises": [
+      {
+        "id": "tenses_01",
+        "type": "gap_fill",
+        "topic": "tenses",
+        "question": "By the time she arrives, we _____ all the food.",
+        "options": ["A) will eat", "B) will have eaten", "C) are eating", "D) have eaten"],
+        "correctIndex": 1,
+        "explanation": "Future perfect (will have + past participle) is used for actions that will be completed before a specific future time."
+      },
+      {
+        "id": "tenses_02",
+        "type": "gap_fill",
+        "topic": "tenses",
+        "question": "She _____ in London for five years before she moved to Paris.",
+        "options": ["A) lived", "B) has lived", "C) had lived", "D) was living"],
+        "correctIndex": 2,
+        "explanation": "Past perfect (had + past participle) describes an action completed before another past event."
+      },
+      {
+        "id": "tenses_03",
+        "type": "error_correction",
+        "topic": "tenses",
+        "question": "Which sentence contains a grammatical error?\nA) I have seen that film twice.\nB) She has finished her homework yesterday.\nC) They had left before we arrived.\nD) He will have retired by next year.",
+        "options": ["A) I have seen that film twice.", "B) She has finished her homework yesterday.", "C) They had left before we arrived.", "D) He will have retired by next year."],
+        "correctIndex": 1,
+        "explanation": "Present perfect cannot be used with specific past time expressions like 'yesterday'. Simple past ('finished') is correct."
+      },
+      {
+        "id": "tenses_04",
+        "type": "sentence_completion",
+        "topic": "tenses",
+        "question": "When I got to the station, the train _____.",
+        "options": ["A) already left", "B) has already left", "C) had already left", "D) was already leaving"],
+        "correctIndex": 2,
+        "explanation": "Past perfect is required because the train's departure happened before the arrival at the station."
+      },
+      {
+        "id": "tenses_05",
+        "type": "gap_fill",
+        "topic": "tenses",
+        "question": "Scientists _____ this phenomenon for decades, but they still have no clear explanation.",
+        "options": ["A) study", "B) studied", "C) have been studying", "D) are studying"],
+        "correctIndex": 2,
+        "explanation": "Present perfect continuous (have been + -ing) shows an ongoing action that started in the past and continues to the present."
+      },
+      {
+        "id": "tenses_06",
+        "type": "sentence_rewriting",
+        "topic": "tenses",
+        "question": "Choose the sentence that best rewrites: 'He started working here in 2010 and still works here.'\nUsing present perfect.",
+        "options": ["A) He works here since 2010.", "B) He has worked here since 2010.", "C) He had worked here since 2010.", "D) He was working here since 2010."],
+        "correctIndex": 1,
+        "explanation": "Present perfect with 'since' expresses an action that began at a specific time in the past and continues now."
+      },
+      {
+        "id": "tenses_07",
+        "type": "gap_fill",
+        "topic": "tenses",
+        "question": "This time next week, we _____ on the beach in Turkey.",
+        "options": ["A) will lie", "B) will be lying", "C) are lying", "D) will have lied"],
+        "correctIndex": 1,
+        "explanation": "Future continuous (will be + -ing) describes an ongoing action at a specific future time."
+      },
+      {
+        "id": "tenses_08",
+        "type": "error_correction",
+        "topic": "tenses",
+        "question": "Identify the incorrect sentence:",
+        "options": ["A) She has been to Japan three times.", "B) I have gone to Paris last summer.", "C) They have just arrived.", "D) He has lived here since childhood."],
+        "correctIndex": 1,
+        "explanation": "'Last summer' is a definite past time expression, so simple past 'went' should be used, not present perfect."
+      },
+      {
+        "id": "tenses_09",
+        "type": "sentence_completion",
+        "topic": "tenses",
+        "question": "By 2030, renewable energy _____ the primary source of power in most countries.",
+        "options": ["A) becomes", "B) will become", "C) will have become", "D) has become"],
+        "correctIndex": 2,
+        "explanation": "Future perfect is used to express a completed action before a specific point in the future."
+      },
+      {
+        "id": "tenses_10",
+        "type": "gap_fill",
+        "topic": "tenses",
+        "question": "She _____ to the doctor regularly since her accident last year.",
+        "options": ["A) goes", "B) went", "C) has been going", "D) had been going"],
+        "correctIndex": 2,
+        "explanation": "Present perfect continuous connects past action to present, suitable with 'since' for ongoing situations."
+      }
+    ]
+  },
+  {
+    "id": "conditionals",
+    "name": "Conditionals",
+    "subtopics": ["zero", "first", "second", "third", "mixed"],
+    "exercises": [
+      {
+        "id": "cond_01",
+        "type": "gap_fill",
+        "topic": "conditionals",
+        "question": "If I _____ more money last year, I would have bought that apartment.",
+        "options": ["A) had saved", "B) saved", "C) have saved", "D) would save"],
+        "correctIndex": 0,
+        "explanation": "Third conditional (if + past perfect, would have + past participle) is used for hypothetical past situations."
+      },
+      {
+        "id": "cond_02",
+        "type": "gap_fill",
+        "topic": "conditionals",
+        "question": "If she studies harder, she _____ the YDS exam.",
+        "options": ["A) would pass", "B) will pass", "C) passed", "D) would have passed"],
+        "correctIndex": 1,
+        "explanation": "First conditional (if + present simple, will + base verb) is used for real, possible future conditions."
+      },
+      {
+        "id": "cond_03",
+        "type": "error_correction",
+        "topic": "conditionals",
+        "question": "Which sentence is grammatically incorrect?",
+        "options": ["A) If I were rich, I would travel the world.", "B) If it rains, we will cancel the picnic.", "C) If she would study more, she would pass.", "D) If they had arrived earlier, they would have seen him."],
+        "correctIndex": 2,
+        "explanation": "In the if-clause of second conditional, 'would' is not used. The correct form is 'If she studied more, she would pass.'"
+      },
+      {
+        "id": "cond_04",
+        "type": "sentence_completion",
+        "topic": "conditionals",
+        "question": "Had they invested in that company ten years ago, they _____ millionaires now.",
+        "options": ["A) would be", "B) will be", "C) were", "D) would have been"],
+        "correctIndex": 0,
+        "explanation": "This is a mixed conditional: past perfect in the if-clause and 'would + base' in the result clause for a past condition with present consequence."
+      },
+      {
+        "id": "cond_05",
+        "type": "gap_fill",
+        "topic": "conditionals",
+        "question": "Water _____ to steam if you heat it to 100°C.",
+        "options": ["A) will turn", "B) turns", "C) would turn", "D) turned"],
+        "correctIndex": 1,
+        "explanation": "Zero conditional (if + present simple, present simple) is used for universal truths and scientific facts."
+      },
+      {
+        "id": "cond_06",
+        "type": "sentence_rewriting",
+        "topic": "conditionals",
+        "question": "Which sentence correctly rewrites 'I'm not a doctor, so I can't treat you'?",
+        "options": ["A) If I would be a doctor, I could treat you.", "B) If I were a doctor, I could treat you.", "C) If I was a doctor, I can treat you.", "D) If I had been a doctor, I could treat you."],
+        "correctIndex": 1,
+        "explanation": "Second conditional uses 'were' (not 'was') for all persons to express hypothetical present situations."
+      },
+      {
+        "id": "cond_07",
+        "type": "gap_fill",
+        "topic": "conditionals",
+        "question": "Unless you _____ your password, you won't be able to log in.",
+        "options": ["A) remember", "B) will remember", "C) would remember", "D) remembered"],
+        "correctIndex": 0,
+        "explanation": "'Unless' means 'if not', and like 'if', it is followed by present simple in first conditional sentences."
+      },
+      {
+        "id": "cond_08",
+        "type": "sentence_completion",
+        "topic": "conditionals",
+        "question": "If I _____ you were coming, I would have prepared dinner.",
+        "options": ["A) knew", "B) had known", "C) know", "D) would know"],
+        "correctIndex": 1,
+        "explanation": "Third conditional requires past perfect in the if-clause because it refers to an unreal past situation."
+      },
+      {
+        "id": "cond_09",
+        "type": "gap_fill",
+        "topic": "conditionals",
+        "question": "Should you need any further assistance, please _____ us.",
+        "options": ["A) contact", "B) would contact", "C) contacted", "D) will contact"],
+        "correctIndex": 0,
+        "explanation": "Inverted conditional with 'should' requires base infinitive in the result clause for formal first conditional."
+      },
+      {
+        "id": "cond_10",
+        "type": "error_correction",
+        "topic": "conditionals",
+        "question": "Identify the grammatically correct sentence:",
+        "options": ["A) If the weather will be nice, we go out.", "B) If he would work harder, he'd get promoted.", "C) Provided that she passes the test, she'll graduate.", "D) Unless I will hear from you, I assume you're fine."],
+        "correctIndex": 2,
+        "explanation": "'Provided that' works like 'if' in first conditional, so present simple in the condition and will in the result clause is correct."
+      }
+    ]
+  },
+  {
+    "id": "passive",
+    "name": "Passive Voice",
+    "subtopics": ["simple", "perfect", "continuous", "modal"],
+    "exercises": [
+      {
+        "id": "pass_01",
+        "type": "sentence_rewriting",
+        "topic": "passive",
+        "question": "Which passive form is correct for: 'They are building a new bridge'?",
+        "options": ["A) A new bridge is built by them.", "B) A new bridge is being built.", "C) A new bridge was being built.", "D) A new bridge has been built."],
+        "correctIndex": 1,
+        "explanation": "Present continuous passive (is/are being + past participle) is used for ongoing actions in passive voice."
+      },
+      {
+        "id": "pass_02",
+        "type": "gap_fill",
+        "topic": "passive",
+        "question": "The report _____ by the committee last week.",
+        "options": ["A) was reviewed", "B) has been reviewed", "C) is reviewed", "D) is being reviewed"],
+        "correctIndex": 0,
+        "explanation": "'Last week' signals simple past, so past simple passive (was/were + past participle) is correct."
+      },
+      {
+        "id": "pass_03",
+        "type": "error_correction",
+        "topic": "passive",
+        "question": "Find the incorrect passive sentence:",
+        "options": ["A) The letter has been sent.", "B) The windows were being cleaned.", "C) The cake is being ate.", "D) The car was repaired yesterday."],
+        "correctIndex": 2,
+        "explanation": "'Ate' is simple past and cannot follow 'being'. The correct form is 'is being eaten'."
+      },
+      {
+        "id": "pass_04",
+        "type": "gap_fill",
+        "topic": "passive",
+        "question": "The new policy _____ by the government before the end of the year.",
+        "options": ["A) will announce", "B) will be announced", "C) is announced", "D) has been announced"],
+        "correctIndex": 1,
+        "explanation": "Future simple passive (will be + past participle) is used for future passive actions."
+      },
+      {
+        "id": "pass_05",
+        "type": "sentence_completion",
+        "topic": "passive",
+        "question": "All passengers _____ to show their boarding passes before boarding.",
+        "options": ["A) require", "B) are required", "C) required", "D) have required"],
+        "correctIndex": 1,
+        "explanation": "Present simple passive (am/is/are + past participle) is used for general rules and procedures."
+      },
+      {
+        "id": "pass_06",
+        "type": "gap_fill",
+        "topic": "passive",
+        "question": "The experiment _____ three times before the researchers achieved the desired result.",
+        "options": ["A) had been repeated", "B) was repeated", "C) has been repeated", "D) is repeated"],
+        "correctIndex": 0,
+        "explanation": "Past perfect passive (had been + past participle) is used when the action was completed before another past event."
+      },
+      {
+        "id": "pass_07",
+        "type": "error_correction",
+        "topic": "passive",
+        "question": "Choose the grammatically correct sentence:",
+        "options": ["A) The documents must signed before submission.", "B) The documents must be signed before submission.", "C) The documents must been signed before submission.", "D) The documents must being signed before submission."],
+        "correctIndex": 1,
+        "explanation": "Modal passive requires modal + 'be' + past participle. 'Must be signed' is the correct form."
+      },
+      {
+        "id": "pass_08",
+        "type": "sentence_rewriting",
+        "topic": "passive",
+        "question": "Which correctly converts 'Someone should inform the passengers immediately'?",
+        "options": ["A) The passengers should inform immediately.", "B) The passengers should be informed immediately.", "C) The passengers should been informed immediately.", "D) The passengers should have informed immediately."],
+        "correctIndex": 1,
+        "explanation": "Modal passive: 'should be + past participle' is the correct structure for passive sentences with modal verbs."
+      },
+      {
+        "id": "pass_09",
+        "type": "gap_fill",
+        "topic": "passive",
+        "question": "The ancient artifacts _____ from the museum last night.",
+        "options": ["A) stole", "B) were stolen", "C) have stolen", "D) are stolen"],
+        "correctIndex": 1,
+        "explanation": "'Last night' indicates simple past; passive voice requires 'were stolen' (were + past participle)."
+      },
+      {
+        "id": "pass_10",
+        "type": "sentence_completion",
+        "topic": "passive",
+        "question": "It is believed that the company _____ in financial difficulties.",
+        "options": ["A) is", "B) to be", "C) is to be", "D) being"],
+        "correctIndex": 0,
+        "explanation": "In passive reporting structures with 'It is believed that', the following clause uses normal sentence structure."
+      }
+    ]
+  },
+  {
+    "id": "relative_clauses",
+    "name": "Relative Clauses",
+    "subtopics": ["defining", "non_defining", "reduced"],
+    "exercises": [
+      {
+        "id": "rel_01",
+        "type": "gap_fill",
+        "topic": "relative_clauses",
+        "question": "The scientist _____ research changed modern medicine won the Nobel Prize.",
+        "options": ["A) who", "B) whose", "C) which", "D) whom"],
+        "correctIndex": 1,
+        "explanation": "'Whose' is used as a possessive relative pronoun when the antecedent possesses something (the scientist's research)."
+      },
+      {
+        "id": "rel_02",
+        "type": "error_correction",
+        "topic": "relative_clauses",
+        "question": "Which sentence is punctuated correctly?",
+        "options": ["A) My sister who lives in Ankara visited us last week.", "B) My sister, who lives in Ankara, visited us last week.", "C) My sister, who lives in Ankara visited us last week.", "D) My sister who lives in Ankara, visited us last week."],
+        "correctIndex": 1,
+        "explanation": "Non-defining relative clauses (adding extra, non-essential information) must be enclosed with commas on both sides."
+      },
+      {
+        "id": "rel_03",
+        "type": "sentence_completion",
+        "topic": "relative_clauses",
+        "question": "The report _____ was submitted yesterday contains several errors.",
+        "options": ["A) that it", "B) which it", "C) that", "D) what"],
+        "correctIndex": 2,
+        "explanation": "In a defining relative clause referring to a thing, 'that' or 'which' is used; avoid double subjects by not adding 'it'."
+      },
+      {
+        "id": "rel_04",
+        "type": "gap_fill",
+        "topic": "relative_clauses",
+        "question": "This is the university _____ my father studied in the 1980s.",
+        "options": ["A) that", "B) which", "C) where", "D) when"],
+        "correctIndex": 2,
+        "explanation": "'Where' is used as a relative adverb when the antecedent is a place."
+      },
+      {
+        "id": "rel_05",
+        "type": "sentence_rewriting",
+        "topic": "relative_clauses",
+        "question": "Which sentence correctly reduces 'The woman who was standing by the door is my teacher'?",
+        "options": ["A) The woman stood by the door is my teacher.", "B) The woman standing by the door is my teacher.", "C) The woman to stand by the door is my teacher.", "D) The woman stand by the door is my teacher."],
+        "correctIndex": 1,
+        "explanation": "A defining relative clause with an active verb can be reduced by omitting 'who/which was' and using the present participle (-ing)."
+      },
+      {
+        "id": "rel_06",
+        "type": "error_correction",
+        "topic": "relative_clauses",
+        "question": "Identify the sentence with an error:",
+        "options": ["A) The book that I borrowed was fascinating.", "B) The man whom I spoke was very helpful.", "C) The city where I grew up has changed a lot.", "D) The day when we met was rainy."],
+        "correctIndex": 1,
+        "explanation": "'Whom I spoke' is incomplete; it should be 'whom I spoke to' (or 'who I spoke to' informally) because 'spoke to' requires a preposition."
+      },
+      {
+        "id": "rel_07",
+        "type": "gap_fill",
+        "topic": "relative_clauses",
+        "question": "Shakespeare, _____ plays are still performed worldwide, was born in 1564.",
+        "options": ["A) who", "B) that", "C) whose", "D) which"],
+        "correctIndex": 2,
+        "explanation": "'Whose' is the possessive relative pronoun used with both people and things. This is a non-defining clause (note the commas)."
+      },
+      {
+        "id": "rel_08",
+        "type": "sentence_completion",
+        "topic": "relative_clauses",
+        "question": "I remember the year _____ the economic crisis began.",
+        "options": ["A) which", "B) that", "C) where", "D) when"],
+        "correctIndex": 3,
+        "explanation": "'When' is used as a relative adverb with time nouns such as 'year', 'day', 'time', 'moment'."
+      },
+      {
+        "id": "rel_09",
+        "type": "gap_fill",
+        "topic": "relative_clauses",
+        "question": "The reason _____ he refused the offer remains unknown.",
+        "options": ["A) why", "B) which", "C) that", "D) when"],
+        "correctIndex": 0,
+        "explanation": "'Why' is the relative adverb used with the noun 'reason' in relative clauses."
+      },
+      {
+        "id": "rel_10",
+        "type": "sentence_rewriting",
+        "topic": "relative_clauses",
+        "question": "Which correctly combines: 'The machine was invented in 1895. It changed transportation.'",
+        "options": ["A) The machine which it was invented in 1895 changed transportation.", "B) The machine, invented in 1895, changed transportation.", "C) The machine that changed transportation was inventing in 1895.", "D) The machine was invented in 1895 which changed transportation."],
+        "correctIndex": 1,
+        "explanation": "A non-defining relative clause can be reduced using a past participle phrase, resulting in a concise and formal structure."
+      }
+    ]
+  },
+  {
+    "id": "connectors",
+    "name": "Connectors & Transitions",
+    "subtopics": ["contrast", "addition", "result", "concession", "comparison"],
+    "exercises": [
+      {
+        "id": "conn_01",
+        "type": "gap_fill",
+        "topic": "connectors",
+        "question": "The project was completed on time; _____, the budget was significantly exceeded.",
+        "options": ["A) furthermore", "B) consequently", "C) however", "D) thereby"],
+        "correctIndex": 2,
+        "explanation": "'However' introduces a contrast or unexpected result. It connects two opposing ideas and is placed after a semicolon."
+      },
+      {
+        "id": "conn_02",
+        "type": "gap_fill",
+        "topic": "connectors",
+        "question": "She didn't study for the exam; _____, she managed to pass it with a high score.",
+        "options": ["A) therefore", "B) moreover", "C) nevertheless", "D) accordingly"],
+        "correctIndex": 2,
+        "explanation": "'Nevertheless' means 'despite that' and introduces a statement that contrasts with or is surprising given what was just said."
+      },
+      {
+        "id": "conn_03",
+        "type": "sentence_completion",
+        "topic": "connectors",
+        "question": "The new regulations are strict; _____, companies are expected to comply within six months.",
+        "options": ["A) consequently", "B) albeit", "C) conversely", "D) whereas"],
+        "correctIndex": 0,
+        "explanation": "'Consequently' introduces a result or consequence and is used after a semicolon to connect cause and effect."
+      },
+      {
+        "id": "conn_04",
+        "type": "gap_fill",
+        "topic": "connectors",
+        "question": "The treatment is effective, _____ expensive.",
+        "options": ["A) however", "B) albeit", "C) nevertheless", "D) conversely"],
+        "correctIndex": 1,
+        "explanation": "'Albeit' means 'although' and is used within a clause to introduce a concession. It connects a main point with a qualification."
+      },
+      {
+        "id": "conn_05",
+        "type": "error_correction",
+        "topic": "connectors",
+        "question": "Which sentence uses a connector correctly?",
+        "options": ["A) He is rich; moreover, he is unhappy.", "B) He is rich; thus, he is unhappy.", "C) He is rich; although, he is unhappy.", "D) He is rich; nonetheless he is unhappy."],
+        "correctIndex": 3,
+        "explanation": "'Nonetheless' is correct here meaning 'in spite of that'. 'Although' cannot follow a semicolon. Note: a comma is optional after 'nonetheless'."
+      },
+      {
+        "id": "conn_06",
+        "type": "gap_fill",
+        "topic": "connectors",
+        "question": "Western countries have strong social safety nets; _____, many developing nations lack basic healthcare.",
+        "options": ["A) furthermore", "B) hence", "C) whereas", "D) thereby"],
+        "correctIndex": 2,
+        "explanation": "'Whereas' is used to contrast two different situations, highlighting a direct opposition between two clauses."
+      },
+      {
+        "id": "conn_07",
+        "type": "gap_fill",
+        "topic": "connectors",
+        "question": "The new software is faster and more efficient; _____, it costs less than the previous version.",
+        "options": ["A) conversely", "B) thus", "C) moreover", "D) nevertheless"],
+        "correctIndex": 2,
+        "explanation": "'Moreover' adds another point that reinforces or expands on the previous statement, similar to 'in addition, furthermore'."
+      },
+      {
+        "id": "conn_08",
+        "type": "sentence_completion",
+        "topic": "connectors",
+        "question": "The evidence was insufficient; _____, the case was dismissed.",
+        "options": ["A) although", "B) hence", "C) whereas", "D) furthermore"],
+        "correctIndex": 1,
+        "explanation": "'Hence' means 'for this reason' or 'therefore' and introduces a logical consequence of the previous statement."
+      },
+      {
+        "id": "conn_09",
+        "type": "gap_fill",
+        "topic": "connectors",
+        "question": "_____ the high cost, the government decided to proceed with the infrastructure project.",
+        "options": ["A) Although", "B) Despite", "C) Nevertheless", "D) However"],
+        "correctIndex": 1,
+        "explanation": "'Despite' is a preposition and is followed by a noun phrase or gerund, not a clause. 'Although' requires a subject and verb."
+      },
+      {
+        "id": "conn_10",
+        "type": "gap_fill",
+        "topic": "connectors",
+        "question": "The company reduced its workforce; _____, it managed to increase productivity.",
+        "options": ["A) thereby", "B) accordingly", "C) thus", "D) nonetheless"],
+        "correctIndex": 3,
+        "explanation": "'Nonetheless' (like 'nevertheless') introduces a contrasting or surprising result despite what was stated previously."
+      },
+      {
+        "id": "conn_11",
+        "type": "sentence_rewriting",
+        "topic": "connectors",
+        "question": "Which best rewrites: 'He was tired. He continued working.' using a connector?",
+        "options": ["A) He was tired; furthermore, he continued working.", "B) He was tired; conversely, he continued working.", "C) He was tired; nevertheless, he continued working.", "D) He was tired; accordingly, he continued working."],
+        "correctIndex": 2,
+        "explanation": "'Nevertheless' (despite being tired) correctly expresses contrast between tiredness and continued work."
+      },
+      {
+        "id": "conn_12",
+        "type": "gap_fill",
+        "topic": "connectors",
+        "question": "The data was analyzed carefully, _____ ensuring accurate results.",
+        "options": ["A) thus", "B) thereby", "C) hence", "D) consequently"],
+        "correctIndex": 1,
+        "explanation": "'Thereby' means 'by that means' and is used before a participle phrase to show how something was achieved as a result."
+      },
+      {
+        "id": "conn_13",
+        "type": "error_correction",
+        "topic": "connectors",
+        "question": "Which sentence uses a connector incorrectly?",
+        "options": ["A) She worked hard; accordingly, she was promoted.", "B) The results were disappointing; nonetheless, the team persevered.", "C) He failed the test; although he studied hard.", "D) Prices rose sharply; consequently, demand fell."],
+        "correctIndex": 2,
+        "explanation": "'Although' introduces a subordinate clause and cannot be placed between two independent clauses separated by a semicolon."
+      },
+      {
+        "id": "conn_14",
+        "type": "gap_fill",
+        "topic": "connectors",
+        "question": "Some species are endangered; _____, certain plants are thriving in changed climates.",
+        "options": ["A) thus", "B) thereby", "C) conversely", "D) moreover"],
+        "correctIndex": 2,
+        "explanation": "'Conversely' introduces an idea that is opposite or contrasting to what was previously mentioned."
+      },
+      {
+        "id": "conn_15",
+        "type": "sentence_completion",
+        "topic": "connectors",
+        "question": "The temperature dropped significantly; _____, the crops were damaged beyond recovery.",
+        "options": ["A) albeit", "B) whereas", "C) furthermore", "D) accordingly"],
+        "correctIndex": 3,
+        "explanation": "'Accordingly' means 'as a result' or 'in a way that is appropriate to the circumstances', showing logical consequence."
+      }
+    ]
+  },
+  {
+    "id": "modals",
+    "name": "Modal Verbs",
+    "subtopics": ["ability", "obligation", "possibility", "deduction", "past_modals"],
+    "exercises": [
+      {
+        "id": "mod_01",
+        "type": "gap_fill",
+        "topic": "modals",
+        "question": "You _____ be tired after working for 12 hours without a break.",
+        "options": ["A) must", "B) might", "C) should", "D) would"],
+        "correctIndex": 0,
+        "explanation": "'Must' is used for strong logical deduction about the present. It expresses near certainty based on evidence."
+      },
+      {
+        "id": "mod_02",
+        "type": "error_correction",
+        "topic": "modals",
+        "question": "Identify the incorrect sentence:",
+        "options": ["A) She can swim very well.", "B) You should to study more.", "C) He might be at home.", "D) They must have left already."],
+        "correctIndex": 1,
+        "explanation": "Modal verbs are followed by the bare infinitive (without 'to'). 'Should study' not 'should to study' is correct."
+      },
+      {
+        "id": "mod_03",
+        "type": "gap_fill",
+        "topic": "modals",
+        "question": "He _____ have forgotten about the meeting — he never misses appointments.",
+        "options": ["A) must", "B) can't", "C) might", "D) should"],
+        "correctIndex": 1,
+        "explanation": "'Can't have + past participle' expresses strong negative deduction about the past — near certainty that something didn't happen."
+      },
+      {
+        "id": "mod_04",
+        "type": "sentence_completion",
+        "topic": "modals",
+        "question": "Passengers _____ wear seatbelts at all times during the flight.",
+        "options": ["A) would", "B) may", "C) must", "D) could"],
+        "correctIndex": 2,
+        "explanation": "'Must' expresses obligation or a rule. This is a safety requirement, making 'must' the appropriate modal."
+      },
+      {
+        "id": "mod_05",
+        "type": "gap_fill",
+        "topic": "modals",
+        "question": "When I was young, I _____ run very fast, but now I can't.",
+        "options": ["A) could", "B) can", "C) might", "D) would"],
+        "correctIndex": 0,
+        "explanation": "'Could' expresses past ability. It is used to describe something someone was able to do in the past but cannot do now."
+      },
+      {
+        "id": "mod_06",
+        "type": "sentence_rewriting",
+        "topic": "modals",
+        "question": "Which sentence correctly expresses: 'It's possible that she arrived late.'",
+        "options": ["A) She must have arrived late.", "B) She could have arrived late.", "C) She should have arrived late.", "D) She would have arrived late."],
+        "correctIndex": 1,
+        "explanation": "'Could have + past participle' expresses past possibility. 'Must have' expresses near certainty, not mere possibility."
+      },
+      {
+        "id": "mod_07",
+        "type": "gap_fill",
+        "topic": "modals",
+        "question": "You _____ have told me about the change in plans. I waited for an hour.",
+        "options": ["A) would", "B) should", "C) must", "D) could"],
+        "correctIndex": 1,
+        "explanation": "'Should have + past participle' expresses criticism or regret about something that didn't happen but should have."
+      },
+      {
+        "id": "mod_08",
+        "type": "error_correction",
+        "topic": "modals",
+        "question": "Which sentence contains an error?",
+        "options": ["A) You needn't come to the meeting.", "B) He daren't say anything.", "C) She musts arrive on time.", "D) They oughtn't to have done that."],
+        "correctIndex": 2,
+        "explanation": "Modal verbs do not inflect for person or number. 'Musts' is incorrect; it should be 'must' without the -s."
+      },
+      {
+        "id": "mod_09",
+        "type": "sentence_completion",
+        "topic": "modals",
+        "question": "We _____ bring formal identification, or we won't be allowed entry.",
+        "options": ["A) might", "B) would", "C) must", "D) used to"],
+        "correctIndex": 2,
+        "explanation": "'Must' expresses a strong obligation or requirement. The 'or' clause confirms it is a necessary condition."
+      },
+      {
+        "id": "mod_10",
+        "type": "gap_fill",
+        "topic": "modals",
+        "question": "It _____ rain tonight — the clouds look very dark.",
+        "options": ["A) must", "B) might", "C) would", "D) should"],
+        "correctIndex": 1,
+        "explanation": "'Might' expresses a weak possibility or uncertainty. The speaker is not certain, just making a prediction based on evidence."
+      }
+    ]
+  },
+  {
+    "id": "gerund_infinitive",
+    "name": "Gerund & Infinitive",
+    "subtopics": ["gerund_after_verbs", "infinitive_after_verbs", "meaning_changes"],
+    "exercises": [
+      {
+        "id": "ger_01",
+        "type": "gap_fill",
+        "topic": "gerund_infinitive",
+        "question": "She admitted _____ the money from the cash register.",
+        "options": ["A) to take", "B) taking", "C) take", "D) to taking"],
+        "correctIndex": 1,
+        "explanation": "'Admit' is always followed by a gerund (-ing form). Common verbs followed by gerund: admit, avoid, deny, enjoy, finish, suggest."
+      },
+      {
+        "id": "ger_02",
+        "type": "gap_fill",
+        "topic": "gerund_infinitive",
+        "question": "They decided _____ the project until they had more funding.",
+        "options": ["A) postponing", "B) to postpone", "C) postpone", "D) having postponed"],
+        "correctIndex": 1,
+        "explanation": "'Decide' is followed by the infinitive (to + base verb). Other such verbs: agree, arrange, hope, offer, plan, promise, refuse."
+      },
+      {
+        "id": "ger_03",
+        "type": "error_correction",
+        "topic": "gerund_infinitive",
+        "question": "Which sentence contains an error?",
+        "options": ["A) I enjoy reading historical novels.", "B) She forgot to lock the door.", "C) He suggested to go to a restaurant.", "D) They avoided answering the question."],
+        "correctIndex": 2,
+        "explanation": "'Suggest' is always followed by a gerund (-ing), not an infinitive. Correct: 'He suggested going to a restaurant.'"
+      },
+      {
+        "id": "ger_04",
+        "type": "sentence_completion",
+        "topic": "gerund_infinitive",
+        "question": "I remember _____ her at a conference in 2018, but I can't recall her name.",
+        "options": ["A) to meet", "B) meeting", "C) met", "D) to have met"],
+        "correctIndex": 1,
+        "explanation": "'Remember + gerund' refers to a memory of a past action. 'Remember + infinitive' refers to remembering to do something in the future."
+      },
+      {
+        "id": "ger_05",
+        "type": "gap_fill",
+        "topic": "gerund_infinitive",
+        "question": "After _____ the report, she realized she had made several mistakes.",
+        "options": ["A) to submit", "B) submitted", "C) submitting", "D) submit"],
+        "correctIndex": 2,
+        "explanation": "After prepositions (like 'after', 'before', 'by', 'without'), always use a gerund (-ing form)."
+      },
+      {
+        "id": "ger_06",
+        "type": "sentence_rewriting",
+        "topic": "gerund_infinitive",
+        "question": "Which correctly rewrites: 'It is not permitted to park here'?",
+        "options": ["A) Parking is not permitted here.", "B) To park not is permitted here.", "C) Park here is not permitted.", "D) Parking not is permitted here."],
+        "correctIndex": 0,
+        "explanation": "A gerund used as a subject is grammatically correct and common in English: 'Parking is not permitted here.'"
+      },
+      {
+        "id": "ger_07",
+        "type": "gap_fill",
+        "topic": "gerund_infinitive",
+        "question": "He stopped _____ his shoes and looked up at the sky.",
+        "options": ["A) to tie", "B) tying", "C) tied", "D) having tied"],
+        "correctIndex": 1,
+        "explanation": "'Stop + gerund' means to cease doing the action. 'Stop + infinitive' means to stop in order to do something else."
+      },
+      {
+        "id": "ger_08",
+        "type": "error_correction",
+        "topic": "gerund_infinitive",
+        "question": "Find the sentence with the correct verb pattern:",
+        "options": ["A) She managed finishing the task on time.", "B) They expected winning the prize.", "C) We arranged to meet at noon.", "D) He considered to resign from his position."],
+        "correctIndex": 2,
+        "explanation": "'Arrange' takes an infinitive. 'Manage' and 'expect' also take infinitives. 'Consider' takes a gerund."
+      },
+      {
+        "id": "ger_09",
+        "type": "gap_fill",
+        "topic": "gerund_infinitive",
+        "question": "The scientist tried _____ a new formula, but the experiment failed.",
+        "options": ["A) use", "B) to use", "C) using", "D) used"],
+        "correctIndex": 1,
+        "explanation": "'Try + infinitive' means to make an effort or attempt. 'Try + gerund' means to experiment with something to see if it helps."
+      },
+      {
+        "id": "ger_10",
+        "type": "sentence_completion",
+        "topic": "gerund_infinitive",
+        "question": "It's no use _____ about the past; focus on the future.",
+        "options": ["A) to worry", "B) worried", "C) worrying", "D) worry"],
+        "correctIndex": 2,
+        "explanation": "The expression 'it's no use' is always followed by a gerund (-ing). Similar: 'it's worth', 'it's no good'."
+      }
+    ]
+  },
+  {
+    "id": "reported_speech",
+    "name": "Reported Speech",
+    "subtopics": ["statements", "questions", "commands", "tense_backshift"],
+    "exercises": [
+      {
+        "id": "rep_01",
+        "type": "sentence_rewriting",
+        "topic": "reported_speech",
+        "question": "She said, 'I am working on a new project.' Which is the correct reported speech?",
+        "options": ["A) She said that she is working on a new project.", "B) She said that she was working on a new project.", "C) She said that she worked on a new project.", "D) She said that she has been working on a new project."],
+        "correctIndex": 1,
+        "explanation": "In reported speech, present continuous (am working) shifts to past continuous (was working). This is called backshift."
+      },
+      {
+        "id": "rep_02",
+        "type": "gap_fill",
+        "topic": "reported_speech",
+        "question": "He asked me where _____ from.",
+        "options": ["A) did I come", "B) I came", "C) do I come", "D) I come"],
+        "correctIndex": 1,
+        "explanation": "In reported questions, the word order is subject + verb (not question order). Also, tense backshifts from present to past."
+      },
+      {
+        "id": "rep_03",
+        "type": "error_correction",
+        "topic": "reported_speech",
+        "question": "Identify the incorrectly reported sentence:\nOriginal: 'Don't open the window.'",
+        "options": ["A) She told me not to open the window.", "B) She said not to open the window.", "C) She told me to not open the window.", "D) She ordered me not to open the window."],
+        "correctIndex": 2,
+        "explanation": "The negative infinitive in reported commands should be 'not to + verb', not 'to not + verb'. 'Not to open' is the standard form."
+      },
+      {
+        "id": "rep_04",
+        "type": "gap_fill",
+        "topic": "reported_speech",
+        "question": "They told us that the meeting _____ rescheduled to the following week.",
+        "options": ["A) will be", "B) would be", "C) is", "D) has been"],
+        "correctIndex": 1,
+        "explanation": "In reported speech, 'will' changes to 'would'. 'The meeting will be rescheduled' becomes 'the meeting would be rescheduled'."
+      },
+      {
+        "id": "rep_05",
+        "type": "sentence_completion",
+        "topic": "reported_speech",
+        "question": "The manager asked whether we _____ the deadline.",
+        "options": ["A) can meet", "B) could meet", "C) will meet", "D) meet"],
+        "correctIndex": 1,
+        "explanation": "In reported yes/no questions, 'whether' introduces the clause. 'Can' backshifts to 'could' in reported speech."
+      },
+      {
+        "id": "rep_06",
+        "type": "sentence_rewriting",
+        "topic": "reported_speech",
+        "question": "'I have never seen such a beautiful painting,' he said.\nWhich is correct reported speech?",
+        "options": ["A) He said he never saw such a beautiful painting.", "B) He said he had never seen such a beautiful painting.", "C) He said he has never seen such a beautiful painting.", "D) He said he didn't see such a beautiful painting."],
+        "correctIndex": 1,
+        "explanation": "Present perfect (have seen) backshifts to past perfect (had seen) in reported speech."
+      },
+      {
+        "id": "rep_07",
+        "type": "error_correction",
+        "topic": "reported_speech",
+        "question": "Which reported speech sentence is incorrect?",
+        "options": ["A) She said she would come the next day.", "B) He said that he had finished his work.", "C) They said they are going on holiday.", "D) She asked if I had seen her keys."],
+        "correctIndex": 2,
+        "explanation": "'Are going' should backshift to 'were going' in reported speech when the reporting verb is in past tense."
+      },
+      {
+        "id": "rep_08",
+        "type": "gap_fill",
+        "topic": "reported_speech",
+        "question": "The officer told the passengers _____ their seatbelts immediately.",
+        "options": ["A) fasten", "B) to fasten", "C) fastening", "D) that fasten"],
+        "correctIndex": 1,
+        "explanation": "Reported commands use 'tell/ask/order + object + to + infinitive'."
+      },
+      {
+        "id": "rep_09",
+        "type": "sentence_completion",
+        "topic": "reported_speech",
+        "question": "'Why did you arrive late?' the teacher asked.\nReported: The teacher asked the student _____ late.",
+        "options": ["A) why he arrived", "B) why did he arrive", "C) why had he arrived", "D) why he had arrived"],
+        "correctIndex": 3,
+        "explanation": "The question 'why did you arrive' becomes 'why + subject + had + past participle' after backshift in reported speech."
+      },
+      {
+        "id": "rep_10",
+        "type": "gap_fill",
+        "topic": "reported_speech",
+        "question": "She warned us _____ too close to the edge.",
+        "options": ["A) don't go", "B) not going", "C) not to go", "D) to not going"],
+        "correctIndex": 2,
+        "explanation": "'Warn + object + not to + infinitive' is the correct structure for negative reported commands."
+      }
+    ]
+  },
+  {
+    "id": "inversion",
+    "name": "Inversion",
+    "subtopics": ["negative_adverbials", "conditional_inversion", "so_such"],
+    "exercises": [
+      {
+        "id": "inv_01",
+        "type": "sentence_rewriting",
+        "topic": "inversion",
+        "question": "Which correctly inverts: 'I had never seen such a spectacular view.'",
+        "options": ["A) Never I had seen such a spectacular view.", "B) Never had I seen such a spectacular view.", "C) Never I seen had such a spectacular view.", "D) Had I never seen such a spectacular view."],
+        "correctIndex": 1,
+        "explanation": "When negative adverbs (never, rarely, seldom, hardly) are fronted, subject-auxiliary inversion is required."
+      },
+      {
+        "id": "inv_02",
+        "type": "gap_fill",
+        "topic": "inversion",
+        "question": "Not only _____ late, but he also forgot his presentation.",
+        "options": ["A) he arrived", "B) did he arrive", "C) he did arrive", "D) arrived he"],
+        "correctIndex": 1,
+        "explanation": "'Not only' triggers inversion. The auxiliary 'did' comes before the subject when the main verb is in simple past."
+      },
+      {
+        "id": "inv_03",
+        "type": "error_correction",
+        "topic": "inversion",
+        "question": "Which inversion sentence is correct?",
+        "options": ["A) Rarely she makes a mistake.", "B) Rarely does she make a mistake.", "C) Rarely she does make a mistake.", "D) Rarely made she a mistake."],
+        "correctIndex": 1,
+        "explanation": "Fronting 'rarely' requires inversion: auxiliary + subject + main verb. 'Does she make' is the correct inverted form."
+      },
+      {
+        "id": "inv_04",
+        "type": "sentence_rewriting",
+        "topic": "inversion",
+        "question": "Inverted conditional: Which is correct for 'If I had known'?",
+        "options": ["A) Had I known", "B) I had known", "C) Known had I", "D) If had I known"],
+        "correctIndex": 0,
+        "explanation": "In formal/written English, conditional clauses can omit 'if' with inversion: 'Had I known' = 'If I had known'."
+      },
+      {
+        "id": "inv_05",
+        "type": "gap_fill",
+        "topic": "inversion",
+        "question": "Only when she arrived home _____ what had happened.",
+        "options": ["A) she realized", "B) realized she", "C) did she realize", "D) she did realize"],
+        "correctIndex": 2,
+        "explanation": "'Only when' fronted at the start of a sentence triggers inversion in the main clause: did + subject + verb."
+      },
+      {
+        "id": "inv_06",
+        "type": "sentence_completion",
+        "topic": "inversion",
+        "question": "So tired _____ that he fell asleep during the meeting.",
+        "options": ["A) he was", "B) was he", "C) he is", "D) is he"],
+        "correctIndex": 1,
+        "explanation": "'So + adjective' fronted at the sentence start requires inversion: 'So tired was he that…'"
+      },
+      {
+        "id": "inv_07",
+        "type": "gap_fill",
+        "topic": "inversion",
+        "question": "No sooner _____ than it started raining.",
+        "options": ["A) we had sat down", "B) had we sat down", "C) we sat down", "D) sat we down"],
+        "correctIndex": 1,
+        "explanation": "'No sooner' is a negative adverb requiring inversion: had + subject + past participle. It is always followed by 'than'."
+      },
+      {
+        "id": "inv_08",
+        "type": "error_correction",
+        "topic": "inversion",
+        "question": "Which sentence is grammatically correct?",
+        "options": ["A) Little he knew about the dangers ahead.", "B) Little did he know about the dangers ahead.", "C) Little known he about the dangers ahead.", "D) Little about the dangers ahead did he know."],
+        "correctIndex": 1,
+        "explanation": "'Little' as a negative adverb requires inversion: did + subject + verb. 'Little did he know' is correct."
+      },
+      {
+        "id": "inv_09",
+        "type": "sentence_rewriting",
+        "topic": "inversion",
+        "question": "'If she should change her mind, call me.' What is the correct inversion?",
+        "options": ["A) Should she change her mind, call me.", "B) She should change her mind, call me.", "C) Change should she her mind, call me.", "D) Should her mind she change, call me."],
+        "correctIndex": 0,
+        "explanation": "Inverted conditional with 'should': auxiliary 'should' moves before the subject, and 'if' is dropped."
+      },
+      {
+        "id": "inv_10",
+        "type": "gap_fill",
+        "topic": "inversion",
+        "question": "Hardly _____ the door when the phone rang.",
+        "options": ["A) I had opened", "B) had I opened", "C) I opened", "D) opened I"],
+        "correctIndex": 1,
+        "explanation": "'Hardly' as a fronted negative adverb requires inversion: had + subject + past participle. Followed by 'when'."
+      }
+    ]
+  },
+  {
+    "id": "noun_clauses",
+    "name": "Noun Clauses",
+    "subtopics": ["that_clauses", "wh_clauses", "whether_if"],
+    "exercises": [
+      {
+        "id": "noun_01",
+        "type": "gap_fill",
+        "topic": "noun_clauses",
+        "question": "_____ he lied to the committee was obvious to everyone.",
+        "options": ["A) What", "B) Which", "C) That", "D) Whether"],
+        "correctIndex": 2,
+        "explanation": "'That' introduces a noun clause used as a subject. 'That he lied' functions as the subject of 'was obvious'."
+      },
+      {
+        "id": "noun_02",
+        "type": "sentence_completion",
+        "topic": "noun_clauses",
+        "question": "No one knows _____ the package will arrive.",
+        "options": ["A) if when", "B) what time", "C) that when", "D) how when"],
+        "correctIndex": 1,
+        "explanation": "'What time' introduces a noun clause as the object of 'knows', asking about when the arrival will occur."
+      },
+      {
+        "id": "noun_03",
+        "type": "error_correction",
+        "topic": "noun_clauses",
+        "question": "Identify the sentence with an error:",
+        "options": ["A) I wonder why she left so early.", "B) Tell me what do you want.", "C) The fact that he lied bothers me.", "D) She asked whether I was coming."],
+        "correctIndex": 1,
+        "explanation": "In embedded questions (noun clauses), the word order is subject + verb, not question order. Correct: 'Tell me what you want.'"
+      },
+      {
+        "id": "noun_04",
+        "type": "gap_fill",
+        "topic": "noun_clauses",
+        "question": "The researchers discovered _____ caused the unusual weather patterns.",
+        "options": ["A) that what", "B) what", "C) which", "D) that"],
+        "correctIndex": 1,
+        "explanation": "'What' introduces a noun clause functioning as the object of 'discovered'. It acts as both conjunction and subject within the clause."
+      },
+      {
+        "id": "noun_05",
+        "type": "sentence_completion",
+        "topic": "noun_clauses",
+        "question": "It is not clear _____ the agreement will be ratified in time.",
+        "options": ["A) that", "B) what", "C) whether", "D) how"],
+        "correctIndex": 2,
+        "explanation": "'Whether' (or 'if') introduces a noun clause expressing doubt or uncertainty about a yes/no situation."
+      },
+      {
+        "id": "noun_06",
+        "type": "gap_fill",
+        "topic": "noun_clauses",
+        "question": "_____ the team decides must be approved by the board.",
+        "options": ["A) That", "B) Whatever", "C) Whether", "D) What"],
+        "correctIndex": 3,
+        "explanation": "'What' (meaning 'the thing that') introduces a noun clause as the subject of the main verb 'must be approved'."
+      },
+      {
+        "id": "noun_07",
+        "type": "error_correction",
+        "topic": "noun_clauses",
+        "question": "Which sentence is correct?",
+        "options": ["A) The news that did surprise me was his resignation.", "B) The fact which he resigned surprised everyone.", "C) The news that he resigned surprised many people.", "D) The fact what he resigned was well-known."],
+        "correctIndex": 2,
+        "explanation": "After 'the news', a 'that' clause (appositive clause) states the content of the news. 'Which' and 'what' are incorrect here."
+      },
+      {
+        "id": "noun_08",
+        "type": "sentence_rewriting",
+        "topic": "noun_clauses",
+        "question": "Which correctly embeds: 'How old is she?' as a noun clause?",
+        "options": ["A) I want to know how old is she.", "B) I want to know how old she is.", "C) I want to know how is she old.", "D) I want to know what old she is."],
+        "correctIndex": 1,
+        "explanation": "In noun clauses formed from questions, use declarative (subject + verb) word order: 'how old she is', not 'how old is she'."
+      },
+      {
+        "id": "noun_09",
+        "type": "gap_fill",
+        "topic": "noun_clauses",
+        "question": "They debated _____ to cancel the event or postpone it to next month.",
+        "options": ["A) that", "B) what", "C) whether", "D) if"],
+        "correctIndex": 2,
+        "explanation": "'Whether to + verb' introduces a noun clause expressing a choice between alternatives. 'If' cannot be used before infinitives."
+      },
+      {
+        "id": "noun_10",
+        "type": "sentence_completion",
+        "topic": "noun_clauses",
+        "question": "_____ you believe is entirely up to you.",
+        "options": ["A) That", "B) Which", "C) What", "D) Whether"],
+        "correctIndex": 2,
+        "explanation": "'What you believe' is a noun clause acting as the subject. 'What' functions as both the conjunction and the object of 'believe'."
+      }
+    ]
+  }
+]

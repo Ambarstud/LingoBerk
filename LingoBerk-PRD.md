@@ -103,7 +103,7 @@ lingoberk/
 │   ├── streak.ts                   ✅ Streak takibi
 │   └── types.ts                    ✅ Tüm TypeScript tipleri
 ├── data/
-│   ├── yds-words.json              ✅ 205 YDS kelimesi
+│   ├── yds-words.json              ✅ 300 YDS kelimesi
 │   ├── grammar-topics.json         🔄 Phase 2'de oluşturuluyor
 │   ├── reading-passages.json       🔄 Phase 2'de oluşturuluyor
 │   └── conversation-patterns.json  🔄 Phase 3'te oluşturuluyor
@@ -266,7 +266,9 @@ nextReview = today + interval days
 3. Card back → Turkish translation + example. Four buttons: Again (red), Hard (orange), Good (green), Easy (blue)
 4. Session complete → summary: cards reviewed, accuracy, XP earned
 
-**Initial data:** 205 curated YDS words in `data/yds-words.json`.
+**Initial data:** 300 unique curated YDS words in `data/yds-words.json`.
+
+**Seed data update behavior:** `ensureCardsLoaded()` must merge the current `data/yds-words.json` seed list into `localStorage` on page load. Existing seed cards keep their SM-2 progress fields (`interval`, `repetition`, `easeFactor`, `nextReview`, `lastReview`), newly added seed cards are initialized with default SM-2 values, and non-seed/custom cards remain untouched. This prevents older installs with the original 205-card dataset from missing newly added YDS cards.
 
 ---
 
@@ -436,7 +438,7 @@ ydsScore = (
 
 | Key | Type | Description |
 |-----|------|-------------|
-| `flashcards` | `FlashCard[]` | All cards with SM-2 fields |
+| `flashcards` | `FlashCard[]` | All seed + custom cards with SM-2 fields; seed cards are merged from `data/yds-words.json` without losing review progress |
 | `custom_cards` | `FlashCard[]` | User-added cards |
 | `grammar_progress` | `Record<topicId, ExerciseResult[]>` | Exercise history |
 | `reading_progress` | `Record<passageId, ReadingResult>` | Completion data |
@@ -525,7 +527,7 @@ Service worker: next-pwa ile otomatik. Statik varlıklar + JSON data offline cac
 - [x] Flashcard module with SM-2 algorithm + flip animation
 - [x] XP and streak system
 - [x] PWA manifest + service worker (next-pwa)
-- [x] YDS vocabulary dataset (205 words)
+- [x] YDS vocabulary dataset (300 unique words) + seed merge for existing localStorage installs
 - [x] Deploy to Vercel → https://lingoberk.vercel.app
 - [x] Dark mode (class-based)
 - [x] Settings page (daily goal, dark mode toggle, export/import/clear)

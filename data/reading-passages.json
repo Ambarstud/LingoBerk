@@ -1,0 +1,962 @@
+[
+  {
+    "id": "rp_01",
+    "title": "The Science of Sleep",
+    "text": "Sleep is one of the most fundamental biological needs, yet scientists are still uncovering its many functions. During sleep, the brain cycles through several stages, alternating between rapid eye movement (REM) sleep and non-REM sleep. REM sleep, characterized by intense brain activity and vivid dreams, appears to be essential for emotional processing and memory consolidation.\n\nResearchers have discovered that during deep sleep, the brain's glymphatic system becomes highly active, flushing out toxic waste products such as beta-amyloid, a protein associated with Alzheimer's disease. This cleaning process is far less efficient during waking hours, suggesting that chronic sleep deprivation may contribute to neurodegenerative conditions.\n\nAdults typically need seven to nine hours of sleep per night, but modern society has normalized sleeping far less. The consequences extend beyond simple fatigue. Studies show that consistently sleeping fewer than six hours increases the risk of obesity, diabetes, cardiovascular disease, and depression. Moreover, cognitive functions including attention, decision-making, and creativity are all significantly impaired by even moderate sleep restriction.\n\nInterestingly, the timing of sleep also matters. The body's circadian rhythm — its internal clock — regulates when we feel alert or sleepy. Disrupting this rhythm through shift work or frequent time zone changes has been linked to metabolic disorders and increased cancer risk. Understanding sleep science has therefore become a public health priority.",
+    "difficulty": "B2",
+    "category": "science",
+    "questions": [
+      {
+        "id": "rp_01_q1",
+        "type": "main_idea",
+        "question": "What is the main purpose of this passage?",
+        "options": [
+          "A) To describe how dreams are formed during REM sleep",
+          "B) To argue that people should sleep more than nine hours",
+          "C) To explain the biological importance and health implications of sleep",
+          "D) To discuss treatments for sleep disorders"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage covers the biological functions of sleep, health consequences of deprivation, and timing effects — making C the comprehensive main idea."
+      },
+      {
+        "id": "rp_01_q2",
+        "type": "detail",
+        "question": "According to the passage, what does the glymphatic system do during sleep?",
+        "options": [
+          "A) It produces REM sleep and vivid dreams",
+          "B) It removes toxic waste products including beta-amyloid from the brain",
+          "C) It regulates the circadian rhythm",
+          "D) It consolidates emotional memories"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage explicitly states that the glymphatic system 'flushes out toxic waste products such as beta-amyloid' during deep sleep."
+      },
+      {
+        "id": "rp_01_q3",
+        "type": "inference",
+        "question": "What can be inferred about Alzheimer's disease from the passage?",
+        "options": [
+          "A) It is directly caused by REM sleep",
+          "B) It only affects people who sleep more than nine hours",
+          "C) Chronic sleep loss may increase the risk of developing it",
+          "D) It can be treated by improving circadian rhythm"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage links beta-amyloid accumulation with Alzheimer's and states that sleep deprivation reduces the brain's ability to clear it, implying increased risk."
+      },
+      {
+        "id": "rp_01_q4",
+        "type": "vocabulary_in_context",
+        "question": "The word 'consolidated' in the context of memory (paragraph 1) most closely means:",
+        "options": [
+          "A) created for the first time",
+          "B) erased from the brain",
+          "C) strengthened and stored more permanently",
+          "D) transferred between brain regions"
+        ],
+        "correctIndex": 2,
+        "explanation": "Memory consolidation refers to the process by which memories are stabilized and strengthened — consolidated means made more solid or permanent."
+      },
+      {
+        "id": "rp_01_q5",
+        "type": "author_purpose",
+        "question": "Why does the author mention shift workers and frequent travelers in the final paragraph?",
+        "options": [
+          "A) To suggest these groups sleep better than average",
+          "B) To illustrate how disrupting the circadian rhythm has health consequences",
+          "C) To recommend careers that allow flexible sleep schedules",
+          "D) To explain why circadian rhythms evolved"
+        ],
+        "correctIndex": 1,
+        "explanation": "The author uses shift workers and travelers as examples of circadian rhythm disruption, then links this disruption to metabolic and cancer risks."
+      }
+    ],
+    "vocabulary": [
+      { "word": "glymphatic", "definition": "relating to the brain's waste-clearance system", "turkishTranslation": "glenfatik (beynin atık temizleme sistemi)" },
+      { "word": "neurodegenerative", "definition": "causing progressive damage to the nervous system", "turkishTranslation": "nörodejeneratif" },
+      { "word": "circadian", "definition": "relating to natural biological processes occurring in a 24-hour cycle", "turkishTranslation": "sirkadiyen (24 saatlik döngüsel)" },
+      { "word": "metabolic", "definition": "relating to the chemical processes in living organisms", "turkishTranslation": "metabolik" }
+    ]
+  },
+  {
+    "id": "rp_02",
+    "title": "Artificial Intelligence in Healthcare",
+    "text": "Artificial intelligence is transforming medicine at a pace that would have seemed impossible just a decade ago. Machine learning algorithms, trained on millions of medical images, can now detect certain cancers — including lung, breast, and skin cancers — with accuracy that matches or exceeds that of experienced radiologists. In diabetic retinopathy screening, AI systems have demonstrated sensitivity rates above 90%, potentially bringing specialist-level diagnosis to underserved communities with limited access to ophthalmologists.\n\nBeyond diagnostics, AI is accelerating drug discovery. Traditional pharmaceutical development typically takes over a decade and costs billions of dollars. AI models can analyze molecular structures and predict how compounds will interact with biological targets, reducing the initial screening phase from years to weeks. During the COVID-19 pandemic, AI tools helped researchers identify promising drug candidates within months rather than years.\n\nHowever, significant challenges remain. AI systems trained predominantly on data from certain populations may perform poorly for underrepresented groups, raising serious equity concerns. Additionally, the 'black box' nature of many deep learning models — where the reasoning behind decisions is not transparent — makes clinicians reluctant to rely on them fully. Regulatory frameworks are still evolving to address how AI-based medical devices should be tested, approved, and monitored.\n\nDespite these hurdles, the integration of AI into healthcare appears inevitable. The key challenge for the coming decade will be ensuring these technologies are deployed equitably and with sufficient human oversight.",
+    "difficulty": "B2",
+    "category": "technology",
+    "questions": [
+      {
+        "id": "rp_02_q1",
+        "type": "main_idea",
+        "question": "Which statement best summarizes the passage?",
+        "options": [
+          "A) AI has completely replaced doctors in diagnosis and drug development",
+          "B) AI offers major medical advances but faces ethical, equity, and regulatory challenges",
+          "C) Drug discovery is the most important application of AI in healthcare",
+          "D) AI is primarily useful for treating underserved communities"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage covers both the benefits of AI in medicine and the challenges (equity, transparency, regulation), making B the most balanced summary."
+      },
+      {
+        "id": "rp_02_q2",
+        "type": "detail",
+        "question": "According to the passage, how has AI changed the drug discovery process?",
+        "options": [
+          "A) It has completely eliminated the need for clinical trials",
+          "B) It has reduced the initial screening phase from years to weeks",
+          "C) It has lowered drug costs to below one billion dollars",
+          "D) It has made pharmaceutical companies obsolete"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage explicitly states that AI reduces 'the initial screening phase from years to weeks'."
+      },
+      {
+        "id": "rp_02_q3",
+        "type": "inference",
+        "question": "What does the author imply by describing many AI models as 'black boxes'?",
+        "options": [
+          "A) The models are physically dark-colored devices",
+          "B) The models consume excessive computing resources",
+          "C) The decision-making process of the models is not understandable to clinicians",
+          "D) The models only work in specialized hospital settings"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage defines 'black box' as a system 'where the reasoning behind decisions is not transparent', implying clinicians cannot understand how the AI arrived at its conclusion."
+      },
+      {
+        "id": "rp_02_q4",
+        "type": "vocabulary_in_context",
+        "question": "The word 'equitably' in the final paragraph most nearly means:",
+        "options": [
+          "A) quickly and efficiently",
+          "B) in a way that treats all groups fairly",
+          "C) using only approved technology",
+          "D) in hospitals rather than clinics"
+        ],
+        "correctIndex": 1,
+        "explanation": "'Equitably' comes from 'equity' (fairness). The passage's concern about underrepresented groups makes 'fairly' the correct meaning."
+      },
+      {
+        "id": "rp_02_q5",
+        "type": "detail",
+        "question": "Which concern about AI in healthcare does the passage NOT mention?",
+        "options": [
+          "A) Poor performance for underrepresented populations",
+          "B) Lack of transparency in decision-making",
+          "C) High cost of implementing AI systems in hospitals",
+          "D) Evolving regulatory frameworks"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage mentions equity concerns, transparency, and regulation but does not discuss the cost of implementation."
+      }
+    ],
+    "vocabulary": [
+      { "word": "radiologist", "definition": "a doctor who specializes in reading medical images", "turkishTranslation": "radyolog" },
+      { "word": "sensitivity", "definition": "the ability of a test to correctly identify positive cases", "turkishTranslation": "duyarlılık" },
+      { "word": "pharmaceutical", "definition": "relating to medicinal drugs", "turkishTranslation": "farmasötik, ilaç" },
+      { "word": "regulatory", "definition": "relating to official rules that control an activity", "turkishTranslation": "düzenleyici" }
+    ]
+  },
+  {
+    "id": "rp_03",
+    "title": "The COLREG Rules at Sea",
+    "text": "The International Regulations for Preventing Collisions at Sea, commonly known as COLREG or the Rules of the Road at Sea, represent one of the most important legal frameworks governing maritime navigation. Adopted by the International Maritime Organization (IMO) in 1972, these regulations establish universal standards that every vessel navigating international waters must follow.\n\nThe COLREGs cover three main areas: steering and sailing rules, light requirements, and sound signals. The steering rules define responsibilities between different vessel types — for instance, a vessel under power must generally give way to a sailing vessel, and both must keep out of the way of vessels that are restricted in their ability to maneuver. The concept of 'stand-on' and 'give-way' vessels is central: the give-way vessel must take early and substantial action to avoid collision, while the stand-on vessel maintains course and speed but must ultimately also take action if collision is imminent.\n\nLights are required to be displayed from sunset to sunrise and during periods of restricted visibility. The specific configuration of lights reveals a vessel's type, size, and direction of travel to other mariners. A power-driven vessel underway shows a white masthead light, green starboard light, red port light, and white stern light. Understanding this light language is critical for safe navigation, especially in congested waterways.\n\nDespite modern technological aids such as radar and AIS (Automatic Identification System), the COLREGs remain the legal foundation of maritime safety. Violations can result in serious legal liability, particularly when collisions occur. All officers of the watch are required to be thoroughly familiar with these rules.",
+    "difficulty": "B2",
+    "category": "maritime",
+    "questions": [
+      {
+        "id": "rp_03_q1",
+        "type": "main_idea",
+        "question": "What is the primary purpose of this passage?",
+        "options": [
+          "A) To argue that COLREG rules are outdated in the age of GPS",
+          "B) To provide an overview of the COLREGs and their role in maritime safety",
+          "C) To compare different types of navigation lights",
+          "D) To describe the history of the International Maritime Organization"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage introduces COLREGs, explains their key areas (steering, lights, sounds), and emphasizes their importance — making B the best summary."
+      },
+      {
+        "id": "rp_03_q2",
+        "type": "detail",
+        "question": "According to the passage, what obligation does a stand-on vessel have?",
+        "options": [
+          "A) It must always reduce speed when another vessel approaches",
+          "B) It maintains course and speed but must act if collision is imminent",
+          "C) It gives way to all other vessels regardless of their type",
+          "D) It must display additional lights in poor visibility"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage states the stand-on vessel 'maintains course and speed but must ultimately also take action if collision is imminent'."
+      },
+      {
+        "id": "rp_03_q3",
+        "type": "inference",
+        "question": "What can be inferred about the importance of navigation lights?",
+        "options": [
+          "A) They are primarily used for aesthetic purposes at night",
+          "B) They communicate a vessel's type, direction, and status to others",
+          "C) They replace the need to follow COLREG steering rules",
+          "D) They are only required in international waters"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage explains that light configurations reveal 'a vessel's type, size, and direction of travel', implying they are a communication system for other mariners."
+      },
+      {
+        "id": "rp_03_q4",
+        "type": "vocabulary_in_context",
+        "question": "The phrase 'restricted in their ability to maneuver' most closely refers to vessels that:",
+        "options": [
+          "A) are moving too slowly",
+          "B) have limited capacity to change course or speed due to their work",
+          "C) are anchored in a harbor",
+          "D) are smaller than 20 meters"
+        ],
+        "correctIndex": 1,
+        "explanation": "Vessels restricted in maneuverability include dredgers, cable layers, or vessels aground — they cannot easily change course due to their operational constraints."
+      },
+      {
+        "id": "rp_03_q5",
+        "type": "author_purpose",
+        "question": "Why does the author mention AIS and radar in the final paragraph?",
+        "options": [
+          "A) To suggest these technologies have made COLREGs unnecessary",
+          "B) To explain why modern ships no longer need navigation lights",
+          "C) To acknowledge modern aids while affirming COLREGs as the legal foundation",
+          "D) To criticize officers who rely too heavily on technology"
+        ],
+        "correctIndex": 2,
+        "explanation": "The author acknowledges modern technology ('despite') but uses it to reinforce that COLREGs remain the legal basis of maritime safety."
+      }
+    ],
+    "vocabulary": [
+      { "word": "maneuver", "definition": "to move or steer a vessel in a controlled way", "turkishTranslation": "manevra yapmak" },
+      { "word": "imminent", "definition": "about to happen very soon", "turkishTranslation": "yakın, çok yakında olacak" },
+      { "word": "congested", "definition": "heavily crowded or blocked", "turkishTranslation": "kalabalık, tıkalı" },
+      { "word": "liability", "definition": "legal responsibility for something", "turkishTranslation": "yasal sorumluluk" }
+    ]
+  },
+  {
+    "id": "rp_04",
+    "title": "Ocean Acidification",
+    "text": "Since the Industrial Revolution, Earth's oceans have absorbed approximately 30% of the carbon dioxide released by human activities. While this has slowed the pace of climate change, it has triggered a chemical reaction with severe consequences: ocean acidification. When carbon dioxide dissolves in seawater, it forms carbonic acid, which then releases hydrogen ions, lowering the pH of the ocean. Since pre-industrial times, ocean pH has dropped from 8.2 to approximately 8.1 — a seemingly small change that represents a 26% increase in acidity on the logarithmic pH scale.\n\nThe impact on marine life has been profound. Many marine organisms — including corals, oysters, mussels, and certain plankton — build their shells and skeletons from calcium carbonate. As the ocean becomes more acidic, calcium carbonate dissolves more readily, making it harder for these organisms to build and maintain their structures. Some studies suggest that if current emissions trends continue, tropical coral reefs — which support about 25% of all marine species — could be largely gone by 2100.\n\nThe effects ripple through entire food chains. Pteropods, tiny free-swimming snails that form a crucial link in Arctic and Antarctic food webs, are already showing shell dissolution in the most acidified ocean regions. As pteropods decline, so too could the fish, seabirds, and marine mammals that depend on them.\n\nReducing carbon dioxide emissions remains the only truly effective long-term solution. Some researchers are exploring local interventions, such as adding alkaline minerals to coastal waters, but these approaches face serious questions about scalability and unintended ecological effects.",
+    "difficulty": "B2",
+    "category": "environment",
+    "questions": [
+      {
+        "id": "rp_04_q1",
+        "type": "main_idea",
+        "question": "What is the central argument of this passage?",
+        "options": [
+          "A) Ocean acidification is a minor issue that affects only coral reefs",
+          "B) The oceans have successfully absorbed most human carbon emissions without harm",
+          "C) Ocean acidification, driven by CO₂ absorption, poses a serious threat to marine ecosystems",
+          "D) Only tropical regions are affected by changes in ocean chemistry"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage comprehensively covers the cause (CO₂ absorption), mechanism (acidification), and consequences (shell dissolution, food chain collapse) of ocean acidification."
+      },
+      {
+        "id": "rp_04_q2",
+        "type": "detail",
+        "question": "How has ocean pH changed since pre-industrial times?",
+        "options": [
+          "A) It has increased from 8.1 to 8.2",
+          "B) It has stayed the same but dissolved oxygen has fallen",
+          "C) It has dropped from 8.2 to approximately 8.1",
+          "D) It has fallen by 26 full pH units"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage states: 'ocean pH has dropped from 8.2 to approximately 8.1 — a seemingly small change that represents a 26% increase in acidity'."
+      },
+      {
+        "id": "rp_04_q3",
+        "type": "inference",
+        "question": "What does the author suggest by noting that a pH drop of 0.1 represents a '26% increase in acidity'?",
+        "options": [
+          "A) That ocean scientists are exaggerating the problem",
+          "B) That the pH scale is linear and easy to interpret",
+          "C) That small numerical changes on the pH scale can represent large chemical changes",
+          "D) That acidity levels will stabilize soon"
+        ],
+        "correctIndex": 2,
+        "explanation": "By explaining the logarithmic nature of the pH scale, the author implies that the small numerical change understates the true chemical impact."
+      },
+      {
+        "id": "rp_04_q4",
+        "type": "vocabulary_in_context",
+        "question": "The word 'scalability' in the final paragraph most nearly means:",
+        "options": [
+          "A) the ability to measure fish populations accurately",
+          "B) the potential to implement a solution on a large enough scale to be effective",
+          "C) the cost of alkaline minerals",
+          "D) the toxicity of proposed interventions"
+        ],
+        "correctIndex": 1,
+        "explanation": "'Scalability' refers to whether a small-scale solution can be expanded to work at the scale needed — a critical challenge for ocean interventions."
+      },
+      {
+        "id": "rp_04_q5",
+        "type": "detail",
+        "question": "What is the significance of pteropods according to the passage?",
+        "options": [
+          "A) They are the main producers of calcium carbonate in the ocean",
+          "B) They are the largest organisms affected by acidification",
+          "C) They form a critical link in polar food webs and are already showing damage",
+          "D) They can adapt to lower pH levels more quickly than corals"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage describes pteropods as 'a crucial link in Arctic and Antarctic food webs' that are already showing shell dissolution."
+      }
+    ],
+    "vocabulary": [
+      { "word": "acidification", "definition": "the process of becoming more acidic", "turkishTranslation": "asitleşme" },
+      { "word": "logarithmic", "definition": "based on a scale where each unit represents a tenfold change", "turkishTranslation": "logaritmik" },
+      { "word": "pteropod", "definition": "a small free-swimming sea snail with a shell", "turkishTranslation": "pteropod (küçük deniz salyangozu)" },
+      { "word": "alkaline", "definition": "having a pH greater than 7; the opposite of acidic", "turkishTranslation": "alkali, bazik" }
+    ]
+  },
+  {
+    "id": "rp_05",
+    "title": "The Printing Press Revolution",
+    "text": "Few inventions have reshaped civilization as profoundly as the printing press with movable type, developed by Johannes Gutenberg in Mainz around 1440. Before this invention, books were hand-copied by scribes — a process so labor-intensive and expensive that libraries containing a few hundred volumes were considered extraordinary. Literacy was largely confined to clergy, scholars, and the wealthiest nobility.\n\nGutenberg's press mechanized the reproduction of text, reducing the cost of books dramatically. Within fifty years of his first Bible printed around 1455, an estimated eight million books were in circulation across Europe. This represented more books than had been produced in the entire preceding millennium. Texts that had previously existed in only a handful of copies could now spread across a continent within years.\n\nThe consequences were revolutionary. The Protestant Reformation, led by Martin Luther in the sixteenth century, was inextricably linked to the printing press. Luther's Ninety-Five Theses spread throughout Germany within weeks of being written in 1517 — an impossibility without print technology. Translations of the Bible into vernacular languages, rather than Latin, further empowered ordinary people to interpret religious texts themselves.\n\nThe press also accelerated scientific progress. By enabling scientists to share findings rapidly and build upon each other's work, it helped create the infrastructure of modern scholarship: journals, indexes, and standardized notation. The Scientific Revolution of the sixteenth and seventeenth centuries was, in part, a revolution made possible by print.",
+    "difficulty": "B2",
+    "category": "history",
+    "questions": [
+      {
+        "id": "rp_05_q1",
+        "type": "main_idea",
+        "question": "What is the central idea of this passage?",
+        "options": [
+          "A) Gutenberg was the most important inventor in European history",
+          "B) The printing press enabled the Protestant Reformation and nothing else",
+          "C) The printing press transformed European society by making knowledge widely accessible",
+          "D) Latin was the primary language of scholarship before the printing press"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage traces how the printing press democratized knowledge and contributed to religious reform and scientific progress — a broad societal transformation."
+      },
+      {
+        "id": "rp_05_q2",
+        "type": "detail",
+        "question": "How many books were estimated to be in circulation within fifty years of Gutenberg's Bible?",
+        "options": [
+          "A) A few hundred",
+          "B) One million",
+          "C) Eight million",
+          "D) One billion"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage states: 'an estimated eight million books were in circulation across Europe' within fifty years."
+      },
+      {
+        "id": "rp_05_q3",
+        "type": "inference",
+        "question": "What can be inferred about the relationship between the printing press and the Protestant Reformation?",
+        "options": [
+          "A) Gutenberg was a Protestant who designed the press to spread Luther's ideas",
+          "B) The press made Luther's ideas spread rapidly in a way that previous reformers could not achieve",
+          "C) The Catholic Church supported the printing press to spread its own doctrines",
+          "D) Martin Luther invented a new type of printing press for his Theses"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage implies that without print technology, Luther's ideas could not have spread throughout Germany within weeks — suggesting the press was critical to the Reformation's success."
+      },
+      {
+        "id": "rp_05_q4",
+        "type": "vocabulary_in_context",
+        "question": "The word 'vernacular' in paragraph 3 most closely means:",
+        "options": [
+          "A) scholarly or academic",
+          "B) the language spoken by ordinary people in a region",
+          "C) an ancient written script",
+          "D) a formal religious dialect"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage contrasts vernacular languages with Latin, implying vernacular refers to local, everyday languages spoken by ordinary people."
+      },
+      {
+        "id": "rp_05_q5",
+        "type": "author_purpose",
+        "question": "Why does the author mention 'journals, indexes, and standardized notation' in the final paragraph?",
+        "options": [
+          "A) To show that scientists invented the printing press for their own use",
+          "B) To illustrate the tools of modern scholarship that print technology made possible",
+          "C) To argue that the printing press was primarily a scientific tool",
+          "D) To criticize the commercialization of scientific knowledge"
+        ],
+        "correctIndex": 1,
+        "explanation": "The author uses these examples to show how print created the infrastructure of modern science — a consequence of the press beyond religion and politics."
+      }
+    ],
+    "vocabulary": [
+      { "word": "scribe", "definition": "a person who copied texts by hand before printing", "turkishTranslation": "kâtip, yazıcı" },
+      { "word": "inextricably", "definition": "in a way that is impossible to separate", "turkishTranslation": "ayrılmaz biçimde" },
+      { "word": "vernacular", "definition": "the language spoken by ordinary people in a region", "turkishTranslation": "yerel dil, avam dili" },
+      { "word": "notation", "definition": "a system of symbols used to represent information", "turkishTranslation": "gösterim, notasyon" }
+    ]
+  },
+  {
+    "id": "rp_06",
+    "title": "Urban Heat Islands",
+    "text": "Walking from a park into a dense city block on a hot summer day, one immediately senses a noticeable increase in temperature. This phenomenon — known as the urban heat island (UHI) effect — occurs because cities replace natural vegetation with heat-absorbing materials such as concrete, asphalt, and dark roofing. While forests and fields release water vapor through evapotranspiration, cooling the surrounding air, urban surfaces absorb and retain heat, releasing it slowly throughout the night.\n\nResearch shows that urban areas can be anywhere from 1 to 7 degrees Celsius warmer than surrounding rural areas, with peak differences occurring during clear nights with low wind. The effect is most pronounced in large, densely built cities with little green space. Buildings also trap heat through the 'urban canyon' effect, where tall structures on both sides of a street reflect heat downward and impede airflow.\n\nThe public health consequences are severe. During heat waves, excess mortality rates in urban areas significantly exceed those in rural regions, with elderly people, infants, and those with cardiovascular conditions facing the greatest risk. The 2003 European heat wave, for example, killed an estimated 70,000 people, the majority in dense urban centers.\n\nCity planners are responding with several strategies: increasing urban green space through parks and street trees, installing green roofs covered with vegetation, painting roads and buildings with reflective white coatings, and improving building energy standards. These interventions can reduce local temperatures by several degrees. Some cities, such as Singapore and Vienna, have adopted comprehensive urban greening policies and serve as models for climate-resilient urban planning.",
+    "difficulty": "B1",
+    "category": "environment",
+    "questions": [
+      {
+        "id": "rp_06_q1",
+        "type": "main_idea",
+        "question": "What is the passage mainly about?",
+        "options": [
+          "A) The best way to design parks in cities",
+          "B) Why rural areas are cooler than cities and solutions to this",
+          "C) The urban heat island effect, its causes, impacts, and responses",
+          "D) How concrete was invented and its uses in construction"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage covers what UHI is, why it happens, its health impacts, and solutions — making C the comprehensive main idea."
+      },
+      {
+        "id": "rp_06_q2",
+        "type": "detail",
+        "question": "According to the passage, by how much can urban areas be warmer than surrounding rural areas?",
+        "options": [
+          "A) 0.5 to 1 degree Celsius",
+          "B) 1 to 7 degrees Celsius",
+          "C) 7 to 15 degrees Celsius",
+          "D) Always exactly 3 degrees Celsius"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage states: 'urban areas can be anywhere from 1 to 7 degrees Celsius warmer than surrounding rural areas'."
+      },
+      {
+        "id": "rp_06_q3",
+        "type": "inference",
+        "question": "Why does the UHI effect continue through the night, unlike in rural areas?",
+        "options": [
+          "A) Cities generate more electricity at night",
+          "B) Urban surfaces absorb and retain heat during the day and release it slowly at night",
+          "C) Rural areas have more cold air blowing in from forests",
+          "D) City populations are larger, generating more body heat"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage explains that urban surfaces 'absorb and retain heat, releasing it slowly throughout the night', in contrast to vegetation which cools through evapotranspiration."
+      },
+      {
+        "id": "rp_06_q4",
+        "type": "vocabulary_in_context",
+        "question": "The term 'evapotranspiration' in paragraph 1 refers to:",
+        "options": [
+          "A) the process of rain falling on urban surfaces",
+          "B) the release of water vapor by plants and soil, which cools the air",
+          "C) the absorption of carbon dioxide by trees",
+          "D) the evaporation of pollutants from traffic"
+        ],
+        "correctIndex": 1,
+        "explanation": "In context, evapotranspiration is what forests and fields do to cool surrounding air by releasing water vapor — a cooling process absent in urban areas."
+      },
+      {
+        "id": "rp_06_q5",
+        "type": "detail",
+        "question": "Which of the following is NOT mentioned as a solution to the urban heat island effect?",
+        "options": [
+          "A) Installing green roofs",
+          "B) Painting surfaces with reflective coatings",
+          "C) Reducing the height of buildings in city centers",
+          "D) Planting street trees and expanding parks"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage mentions green roofs, reflective coatings, street trees, and improved building energy standards — but not reducing building height."
+      }
+    ],
+    "vocabulary": [
+      { "word": "evapotranspiration", "definition": "the combined process of evaporation and transpiration releasing water from plants", "turkishTranslation": "evapotranspirasyon (bitkilerin su buharı salması)" },
+      { "word": "impede", "definition": "to obstruct or slow down", "turkishTranslation": "engellemek" },
+      { "word": "mortality", "definition": "death rate in a population", "turkishTranslation": "ölüm oranı" },
+      { "word": "resilient", "definition": "able to recover quickly from difficulties or adapt to change", "turkishTranslation": "dirençli, dayanıklı" }
+    ]
+  },
+  {
+    "id": "rp_07",
+    "title": "The Psychology of Procrastination",
+    "text": "Most people think procrastination is about laziness or poor time management, but research paints a more complex picture. Procrastination is fundamentally an emotion regulation problem, not a time management problem. When faced with a task that triggers anxiety, self-doubt, or boredom, the brain seeks immediate relief by focusing on something more pleasant. The short-term mood boost comes at a significant long-term cost: the task remains undone, guilt accumulates, and anxiety grows — making avoidance even more likely in the future.\n\nBrain imaging studies reveal that procrastinators show greater activity in the amygdala, the brain region responsible for detecting emotional threats. Their prefrontal cortex — responsible for rational decision-making and impulse control — appears less effective at overriding these emotional signals. Interestingly, people who procrastinate chronically tend to have larger amygdalas than those who do not, suggesting a possible neurological basis for the behavior.\n\nSocial media and smartphones have dramatically worsened chronic procrastination. Designed to be maximally engaging, these platforms offer an effortless, always-available emotional escape. Every notification provides a small dopamine hit — enough to pull attention away from challenging work and make returning to it feel harder.\n\nEffective interventions focus on emotion regulation rather than time management. Techniques include self-compassion (treating yourself with kindness after procrastinating rather than harsh self-criticism), implementation intentions (planning exactly when, where, and how you will complete a task), and reducing the emotional weight of tasks by breaking them into smaller, less threatening steps. The research consistently shows that people who are kinder to themselves after setbacks are less likely to procrastinate in the future.",
+    "difficulty": "B1",
+    "category": "social",
+    "questions": [
+      {
+        "id": "rp_07_q1",
+        "type": "main_idea",
+        "question": "What is the main argument of this passage?",
+        "options": [
+          "A) Procrastination is caused by smartphones and should be treated with technology breaks",
+          "B) Procrastination is an emotion regulation issue with neurological roots and specific solutions",
+          "C) Procrastination is simply a bad habit that requires stronger willpower to overcome",
+          "D) The amygdala is the only brain region involved in procrastination"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage argues procrastination is emotion-based, explains its neurological underpinning, discusses worsening factors, and describes emotion-focused solutions."
+      },
+      {
+        "id": "rp_07_q2",
+        "type": "detail",
+        "question": "According to the passage, what neurological difference do chronic procrastinators show?",
+        "options": [
+          "A) They have smaller prefrontal cortexes",
+          "B) They have less dopamine in their brains",
+          "C) They tend to have larger amygdalas",
+          "D) Their amygdalas are less active than average"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage states: 'people who procrastinate chronically tend to have larger amygdalas than those who do not'."
+      },
+      {
+        "id": "rp_07_q3",
+        "type": "inference",
+        "question": "What does the passage imply about self-criticism after procrastinating?",
+        "options": [
+          "A) It motivates people to work harder next time",
+          "B) It is a natural and helpful response to failure",
+          "C) It tends to make future procrastination more likely",
+          "D) It reduces amygdala activity"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage states that 'people who are kinder to themselves after setbacks are less likely to procrastinate in the future', implying the opposite (harsh self-criticism) increases procrastination."
+      },
+      {
+        "id": "rp_07_q4",
+        "type": "vocabulary_in_context",
+        "question": "The word 'accumulates' in paragraph 1 most closely means:",
+        "options": [
+          "A) disappears over time",
+          "B) builds up gradually",
+          "C) decreases sharply",
+          "D) becomes predictable"
+        ],
+        "correctIndex": 1,
+        "explanation": "In the context of guilt that 'accumulates', the word means it increases and builds up — consistent with the procrastination cycle described."
+      },
+      {
+        "id": "rp_07_q5",
+        "type": "author_purpose",
+        "question": "Why does the author describe social media as 'designed to be maximally engaging'?",
+        "options": [
+          "A) To praise social media companies for their technical skill",
+          "B) To suggest that procrastination is entirely caused by technology",
+          "C) To explain why social media is a particularly effective emotional escape from difficult work",
+          "D) To argue that smartphones should be banned in workplaces"
+        ],
+        "correctIndex": 2,
+        "explanation": "The author uses this description to explain why social media is such an effective procrastination tool — its design deliberately maximizes the emotional reward of avoidance."
+      }
+    ],
+    "vocabulary": [
+      { "word": "amygdala", "definition": "the part of the brain that processes emotions, especially fear and threat", "turkishTranslation": "amigdala (beynin duygu merkezi)" },
+      { "word": "prefrontal cortex", "definition": "the front part of the brain involved in rational decision-making", "turkishTranslation": "prefrontal korteks" },
+      { "word": "dopamine", "definition": "a brain chemical associated with pleasure and reward", "turkishTranslation": "dopamin" },
+      { "word": "implementation", "definition": "the process of putting a plan or decision into action", "turkishTranslation": "uygulama" }
+    ]
+  },
+  {
+    "id": "rp_08",
+    "title": "Maritime Navigation: From Stars to Satellites",
+    "text": "For most of human history, navigating at sea required extraordinary skill and courage. Early sailors in the Mediterranean used coastal landmarks, wind patterns, and their knowledge of currents to travel relatively short distances. As voyages became more ambitious, celestial navigation became indispensable. By measuring the angle between a star (typically Polaris in the northern hemisphere) and the horizon using instruments such as the sextant, navigators could determine their latitude with considerable accuracy.\n\nDetermining longitude, however, presented a far greater challenge — a problem so critical to maritime commerce and naval power that it became known as the 'longitude problem'. Longitude requires knowing the exact time difference between the ship's position and a reference meridian. For centuries, the lack of a reliable sea-going clock made accurate longitude measurement impossible. The solution came in 1761 when English clockmaker John Harrison perfected the marine chronometer, an instrument capable of keeping accurate time at sea despite the rolling and temperature changes of a ship's environment.\n\nThe twentieth century brought electronic navigation, first through radio direction finding, then LORAN (Long Range Navigation), and ultimately GPS — the Global Positioning System, which became fully operational in 1995. GPS uses signals from at least four satellites to calculate a vessel's position to within meters, anywhere on Earth, at any time of day or night and in any weather.\n\nDespite GPS's extraordinary precision, maritime authorities still require professional mariners to learn traditional celestial navigation. The reason is practical: electronic systems can fail. A vessel with officers trained in celestial navigation can continue safely even if all electronic aids are lost — a principle known in maritime culture as 'redundancy'.",
+    "difficulty": "B1",
+    "category": "maritime",
+    "questions": [
+      {
+        "id": "rp_08_q1",
+        "type": "main_idea",
+        "question": "What is the central theme of this passage?",
+        "options": [
+          "A) The biography of John Harrison and his invention of the marine chronometer",
+          "B) The evolution of maritime navigation from celestial methods to modern satellite technology",
+          "C) Why GPS is superior to all previous forms of navigation",
+          "D) The dangers of relying on stars for navigation"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage traces navigation history from stars to satellites, covering celestial navigation, the longitude problem, electronic navigation, and GPS — a chronological overview."
+      },
+      {
+        "id": "rp_08_q2",
+        "type": "detail",
+        "question": "What was the 'longitude problem' as described in the passage?",
+        "options": [
+          "A) The inability to determine latitude without a clear sky",
+          "B) The difficulty of measuring longitude without an accurate sea-going clock",
+          "C) The challenge of navigating in fog without electronic aids",
+          "D) The lack of reliable star charts for southern hemisphere waters"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage explains: 'Longitude requires knowing the exact time difference between the ship's position and a reference meridian. For centuries, the lack of a reliable sea-going clock made accurate longitude measurement impossible.'"
+      },
+      {
+        "id": "rp_08_q3",
+        "type": "inference",
+        "question": "Why do maritime authorities still teach celestial navigation despite GPS?",
+        "options": [
+          "A) Because GPS is not accurate enough for large vessels",
+          "B) Because celestial navigation is faster than GPS",
+          "C) Because electronic systems can fail, and traditional navigation provides a backup",
+          "D) Because GPS does not work in international waters"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage states that celestial navigation is still taught because 'electronic systems can fail', and a ship with trained officers 'can continue safely even if all electronic aids are lost'."
+      },
+      {
+        "id": "rp_08_q4",
+        "type": "vocabulary_in_context",
+        "question": "The word 'indispensable' in paragraph 1 most nearly means:",
+        "options": [
+          "A) extremely dangerous",
+          "B) absolutely necessary",
+          "C) rarely used",
+          "D) difficult to understand"
+        ],
+        "correctIndex": 1,
+        "explanation": "'Indispensable' means something that cannot be done without — in context, celestial navigation became absolutely necessary for longer voyages."
+      },
+      {
+        "id": "rp_08_q5",
+        "type": "author_purpose",
+        "question": "Why does the author explain the concept of 'redundancy' at the end?",
+        "options": [
+          "A) To criticize maritime authorities for being old-fashioned",
+          "B) To suggest that GPS will eventually be replaced by celestial navigation",
+          "C) To explain the safety principle that justifies maintaining traditional navigation skills",
+          "D) To describe a technical failure in GPS satellites"
+        ],
+        "correctIndex": 2,
+        "explanation": "The author introduces 'redundancy' to explain the logic behind maintaining traditional skills alongside modern technology — having backup systems for safety."
+      }
+    ],
+    "vocabulary": [
+      { "word": "sextant", "definition": "a navigational instrument used to measure angles between celestial bodies and the horizon", "turkishTranslation": "sekstant (seyir aleti)" },
+      { "word": "chronometer", "definition": "a very accurate clock used for navigation at sea", "turkishTranslation": "kronmetre" },
+      { "word": "meridian", "definition": "an imaginary line of longitude passing from pole to pole", "turkishTranslation": "meridyen (boylam çizgisi)" },
+      { "word": "redundancy", "definition": "having backup systems in case of failure", "turkishTranslation": "yedeklilik, güvence" }
+    ]
+  },
+  {
+    "id": "rp_09",
+    "title": "The Gut Microbiome",
+    "text": "The human body contains approximately 38 trillion bacteria — roughly the same number as human cells — and the vast majority of these microorganisms live in the gut. This complex community, known as the gut microbiome, plays roles that extend far beyond digestion. It synthesizes vitamins, trains the immune system, and communicates with the brain through what scientists have called the gut-brain axis.\n\nResearch over the past two decades has dramatically reshaped our understanding of gut bacteria. Once thought to be largely passive passengers, these microorganisms are now known to be active participants in human health and disease. Disruptions to the microbiome — termed dysbiosis — have been associated with a striking range of conditions including inflammatory bowel disease, obesity, type 2 diabetes, anxiety, and even autism spectrum disorder.\n\nDiet is the most powerful tool for shaping the microbiome. High-fiber diets, rich in fruits, vegetables, and legumes, feed beneficial bacteria that produce short-chain fatty acids — compounds with anti-inflammatory and metabolic benefits. Conversely, diets high in processed foods and low in fiber are associated with reduced microbial diversity, which correlates with poorer health outcomes. Fermented foods such as yogurt, kefir, and kimchi introduce beneficial live bacteria directly into the gut.\n\nAntibiotics, while lifesaving, pose a significant threat to microbiome diversity. A single course of broad-spectrum antibiotics can disrupt the gut microbiome for months and, in some cases, permanently. This has led to increased interest in probiotics and fecal microbiota transplantation — the direct transfer of gut bacteria from a healthy donor — as therapeutic interventions.",
+    "difficulty": "B2",
+    "category": "science",
+    "questions": [
+      {
+        "id": "rp_09_q1",
+        "type": "main_idea",
+        "question": "What is the primary focus of this passage?",
+        "options": [
+          "A) The dangers of antibiotics and why they should be avoided",
+          "B) How diet affects weight and prevents diabetes",
+          "C) The gut microbiome, its roles in health, and factors that affect it",
+          "D) The gut-brain axis and its role in mental health"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage covers the microbiome's functions, health implications, dietary effects, and antibiotic risks — making C the comprehensive main idea."
+      },
+      {
+        "id": "rp_09_q2",
+        "type": "detail",
+        "question": "How do high-fiber diets benefit gut health according to the passage?",
+        "options": [
+          "A) They directly produce vitamins that the gut cannot make",
+          "B) They kill harmful bacteria through antibacterial compounds",
+          "C) They feed beneficial bacteria that produce anti-inflammatory compounds",
+          "D) They reduce the total number of bacteria in the gut"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage states high-fiber diets 'feed beneficial bacteria that produce short-chain fatty acids — compounds with anti-inflammatory and metabolic benefits'."
+      },
+      {
+        "id": "rp_09_q3",
+        "type": "vocabulary_in_context",
+        "question": "The term 'dysbiosis' as used in the passage refers to:",
+        "options": [
+          "A) the presence of any bacteria in the gut",
+          "B) a disruption or imbalance in the normal microbiome community",
+          "C) the process of digestion breaking down fiber",
+          "D) the axis connecting the gut and brain"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage defines dysbiosis as 'disruptions to the microbiome' and links it to various diseases, making 'disruption or imbalance' the correct meaning."
+      },
+      {
+        "id": "rp_09_q4",
+        "type": "inference",
+        "question": "What can be inferred about antibiotic use from the passage?",
+        "options": [
+          "A) Antibiotics should never be used due to their microbiome damage",
+          "B) Antibiotics are beneficial for microbiome diversity",
+          "C) The benefits of antibiotics must be weighed against their potential long-term microbiome effects",
+          "D) Antibiotics only affect harmful bacteria and leave beneficial ones intact"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage calls antibiotics 'lifesaving' but notes they can disrupt the microbiome for months or permanently — implying a need to weigh benefits against risks."
+      },
+      {
+        "id": "rp_09_q5",
+        "type": "author_purpose",
+        "question": "Why does the author mention fecal microbiota transplantation?",
+        "options": [
+          "A) To suggest it is a routine treatment available to everyone",
+          "B) To illustrate the lengths to which researchers are going to restore microbiome health",
+          "C) To argue that probiotics are ineffective",
+          "D) To describe a standard treatment for all forms of dysbiosis"
+        ],
+        "correctIndex": 1,
+        "explanation": "FMT is mentioned as one of the more extreme therapeutic interventions being explored — illustrating the seriousness of microbiome research and the need for solutions."
+      }
+    ],
+    "vocabulary": [
+      { "word": "microbiome", "definition": "the community of microorganisms living in a particular environment, especially the gut", "turkishTranslation": "mikrobiyom" },
+      { "word": "dysbiosis", "definition": "an imbalance or disruption in the normal microbial community", "turkishTranslation": "disbiyoz (mikrobiyom dengesizliği)" },
+      { "word": "probiotics", "definition": "live bacteria that provide health benefits when consumed", "turkishTranslation": "probiyotikler" },
+      { "word": "inflammatory", "definition": "relating to inflammation; causing or characterized by inflammation", "turkishTranslation": "iltihaplı, enflamatuvar" }
+    ]
+  },
+  {
+    "id": "rp_10",
+    "title": "Renewable Energy Transition",
+    "text": "The global transition from fossil fuels to renewable energy represents one of the most significant economic and technological shifts of the twenty-first century. Solar photovoltaic (PV) technology has experienced one of the most dramatic cost reductions in history: the price of solar panels fell by more than 89% between 2010 and 2020, making solar electricity cheaper than coal in most of the world. Wind energy has followed a similar trajectory, with offshore wind costs falling by over 60% in the same period.\n\nDespite these advances, the energy transition faces significant technical challenges. Renewable energy sources are intermittent — the sun doesn't always shine and the wind doesn't always blow — creating the challenge of balancing supply and demand on electrical grids designed for steady, controllable power plants. Grid-scale energy storage, primarily through lithium-ion batteries, is developing rapidly but remains expensive for the volumes needed to power entire cities or regions.\n\nThe transition also raises important social and geopolitical questions. Countries that are major fossil fuel producers face profound economic disruption. Workers in coal mines and oil refineries require retraining for jobs in renewable energy manufacturing and installation. Meanwhile, the technologies required for the energy transition — electric vehicle batteries, solar panels, and wind turbines — depend heavily on minerals such as lithium, cobalt, and rare earth elements, concentrating supply chains in a few countries.\n\nNevertheless, the momentum behind the transition appears unstoppable. Over 130 countries have set net-zero emissions targets, and the International Energy Agency projects that clean energy investment will reach three times the level of fossil fuel investment by 2030.",
+    "difficulty": "B2",
+    "category": "technology",
+    "questions": [
+      {
+        "id": "rp_10_q1",
+        "type": "main_idea",
+        "question": "What is the central idea of this passage?",
+        "options": [
+          "A) Solar energy is the only viable replacement for coal",
+          "B) The renewable energy transition is advancing rapidly but faces technical, social, and geopolitical challenges",
+          "C) Lithium-ion batteries will solve all energy storage problems by 2030",
+          "D) Net-zero targets will be easily achieved by most countries"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage covers the progress of renewables, grid challenges, social disruption, mineral supply chains, and global momentum — a balanced overview of the transition."
+      },
+      {
+        "id": "rp_10_q2",
+        "type": "detail",
+        "question": "By how much did the price of solar panels fall between 2010 and 2020?",
+        "options": [
+          "A) More than 60%",
+          "B) Approximately 50%",
+          "C) More than 89%",
+          "D) Exactly 100%"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage states: 'the price of solar panels fell by more than 89% between 2010 and 2020'."
+      },
+      {
+        "id": "rp_10_q3",
+        "type": "inference",
+        "question": "What does the author imply by describing grids as 'designed for steady, controllable power plants'?",
+        "options": [
+          "A) That existing electrical grids are incompatible with renewable energy without modification",
+          "B) That nuclear power is the only future energy source",
+          "C) That coal plants are better than renewable sources",
+          "D) That renewable energy does not require any grid changes"
+        ],
+        "correctIndex": 0,
+        "explanation": "By noting grids were designed for steady power, the author implies they need significant modification to handle intermittent renewable sources — a key challenge."
+      },
+      {
+        "id": "rp_10_q4",
+        "type": "vocabulary_in_context",
+        "question": "The word 'intermittent' as used in paragraph 2 most nearly means:",
+        "options": [
+          "A) very expensive",
+          "B) not continuous; stopping and starting at irregular intervals",
+          "C) clean and environmentally friendly",
+          "D) dependent on government subsidies"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage uses 'intermittent' to describe the variable nature of solar and wind power — they don't produce electricity continuously or predictably."
+      },
+      {
+        "id": "rp_10_q5",
+        "type": "detail",
+        "question": "Which social challenge of the energy transition does the passage mention?",
+        "options": [
+          "A) Reduced electricity access in developing countries",
+          "B) Higher food prices due to land used for solar farms",
+          "C) The need to retrain workers from fossil fuel industries",
+          "D) Increased air pollution from battery manufacturing"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage explicitly mentions that 'Workers in coal mines and oil refineries require retraining for jobs in renewable energy manufacturing and installation'."
+      }
+    ],
+    "vocabulary": [
+      { "word": "photovoltaic", "definition": "relating to the conversion of sunlight directly into electricity", "turkishTranslation": "fotovoltaik (güneş enerjisi)" },
+      { "word": "intermittent", "definition": "not continuous; occurring at irregular intervals", "turkishTranslation": "aralıklı, kesintili" },
+      { "word": "trajectory", "definition": "the path or course of development of something over time", "turkishTranslation": "seyir, gidiş yönü" },
+      { "word": "geopolitical", "definition": "relating to the influence of geography on politics and international relations", "turkishTranslation": "jeopolitik" }
+    ]
+  },
+  {
+    "id": "rp_11",
+    "title": "The Cognitive Benefits of Bilingualism",
+    "text": "Speaking two or more languages fluently does more than enable communication across cultures — it appears to reshape the brain in ways that confer lasting cognitive benefits. When bilingual speakers use either language, both language systems remain active simultaneously and compete for expression. The brain's executive control system — responsible for attention, inhibition, and mental flexibility — must constantly manage this competition, giving it a kind of perpetual workout.\n\nDecades of research have documented that bilinguals tend to outperform monolinguals on tasks requiring selective attention, cognitive flexibility, and the ability to switch between tasks. The bilingual advantage appears across the lifespan: bilingual children show better impulse control, while elderly bilinguals show a delayed onset of dementia symptoms — by an average of four to five years, according to several longitudinal studies.\n\nHowever, the picture is not entirely clear. Some researchers have struggled to replicate the bilingual advantage in large population studies, suggesting it may be smaller or more context-dependent than initially believed. Critics argue that many studies compared university students who were fluent bilinguals with monolingual peers, rather than representative population samples.\n\nAdditionally, bilingualism typically comes with a vocabulary trade-off: bilinguals tend to have smaller vocabularies in each individual language compared to monolinguals. When asked to name objects quickly, bilinguals often show a slight delay — the 'tip-of-tongue' phenomenon is more frequent. These are not deficits in the traditional sense, but rather the natural consequence of dividing cognitive resources between two languages.",
+    "difficulty": "B2",
+    "category": "social",
+    "questions": [
+      {
+        "id": "rp_11_q1",
+        "type": "main_idea",
+        "question": "What is the passage mainly about?",
+        "options": [
+          "A) Why children should learn two languages from birth",
+          "B) The cognitive advantages and limitations associated with bilingualism",
+          "C) How to measure cognitive flexibility in language learners",
+          "D) Why bilingual people have smaller vocabularies"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage covers both the cognitive benefits (executive control, dementia delay) and limitations (vocabulary trade-off) of bilingualism — a balanced analysis."
+      },
+      {
+        "id": "rp_11_q2",
+        "type": "detail",
+        "question": "According to the passage, by how many years does bilingualism delay dementia symptoms?",
+        "options": [
+          "A) One to two years",
+          "B) Four to five years",
+          "C) Ten years",
+          "D) The passage does not specify"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage states elderly bilinguals show 'a delayed onset of dementia symptoms — by an average of four to five years'."
+      },
+      {
+        "id": "rp_11_q3",
+        "type": "inference",
+        "question": "What does the author imply by saying bilingual brains receive 'a kind of perpetual workout'?",
+        "options": [
+          "A) Bilinguals must exercise more frequently to maintain brain health",
+          "B) The constant management of two language systems continuously trains executive control",
+          "C) Bilingual people are always tired due to constant language switching",
+          "D) Executive control only develops through formal language study"
+        ],
+        "correctIndex": 1,
+        "explanation": "The 'workout' metaphor implies that the ongoing competition between two language systems continuously exercises and strengthens the brain's executive control."
+      },
+      {
+        "id": "rp_11_q4",
+        "type": "vocabulary_in_context",
+        "question": "The word 'replicate' in paragraph 3 most closely means:",
+        "options": [
+          "A) to confirm by repeating a study and finding similar results",
+          "B) to create a physical copy of something",
+          "C) to disprove a previous theory",
+          "D) to publish new research findings"
+        ],
+        "correctIndex": 0,
+        "explanation": "In scientific context, 'replicate' means to repeat a study to verify its findings. Researchers 'struggled to replicate' means they couldn't get the same results."
+      },
+      {
+        "id": "rp_11_q5",
+        "type": "author_purpose",
+        "question": "Why does the author discuss the vocabulary trade-off in the final paragraph?",
+        "options": [
+          "A) To argue that bilingualism is ultimately harmful to language skills",
+          "B) To provide a balanced view by acknowledging limitations alongside the benefits",
+          "C) To suggest monolinguals are better at all language tasks",
+          "D) To recommend avoiding bilingualism for academic purposes"
+        ],
+        "correctIndex": 1,
+        "explanation": "After discussing the cognitive benefits, the author presents the vocabulary trade-off to give a nuanced, balanced view — the passage is clearly not advocating against bilingualism."
+      }
+    ],
+    "vocabulary": [
+      { "word": "confer", "definition": "to grant or provide something", "turkishTranslation": "vermek, sağlamak" },
+      { "word": "inhibition", "definition": "the ability to suppress or control impulses and responses", "turkishTranslation": "inhibisyon, bastırma" },
+      { "word": "longitudinal", "definition": "relating to a study conducted over a long period of time", "turkishTranslation": "boylamsal (uzun süreli izleme çalışması)" },
+      { "word": "monolingual", "definition": "speaking or knowing only one language", "turkishTranslation": "tek dilli" }
+    ]
+  },
+  {
+    "id": "rp_12",
+    "title": "Fire Safety at Sea",
+    "text": "Fire at sea is one of the most dangerous emergencies a ship can face. Unlike on land, where people can evacuate to open air and firefighters can arrive quickly, a ship in the middle of the ocean has limited resources and no possibility of external rescue within a meaningful time frame. This is why fire prevention and firefighting capabilities are among the most heavily regulated aspects of maritime safety under the International Convention for the Safety of Life at Sea, universally known as SOLAS.\n\nSolas divides ships into fire zones separated by fire-resistant boundaries, ensuring that a fire in one area cannot easily spread to adjacent zones. Within these zones, automatic fire detection systems — including smoke detectors, heat detectors, and flame detectors — are required to alert the crew at the earliest possible stage. Many modern vessels are also equipped with fixed firefighting systems, such as CO2 systems for machinery spaces and water mist systems for accommodation areas.\n\nThe human element remains critical. All seafarers are required to hold a Basic Safety Training (BST) certificate, which covers fire prevention, firefighting, and the use of personal protective equipment. Larger vessels additionally require fire parties — trained teams who can respond to fire emergencies with advanced equipment including breathing apparatus and thermal imaging cameras.\n\nDespite all these measures, fire at sea remains a significant cause of total ship losses. Fires on car ferries and container ships carrying hazardous cargo have demonstrated that even well-equipped vessels can be overwhelmed when fire spreads through vehicle decks or misdeclared dangerous goods ignite. The maritime industry continues to strengthen regulations, particularly around the safe transport of lithium-ion batteries, which present unique fire risks.",
+    "difficulty": "B2",
+    "category": "maritime",
+    "questions": [
+      {
+        "id": "rp_12_q1",
+        "type": "main_idea",
+        "question": "What is the central subject of this passage?",
+        "options": [
+          "A) The history of ship fires and famous maritime disasters",
+          "B) Fire safety at sea: regulations, systems, training, and ongoing challenges",
+          "C) Why container ships are more dangerous than passenger ferries",
+          "D) The development of CO2 firefighting systems"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage covers SOLAS regulations, detection and suppression systems, crew training, and ongoing risks — a comprehensive overview of maritime fire safety."
+      },
+      {
+        "id": "rp_12_q2",
+        "type": "detail",
+        "question": "According to the passage, what is the purpose of fire zones on ships?",
+        "options": [
+          "A) To separate passengers from crew members",
+          "B) To ensure a fire in one area cannot easily spread to adjacent zones",
+          "C) To designate where firefighting equipment is stored",
+          "D) To meet CO2 system installation requirements"
+        ],
+        "correctIndex": 1,
+        "explanation": "The passage explicitly states that fire zones 'separated by fire-resistant boundaries' ensure 'a fire in one area cannot easily spread to adjacent zones'."
+      },
+      {
+        "id": "rp_12_q3",
+        "type": "inference",
+        "question": "Why does the passage mention 'misdeclared dangerous goods' in the final paragraph?",
+        "options": [
+          "A) To explain why ships should carry fewer types of cargo",
+          "B) To suggest that all cargo containers are dangerous",
+          "C) To illustrate that fires can occur even when regulations are followed, due to undisclosed hazards",
+          "D) To criticize the construction of car ferries"
+        ],
+        "correctIndex": 2,
+        "explanation": "Misdeclared goods are cargo that shippers falsely label, bypassing safety protocols. Their ignition illustrates how well-equipped ships can be overwhelmed by unexpected hazards."
+      },
+      {
+        "id": "rp_12_q4",
+        "type": "vocabulary_in_context",
+        "question": "The phrase 'total ship losses' in the final paragraph most likely means:",
+        "options": [
+          "A) ships that have lost their cargo",
+          "B) ships that have been completely destroyed or sunk",
+          "C) ships that have exceeded their fire insurance value",
+          "D) ships removed from commercial service"
+        ],
+        "correctIndex": 1,
+        "explanation": "In maritime context, 'total loss' means the vessel is completely destroyed, sunk, or so severely damaged it cannot be salvaged — the most severe outcome."
+      },
+      {
+        "id": "rp_12_q5",
+        "type": "detail",
+        "question": "What qualification does every seafarer need regarding fire safety?",
+        "options": [
+          "A) An Advanced Firefighting certificate",
+          "B) A SOLAS compliance certificate",
+          "C) A Basic Safety Training (BST) certificate",
+          "D) A thermal imaging camera operator's license"
+        ],
+        "correctIndex": 2,
+        "explanation": "The passage states: 'All seafarers are required to hold a Basic Safety Training (BST) certificate, which covers fire prevention, firefighting, and the use of personal protective equipment.'"
+      }
+    ],
+    "vocabulary": [
+      { "word": "SOLAS", "definition": "International Convention for the Safety of Life at Sea — the main maritime safety treaty", "turkishTranslation": "SOLAS (Denizde Can Güvenliği Uluslararası Sözleşmesi)" },
+      { "word": "evacuation", "definition": "the organized departure of people from a dangerous place", "turkishTranslation": "tahliye" },
+      { "word": "accommodation", "definition": "areas on a ship used for living and sleeping by crew and passengers", "turkishTranslation": "yaşam alanları (gemide)" },
+      { "word": "thermal imaging", "definition": "technology that uses infrared radiation to create images showing heat", "turkishTranslation": "termal görüntüleme" }
+    ]
+  }
+]

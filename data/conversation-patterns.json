@@ -1,0 +1,1738 @@
+[
+  {
+    "id": "maritime-position-report",
+    "title": "Reporting Ship Position (COLREG)",
+    "description": "Practice reporting your vessel's position and navigational status to VTS using COLREG-compliant language.",
+    "category": "maritime",
+    "difficulty": "B2",
+    "dialogues": [
+      {
+        "speaker": "A",
+        "text": "Istanbul VTS, Istanbul VTS, this is Motor Vessel Atlantic Star, over.",
+        "turkishTranslation": "İstanbul VTS, İstanbul VTS, burada Motor Gemisi Atlantic Star, bitti."
+      },
+      {
+        "speaker": "B",
+        "text": "Motor Vessel Atlantic Star, this is Istanbul VTS. Go ahead, over.",
+        "turkishTranslation": "Motor Gemisi Atlantic Star, burada İstanbul VTS. Buyurun, bitti."
+      },
+      {
+        "speaker": "A",
+        "text": "Istanbul VTS, Atlantic Star. We are at position four one degrees five two minutes north, zero two eight degrees four five minutes east. Our course is one eight zero, speed twelve knots. We are inbound for Istanbul anchorage, over.",
+        "turkishTranslation": "İstanbul VTS, Atlantic Star. Konumumuz kırk bir derece elli iki dakika kuzey, yirmi sekiz derece kırk beş dakika doğu. Rotamız yüz seksen, hızımız on iki knot. İstanbul demirleme alanına giriş yapıyoruz, bitti."
+      },
+      {
+        "speaker": "B",
+        "text": "Atlantic Star, I have you on radar. Be advised, there is a northbound tanker in your vicinity, bearing zero one five, range three miles. She is a vessel restricted in her ability to manoeuvre. Keep clear and maintain safe distance, over.",
+        "turkishTranslation": "Atlantic Star, sizi radarda görüyorum. Bilginize, yakınınızda kuzeye giden bir tanker mevcut, kerteriz sıfır bir beş, mesafe üç mil. Bu gemi manevra kabiliyeti kısıtlı bir gemi. Uzak durun ve güvenli mesafeyi koruyun, bitti."
+      },
+      {
+        "speaker": "A",
+        "text": "Istanbul VTS, Atlantic Star. Understood. We have the tanker on our radar, bearing zero one two, range two point eight miles. We are altering course to starboard, new course two one zero, to increase passing distance. Over.",
+        "turkishTranslation": "İstanbul VTS, Atlantic Star. Anlaşıldı. Tankeri radarımızda görüyoruz, kerteriz sıfır bir iki, mesafe iki virgül sekiz mil. Geçiş mesafesini artırmak için sancağa rotamızı değiştiriyoruz, yeni rota iki bir sıfır. Bitti."
+      },
+      {
+        "speaker": "B",
+        "text": "Atlantic Star, course alteration confirmed. Also be advised, the traffic separation scheme is in operation in this area. You must proceed in the appropriate traffic lane. Confirm compliance, over.",
+        "turkishTranslation": "Atlantic Star, rota değişikliği onaylandı. Ayrıca bilginize, bu alanda trafik ayrım düzeni uygulanmaktadır. Uygun trafik şeridinde ilerlemeniz gerekiyor. Uyumluluğu teyit edin, bitti."
+      },
+      {
+        "speaker": "A",
+        "text": "Istanbul VTS, Atlantic Star. Confirmed. We are proceeding in the southbound lane of the traffic separation scheme. Our next report will be at the waypoint, over.",
+        "turkishTranslation": "İstanbul VTS, Atlantic Star. Onaylandı. Trafik ayrım düzeninin güneye giden şeridinde ilerliyoruz. Bir sonraki raporumuz ara noktada olacak, bitti."
+      },
+      {
+        "speaker": "B",
+        "text": "Atlantic Star, understood. Report again when you are abeam of the pilot station. Istanbul VTS standing by on channel one six, over.",
+        "turkishTranslation": "Atlantic Star, anlaşıldı. Kılavuz kaptanlık istasyonunun traversinde olduğunuzda tekrar bildirin. İstanbul VTS on altı kanalda beklemede, bitti."
+      },
+      {
+        "speaker": "A",
+        "text": "Istanbul VTS, Atlantic Star. Wilco. Standing by on channel one six. Atlantic Star out.",
+        "turkishTranslation": "İstanbul VTS, Atlantic Star. Emriniz yerine getirilecek. On altı kanalda beklemede. Atlantic Star tamam."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "vessel restricted in her ability to manoeuvre",
+        "meaning": "A ship that cannot manoeuvre as required by COLREG rules due to the nature of its work",
+        "usage": "Used to describe ships doing dredging, cable laying, or towing operations",
+        "examples": [
+          "The cable-laying vessel is restricted in her ability to manoeuvre; all other traffic must keep clear.",
+          "Be advised, there is a vessel restricted in her ability to manoeuvre on your port bow."
+        ]
+      },
+      {
+        "phrase": "traffic separation scheme",
+        "meaning": "An officially designated routing measure to separate opposing streams of traffic in areas of high density",
+        "usage": "Referred to when entering or navigating busy straits or coastal zones",
+        "examples": [
+          "You must proceed in the inbound lane of the traffic separation scheme.",
+          "The traffic separation scheme is in force; give way to vessels in the separation zone."
+        ]
+      },
+      {
+        "phrase": "altering course to starboard",
+        "meaning": "Turning the vessel to the right to change heading",
+        "usage": "Used in radio communication when making a course change to avoid collision",
+        "examples": [
+          "We are altering course to starboard, new course two seven zero.",
+          "Under COLREG rule 14, both vessels shall alter course to starboard."
+        ]
+      },
+      {
+        "phrase": "abeam of",
+        "meaning": "Directly alongside a fixed point, at a 90-degree angle to the vessel's course",
+        "usage": "Used to describe relative position to a landmark or station",
+        "examples": [
+          "Report when you are abeam of the pilot boarding area.",
+          "We passed abeam of the lighthouse at 0930 UTC."
+        ]
+      },
+      {
+        "phrase": "inbound / outbound",
+        "meaning": "Travelling towards port (inbound) or away from port (outbound)",
+        "usage": "Standard VTS terminology for vessel traffic direction",
+        "examples": [
+          "Atlantic Star is inbound for anchorage number four.",
+          "All outbound traffic should use the eastern channel tonight."
+        ]
+      },
+      {
+        "phrase": "Wilco",
+        "meaning": "Will comply — an acknowledgement that an instruction has been understood and will be followed",
+        "usage": "Short, professional response to a command from VTS or another authority",
+        "examples": [
+          "Maintain speed of eight knots until further notice. — Wilco.",
+          "Report your ETA to the pilot station. — Wilco, pilot ETA is 1400 local."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "You are approaching a busy strait. Call the VTS, report your position, course, and speed, and request the latest traffic information.",
+      "VTS tells you there is a vessel ahead that is restricted in its ability to manoeuvre. Explain what actions you will take and confirm your new course.",
+      "Describe to your officer the difference between a vessel 'not under command' and a vessel 'restricted in her ability to manoeuvre' using COLREG language."
+    ]
+  },
+  {
+    "id": "maritime-radio-port",
+    "title": "Radio Communication with Port Authority",
+    "description": "Simulate calling port authority for berthing arrangements, pilotage requests, and harbour clearance.",
+    "category": "maritime",
+    "difficulty": "B2",
+    "dialogues": [
+      {
+        "speaker": "A",
+        "text": "Izmir Port Control, Izmir Port Control, this is Motor Vessel Marmara Pride, MMSI three five eight zero one two three four five, over.",
+        "turkishTranslation": "İzmir Liman Kontrolü, İzmir Liman Kontrolü, burada Motor Gemisi Marmara Pride, MMSI üç beş sekiz sıfır bir iki üç dört beş, bitti."
+      },
+      {
+        "speaker": "B",
+        "text": "Marmara Pride, Izmir Port Control. Switch and work channel one two, over.",
+        "turkishTranslation": "Marmara Pride, İzmir Liman Kontrolü. On iki kanalına geçin ve çalışın, bitti."
+      },
+      {
+        "speaker": "A",
+        "text": "Switching to channel one two. Marmara Pride.",
+        "turkishTranslation": "On iki kanalına geçiyorum. Marmara Pride."
+      },
+      {
+        "speaker": "A",
+        "text": "Izmir Port Control, Marmara Pride on channel one two. We are a general cargo vessel, gross tonnage eight thousand, length one forty metres. We are requesting berthing at the commercial quay. Our ETA is fourteen hundred local time. We require a pilot, over.",
+        "turkishTranslation": "İzmir Liman Kontrolü, Marmara Pride on iki kanalında. Genel kargo gemisiyiz, gros tonaj sekiz bin, uzunluk yüz kırk metre. Ticari rıhtımda yanaşma yeri talep ediyoruz. Tahmini varış saatimiz yerel saatle on dört sıfır sıfır. Kılavuz kaptan talep ediyoruz, bitti."
+      },
+      {
+        "speaker": "B",
+        "text": "Marmara Pride, Izmir Port Control. Berth number seven is available. Pilot will board at the pilot boarding position, two miles south of the main breakwater. ETA for pilot is thirteen forty-five. Confirm your last port and cargo manifest, over.",
+        "turkishTranslation": "Marmara Pride, İzmir Liman Kontrolü. Yedi numaralı iskele müsait. Kılavuz kaptan, ana dalgakıranın iki mil güneyindeki kılavuz kaptan biniş noktasında gemiye binecek. Kılavuz kaptanın tahmini varış saati on üç kırk beş. Son limanınızı ve kargo manifestonuzu teyit edin, bitti."
+      },
+      {
+        "speaker": "A",
+        "text": "Izmir Port Control, Marmara Pride. Last port of call was Piraeus, Greece. We departed yesterday at oh six hundred UTC. Cargo is general merchandise, no dangerous goods on board. All certificates are valid. Over.",
+        "turkishTranslation": "İzmir Liman Kontrolü, Marmara Pride. Son uğrak limanımız Yunanistan'ın Pire limanıydı. Dün sabah altı sıfır sıfır UTC'de ayrıldık. Kargo genel emtiadan oluşuyor, tehlikeli yük yok. Tüm sertifikalar geçerli. Bitti."
+      },
+      {
+        "speaker": "B",
+        "text": "Marmara Pride, understood. You are cleared to proceed to the pilot boarding position. Be aware of the speed limit of five knots within the harbour limits. Health and customs officials will board with the pilot. Over.",
+        "turkishTranslation": "Marmara Pride, anlaşıldı. Kılavuz kaptan biniş noktasına ilerlemeniz onaylandı. Liman sınırları içindeki beş knot hız sınırına dikkat edin. Sağlık ve gümrük yetkilileri kılavuz kaptanla birlikte gemiye binecek. Bitti."
+      },
+      {
+        "speaker": "A",
+        "text": "Izmir Port Control, Marmara Pride. Understood. Proceeding to pilot boarding position. Speed reduced to five knots on entering harbour limits. All departments are standing by for arrival, over.",
+        "turkishTranslation": "İzmir Liman Kontrolü, Marmara Pride. Anlaşıldı. Kılavuz kaptan biniş noktasına ilerliyoruz. Liman sınırlarına girerken hız beş knota düşürüldü. Tüm departmanlar varış için hazır bekliyor, bitti."
+      },
+      {
+        "speaker": "B",
+        "text": "Marmara Pride, Izmir Port Control. Good. Report when the pilot is on board. Welcome to Izmir. Out.",
+        "turkishTranslation": "Marmara Pride, İzmir Liman Kontrolü. Güzel. Kılavuz kaptan gemiye bindiğinde bildirin. İzmir'e hoş geldiniz. Tamam."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "switch and work channel",
+        "meaning": "An instruction to change from the calling channel (16) to a designated working channel",
+        "usage": "Standard VHF radio procedure — initial contact on channel 16, then transfer to a working channel",
+        "examples": [
+          "Switch and work channel one two — switching now.",
+          "Port control, request to switch to working channel for berthing information."
+        ]
+      },
+      {
+        "phrase": "pilot boarding position",
+        "meaning": "The designated location at sea where a harbour pilot boards an inbound vessel",
+        "usage": "Referenced when arranging pilotage services with port authority",
+        "examples": [
+          "The pilot will be at the pilot boarding position at 0800.",
+          "Reduce speed when approaching the pilot boarding position."
+        ]
+      },
+      {
+        "phrase": "last port of call",
+        "meaning": "The most recent port where the ship stopped before the current destination",
+        "usage": "Required information for customs and port clearance documentation",
+        "examples": [
+          "Our last port of call was Barcelona; we departed three days ago.",
+          "Please confirm your last port of call and the nature of your cargo."
+        ]
+      },
+      {
+        "phrase": "cleared to proceed",
+        "meaning": "Official authorisation from port or VTS to continue movement into a designated area",
+        "usage": "Used when port authority gives permission after reviewing documentation",
+        "examples": [
+          "You are cleared to proceed to berth number three.",
+          "All vessels must wait for clearance before entering the restricted zone."
+        ]
+      },
+      {
+        "phrase": "gross tonnage",
+        "meaning": "A measure of a ship's overall internal volume used for registration and port fees",
+        "usage": "Stated when identifying the vessel to port authorities",
+        "examples": [
+          "Marmara Pride, gross tonnage eight thousand, length one hundred and forty metres.",
+          "Port dues are calculated based on gross tonnage."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "You are approaching a new port for the first time. Call port control, introduce your vessel, and request berthing arrangements and pilotage.",
+      "Port control asks you to confirm your cargo and last port of call. Provide this information clearly and professionally.",
+      "Explain to a junior officer the correct VHF channel procedure for contacting a port — from the initial call to switching to a working channel."
+    ]
+  },
+  {
+    "id": "maritime-safety-briefing",
+    "title": "Safety Briefing to Crew",
+    "description": "Conduct a shipboard safety briefing covering emergency procedures, muster stations, and life-saving appliance drills.",
+    "category": "maritime",
+    "difficulty": "B1",
+    "dialogues": [
+      {
+        "speaker": "A",
+        "text": "Good morning everyone. Please gather at the muster station. I will now conduct the safety briefing required under SOLAS regulations.",
+        "turkishTranslation": "Günaydın herkese. Lütfen toplanma istasyonunda bir araya gelin. Şimdi SOLAS yönetmelikleri kapsamında zorunlu güvenlik brifingini yapacağım."
+      },
+      {
+        "speaker": "B",
+        "text": "Officer, should we bring our life jackets to the muster station?",
+        "turkishTranslation": "Subay bey, can yeleğimizi toplanma istasyonuna getirmeli miyiz?"
+      },
+      {
+        "speaker": "A",
+        "text": "Yes, please put on your life jacket and bring it to the briefing. Your life jacket is located in your cabin, in the orange bag under the bunk. Make sure it is correctly fastened — straps secure at the waist and the crotch strap between your legs.",
+        "turkishTranslation": "Evet, lütfen can yeleğinizi giyin ve brifinge getirin. Can yeleğiniz, ranzanın altındaki turuncu çantada, kabininizde bulunmaktadır. Doğru biçimde bağlandığından emin olun — bel kayışları ve iki bacağınızın arasından geçen kasık kayışı sıkıca bağlı olmalı."
+      },
+      {
+        "speaker": "B",
+        "text": "Understood. And what is the signal for abandoning ship?",
+        "turkishTranslation": "Anlaşıldı. Gemiyi terk işareti nedir?"
+      },
+      {
+        "speaker": "A",
+        "text": "The abandon ship signal is seven short blasts followed by one long blast on the ship's whistle, also sounded on the general alarm. When you hear this signal, go immediately to your muster station. Do not stop to collect personal belongings.",
+        "turkishTranslation": "Gemiyi terk işareti, geminin düdüğüyle ve genel alarmla da duyurulan yedi kısa ve ardından bir uzun düdük sesidir. Bu işareti duyduğunuzda, hemen toplanma istasyonunuza gidin. Kişisel eşyalarınızı toplamak için durmayın."
+      },
+      {
+        "speaker": "B",
+        "text": "Is there a fire drill schedule as well?",
+        "turkishTranslation": "Yangın tatbikat programı da var mı?"
+      },
+      {
+        "speaker": "A",
+        "text": "Yes. We conduct fire and boat drills at least once a month as required by SOLAS. The fire alarm is a continuous ringing of the general alarm. If you discover a fire, shout fire three times, activate the nearest fire alarm point, and call the bridge on the internal telephone.",
+        "turkishTranslation": "Evet. SOLAS'ın gerektirdiği şekilde ayda en az bir kez yangın ve can kurtarma botu tatbikatı yapıyoruz. Yangın alarmı, genel alarmın sürekli çalmasıdır. Bir yangın keşfederseniz, üç kez 'yangın' diye bağırın, en yakın yangın alarm noktasını etkinleştirin ve dahili telefondan köprüyü arayın."
+      },
+      {
+        "speaker": "B",
+        "text": "What about the lifeboat? How many people does it hold?",
+        "turkishTranslation": "Ya can kurtarma botu? Kaç kişilik?"
+      },
+      {
+        "speaker": "A",
+        "text": "Our starboard lifeboat is a totally enclosed lifeboat with a capacity of thirty persons. The port side liferaft is inflatable with capacity for twenty. Remember, the officer of the watch will call roll at the muster station. Do not board the lifeboat until ordered to do so by the officer in charge.",
+        "turkishTranslation": "Sancak taraftaki can kurtarma botumuz, otuz kişi kapasiteli tamamen kapalı bir can kurtarma botudur. İskele taraftaki can kurtarma salı şişirilebilir, yirmi kişilik. Unutmayın, nöbet subayı toplanma istasyonunda yoklama yapacak. Sorumlu subay tarafından emredilmedikçe can kurtarma botuna binmeyin."
+      },
+      {
+        "speaker": "A",
+        "text": "Are there any questions? Good. Please sign the safety briefing record before you leave. Your signature confirms you have understood these instructions.",
+        "turkishTranslation": "Sorular var mı? Güzel. Lütfen ayrılmadan önce güvenlik brifing tutanağını imzalayın. İmzanız bu talimatları anladığınızı onaylar."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "muster station",
+        "meaning": "The designated assembly point on a ship where crew and passengers gather in an emergency",
+        "usage": "Used during safety briefings and actual emergencies when the alarm is sounded",
+        "examples": [
+          "Proceed immediately to your muster station when the alarm sounds.",
+          "All crew must know the location of their assigned muster station."
+        ]
+      },
+      {
+        "phrase": "abandon ship signal",
+        "meaning": "The specific alarm pattern (7 short + 1 long blast) signalling that everyone must leave the vessel",
+        "usage": "Defined in SOLAS; must be taught to all crew during safety inductions",
+        "examples": [
+          "The abandon ship signal is seven short blasts followed by one long blast.",
+          "On hearing the abandon ship signal, proceed to your muster station with your life jacket."
+        ]
+      },
+      {
+        "phrase": "totally enclosed lifeboat",
+        "meaning": "A lifeboat with a rigid, watertight cover that protects occupants from waves and fire",
+        "usage": "Used when describing life-saving appliances in safety briefings or ISM documentation",
+        "examples": [
+          "Our totally enclosed lifeboat can self-right if capsized.",
+          "Boarding procedure for the totally enclosed lifeboat requires all hatches to be secured."
+        ]
+      },
+      {
+        "phrase": "general alarm",
+        "meaning": "The ship's alarm system that alerts all crew to an emergency",
+        "usage": "Activated by the officer on watch when an emergency is declared",
+        "examples": [
+          "The general alarm was sounded at 02:00 for a fire drill.",
+          "Seven short blasts on the general alarm means abandon ship."
+        ]
+      },
+      {
+        "phrase": "officer of the watch",
+        "meaning": "The officer responsible for the safe navigation of the vessel during their duty period",
+        "usage": "Referred to when discussing responsibilities or issuing orders from the bridge",
+        "examples": [
+          "Report any unusual observation to the officer of the watch immediately.",
+          "The officer of the watch has authority to alter course in an emergency."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "You are the chief officer conducting a safety briefing for new crew members. Explain the abandon ship signal, muster stations, and life jacket procedure.",
+      "A crew member asks you what to do if they discover smoke coming from the engine room. Walk them through the correct steps.",
+      "Describe the difference between a fire drill and an abandon ship drill, including the alarm signals and what crew must do for each."
+    ]
+  },
+  {
+    "id": "maritime-ship-to-ship",
+    "title": "Ship-to-Ship Communication",
+    "description": "Practice direct vessel-to-vessel VHF communication for collision avoidance and passing arrangements.",
+    "category": "maritime",
+    "difficulty": "B2",
+    "dialogues": [
+      {
+        "speaker": "A",
+        "text": "Motor Vessel Blue Horizon, Motor Vessel Blue Horizon, this is Motor Vessel Aegean Star on your port bow, over.",
+        "turkishTranslation": "Motor Gemisi Blue Horizon, Motor Gemisi Blue Horizon, burada iskele pruvanızdaki Motor Gemisi Aegean Star, bitti."
+      },
+      {
+        "speaker": "B",
+        "text": "Motor Vessel Aegean Star, this is Blue Horizon. I have you on radar bearing two seven zero, range one point five miles. What is your intention? Over.",
+        "turkishTranslation": "Motor Gemisi Aegean Star, burada Blue Horizon. Sizi radarımda kerteriz iki yedi sıfır, mesafe bir virgül beş milden görüyorum. Niyetiniz nedir? Bitti."
+      },
+      {
+        "speaker": "A",
+        "text": "Blue Horizon, Aegean Star. We are on course zero nine zero, speed ten knots, heading eastbound. I observe we are on a crossing course. According to COLREG rule fifteen, you are the give-way vessel. Please state your intentions, over.",
+        "turkishTranslation": "Blue Horizon, Aegean Star. Rota sıfır dokuz sıfır, hız on knot, doğuya gidiyoruz. Kesişen rotada olduğumuzu gözlemliyorum. COLREG kural on beşe göre siz yol vermekle yükümlü gemisiniz. Lütfen niyetinizi belirtin, bitti."
+      },
+      {
+        "speaker": "B",
+        "text": "Aegean Star, Blue Horizon. Understood. I am the give-way vessel. I will alter course to starboard, new course two zero zero, to pass astern of you. Please maintain your course and speed, over.",
+        "turkishTranslation": "Aegean Star, Blue Horizon. Anlaşıldı. Yol verme yükümlülüğündeki gemiyim. Arkanızdan geçmek için sancağa rota değiştireceğim, yeni rota iki sıfır sıfır. Lütfen rotanızı ve hızınızı koruyun, bitti."
+      },
+      {
+        "speaker": "A",
+        "text": "Blue Horizon, Aegean Star. Understood. We will maintain course zero nine zero and speed ten knots. You will pass astern. Confirm the passing arrangement, over.",
+        "turkishTranslation": "Blue Horizon, Aegean Star. Anlaşıldı. Rota sıfır dokuz sıfır ve on knot hızı koruyacağız. Arkamizddan geçeceksiniz. Geçiş düzenlemesini teyit edin, bitti."
+      },
+      {
+        "speaker": "B",
+        "text": "Aegean Star, Blue Horizon. Confirmed. I am altering course now to two zero zero. CPA will be point five miles on your stern. I will resume my original course when safely past, over.",
+        "turkishTranslation": "Aegean Star, Blue Horizon. Onaylandı. Şimdi iki sıfır sıfıra rota değiştiriyorum. En yakın yaklaşma noktası kıçınızda yarım mil olacak. Güvenli bir şekilde geçtikten sonra orijinal rotama döneceğim, bitti."
+      },
+      {
+        "speaker": "A",
+        "text": "Blue Horizon, Aegean Star. Agreed. We are maintaining course and speed. I will monitor the situation on radar. Out.",
+        "turkishTranslation": "Blue Horizon, Aegean Star. Kabul edildi. Rota ve hızı koruyoruz. Durumu radardan izleyeceğim. Tamam."
+      },
+      {
+        "speaker": "B",
+        "text": "Aegean Star, Blue Horizon. Understood. Passing arrangements confirmed. Standing by on channel one six. Blue Horizon out.",
+        "turkishTranslation": "Aegean Star, Blue Horizon. Anlaşıldı. Geçiş düzenlemesi onaylandı. On altı kanalda beklemede. Blue Horizon tamam."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "give-way vessel",
+        "meaning": "Under COLREG, the vessel required to take action to avoid collision with the stand-on vessel",
+        "usage": "Used when discussing collision avoidance responsibilities under the Rules of the Road",
+        "examples": [
+          "Under rule fifteen, you are the give-way vessel and must take avoiding action.",
+          "The give-way vessel must take early and substantial action to keep well clear."
+        ]
+      },
+      {
+        "phrase": "stand-on vessel",
+        "meaning": "The vessel that must maintain its course and speed while the give-way vessel manoeuvres",
+        "usage": "Used alongside 'give-way vessel' in collision avoidance discussions",
+        "examples": [
+          "As the stand-on vessel, we will maintain course zero nine zero.",
+          "The stand-on vessel may take action if collision cannot be avoided by the give-way vessel alone."
+        ]
+      },
+      {
+        "phrase": "CPA (Closest Point of Approach)",
+        "meaning": "The minimum distance between two vessels on their current courses and speeds",
+        "usage": "Used in radar plotting and collision avoidance assessments",
+        "examples": [
+          "Our ARPA shows a CPA of zero point three miles on the port bow.",
+          "If CPA is less than one mile, we should take avoiding action immediately."
+        ]
+      },
+      {
+        "phrase": "pass astern of",
+        "meaning": "To cross behind another vessel, passing behind its stern",
+        "usage": "Used when agreeing a passing arrangement to avoid collision",
+        "examples": [
+          "I will alter course to pass astern of you.",
+          "It is safer to pass astern of the other vessel in this case."
+        ]
+      },
+      {
+        "phrase": "crossing course",
+        "meaning": "A navigational situation where two vessels are on paths that will intersect",
+        "usage": "The trigger for applying COLREG rules 15, 16, and 17",
+        "examples": [
+          "We are on a crossing course; COLREG rule fifteen applies.",
+          "The crossing course situation requires one vessel to give way."
+        ]
+      },
+      {
+        "phrase": "resume original course",
+        "meaning": "Return to the planned heading after completing a manoeuvre to avoid collision",
+        "usage": "Said after the risk of collision has passed and normal navigation can continue",
+        "examples": [
+          "I will resume my original course when safely past.",
+          "After passing the restricted area, we resumed our original course."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "You are on a collision course with another vessel. Contact them on VHF channel 16 and agree a safe passing arrangement using COLREG rule 15 language.",
+      "Another vessel contacts you and says you are the give-way vessel in a crossing situation. Respond professionally and state your intended avoiding action.",
+      "Explain to a cadet the difference between the give-way vessel and the stand-on vessel, and describe what each vessel must do in a crossing situation."
+    ]
+  },
+  {
+    "id": "travel-hotel-checkin",
+    "title": "Hotel Check-in",
+    "description": "Practice checking into a hotel, confirming your reservation, and requesting room amenities.",
+    "category": "travel",
+    "difficulty": "A2",
+    "dialogues": [
+      {
+        "speaker": "A",
+        "text": "Good afternoon. I have a reservation. My name is Berkay Sarikaya.",
+        "turkishTranslation": "İyi öğleden sonra. Rezervasyonum var. Adım Berkay Sarıkaya."
+      },
+      {
+        "speaker": "B",
+        "text": "Welcome, Mr Sarikaya. Let me look that up for you. Could you spell your last name for me, please?",
+        "turkishTranslation": "Hoş geldiniz, Bay Sarıkaya. Bakayım. Soyadınızı heceleyebilir misiniz lütfen?"
+      },
+      {
+        "speaker": "A",
+        "text": "Of course. S-A-R-I-K-A-Y-A.",
+        "turkishTranslation": "Tabii. S-A-R-I-K-A-Y-A."
+      },
+      {
+        "speaker": "B",
+        "text": "I found your booking — a double room for three nights, checking out on the eighteenth. Is that correct?",
+        "turkishTranslation": "Rezervasyonunuzu buldum — on sekizinde çıkış yapacak şekilde üç gecelik çift kişilik oda. Doğru mu?"
+      },
+      {
+        "speaker": "A",
+        "text": "That is correct. Is it possible to get a room with a sea view? I requested one when I booked online.",
+        "turkishTranslation": "Doğru. Deniz manzaralı bir oda almak mümkün mü? Online rezervasyon yaparken bir tane talep etmiştim."
+      },
+      {
+        "speaker": "B",
+        "text": "Let me check. Yes, we have a sea-view room available on the fifth floor. I will allocate that for you. May I take a credit card for incidentals, please?",
+        "turkishTranslation": "Bakayım. Evet, beşinci katta deniz manzaralı bir odamız müsait. Onu size tahsis edeceğim. Muhtemel masraflar için kredi kartınızı alabilir miyim lütfen?"
+      },
+      {
+        "speaker": "A",
+        "text": "Of course, here you are. Also, what time is breakfast served?",
+        "turkishTranslation": "Tabii, buyurun. Ayrıca kahvaltı saat kaçta servis ediliyor?"
+      },
+      {
+        "speaker": "B",
+        "text": "Breakfast is served in the restaurant on the ground floor from seven until ten thirty. It is included in your rate. Here is your key card. Your room is five one two. The lift is just around the corner.",
+        "turkishTranslation": "Kahvaltı zemin kattaki restoranda yediden ona kadar servis ediliyor. Oda ücretinize dahil. İşte anahtar kartınız. Odanız beş yüz on iki. Asansör hemen köşenin ardında."
+      },
+      {
+        "speaker": "A",
+        "text": "Thank you very much. Is there a gym in the hotel?",
+        "turkishTranslation": "Çok teşekkür ederim. Otelde spor salonu var mı?"
+      },
+      {
+        "speaker": "B",
+        "text": "Yes, the fitness centre is on the third floor and is open twenty-four hours. You will need your key card to access it. Enjoy your stay, Mr Sarikaya.",
+        "turkishTranslation": "Evet, fitness merkezi üçüncü katta ve yirmi dört saat açık. Oraya erişmek için anahtar kartınıza ihtiyacınız olacak. İyi kalışlar, Bay Sarıkaya."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "I have a reservation",
+        "meaning": "To state that you have booked accommodation in advance",
+        "usage": "First thing said when arriving at a hotel front desk",
+        "examples": [
+          "Good evening, I have a reservation under the name Thompson.",
+          "I have a reservation for two nights starting from today."
+        ]
+      },
+      {
+        "phrase": "incidentals",
+        "meaning": "Minor extra charges at a hotel such as room service, minibar, or phone calls",
+        "usage": "Hotels require a credit card to cover these potential charges at check-in",
+        "examples": [
+          "May I take a credit card for incidentals?",
+          "The hotel places a temporary hold on your card to cover incidentals."
+        ]
+      },
+      {
+        "phrase": "Is it possible to get",
+        "meaning": "A polite way to make a request",
+        "usage": "Used for hotel upgrades, room preferences, or additional services",
+        "examples": [
+          "Is it possible to get a quiet room away from the street?",
+          "Is it possible to get an early check-in? My flight arrives at noon."
+        ]
+      },
+      {
+        "phrase": "included in your rate",
+        "meaning": "A service or item that is covered by the room price without extra charge",
+        "usage": "Used to clarify which amenities are free",
+        "examples": [
+          "Wi-Fi and parking are included in your rate.",
+          "Breakfast is included in your rate — no extra charge."
+        ]
+      },
+      {
+        "phrase": "key card",
+        "meaning": "The electronic card used as a room key in modern hotels",
+        "usage": "Mentioned at check-in when handing over room access",
+        "examples": [
+          "Here is your key card; please keep it away from your mobile phone.",
+          "You will need your key card to use the gym and the pool."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "Check into a hotel for a business trip. You want a quiet room, early check-in, and need to know about parking.",
+      "There is a problem with your room — the air conditioning is not working. Call the front desk and explain the situation.",
+      "You are checking out of the hotel a day early and want to know if there is a fee. Negotiate politely with the receptionist."
+    ]
+  },
+  {
+    "id": "travel-airport",
+    "title": "At the Airport — Check-in and Security",
+    "description": "Navigate airport check-in, luggage allowances, and security procedures with confidence.",
+    "category": "travel",
+    "difficulty": "A2",
+    "dialogues": [
+      {
+        "speaker": "A",
+        "text": "Hello. I would like to check in for the flight to London, please. Here is my passport.",
+        "turkishTranslation": "Merhaba. Londra uçuşu için check-in yaptırmak istiyorum lütfen. İşte pasaportum."
+      },
+      {
+        "speaker": "B",
+        "text": "Thank you. Do you have any luggage to check in, or just hand luggage?",
+        "turkishTranslation": "Teşekkürler. Kabin bagajı mı, yoksa kayıt ettirilecek bagajınız var mı?"
+      },
+      {
+        "speaker": "A",
+        "text": "I have one suitcase to check in and one carry-on bag.",
+        "turkishTranslation": "Bir valizi kaydettireceğim ve bir kabin çantam var."
+      },
+      {
+        "speaker": "B",
+        "text": "Could you place your suitcase on the belt, please? I see it weighs twenty-four kilograms. Your allowance is twenty-three. There is a one-kilogram excess. I am afraid there is a fee of fifteen euros for the extra weight.",
+        "turkishTranslation": "Valizi banda koyar mısınız lütfen? Yirmi dört kilogram olduğunu görüyorum. Hakkınız yirmi üç kilo. Bir kilogram fazla var. Ne yazık ki fazla ağırlık için on beş euro ücret ödemeniz gerekiyor."
+      },
+      {
+        "speaker": "A",
+        "text": "Oh, I see. Can I move some items into my carry-on to reduce the weight?",
+        "turkishTranslation": "Anlıyorum. Ağırlığı azaltmak için bazı eşyaları kabin çantama taşıyabilir miyim?"
+      },
+      {
+        "speaker": "B",
+        "text": "Yes, of course. You have a few minutes. Just let me know when you are ready.",
+        "turkishTranslation": "Evet, tabii. Birkaç dakikanız var. Hazır olduğunuzda bana bildirin."
+      },
+      {
+        "speaker": "A",
+        "text": "I have moved two kilograms. Is it under the limit now?",
+        "turkishTranslation": "İki kilogram taşıdım. Şimdi sınırın altında mı?"
+      },
+      {
+        "speaker": "B",
+        "text": "Yes, it is twenty-two kilograms now — you are fine. Would you like a window or aisle seat?",
+        "turkishTranslation": "Evet, şimdi yirmi iki kilo — sorun yok. Pencere kenarı mı istirsiniz yoksa koridor koltuk mu?"
+      },
+      {
+        "speaker": "A",
+        "text": "Window seat, please, if available. Also, is the flight on time?",
+        "turkishTranslation": "Müsaitse pencere kenarı lütfen. Ayrıca uçuş zamanında mı?"
+      },
+      {
+        "speaker": "B",
+        "text": "Yes, the flight is on schedule. Boarding begins at gate fourteen at fifteen forty-five. Here is your boarding pass. Have a pleasant flight.",
+        "turkishTranslation": "Evet, uçuş zamanında. Biniş on dört numaralı kapıda on beş kırk beşte başlar. İşte biniş kartınız. İyi uçuşlar."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "check in",
+        "meaning": "To register at an airport for your flight, having your ticket and baggage processed",
+        "usage": "Used when arriving at the airline check-in desk or using a self-service kiosk",
+        "examples": [
+          "I would like to check in for the flight to Istanbul.",
+          "You can check in online up to 24 hours before departure."
+        ]
+      },
+      {
+        "phrase": "excess baggage",
+        "meaning": "Luggage that exceeds the airline's permitted weight or size allowance",
+        "usage": "Used when discussing overweight luggage and associated charges",
+        "examples": [
+          "There is a fee for excess baggage above twenty-three kilograms.",
+          "I rearranged my bags to avoid excess baggage charges."
+        ]
+      },
+      {
+        "phrase": "boarding pass",
+        "meaning": "The document that allows a passenger to board the aircraft",
+        "usage": "Issued at check-in; required at security and the gate",
+        "examples": [
+          "Please have your boarding pass and passport ready at the gate.",
+          "You can download your boarding pass to your phone."
+        ]
+      },
+      {
+        "phrase": "on schedule / on time",
+        "meaning": "Departing or arriving at the planned time without delay",
+        "usage": "Used when checking whether a flight is running normally",
+        "examples": [
+          "The flight to Paris is on schedule.",
+          "Due to bad weather, the flight is not on time — there is a two-hour delay."
+        ]
+      },
+      {
+        "phrase": "window / aisle seat",
+        "meaning": "A seat next to the window or the corridor in an aircraft cabin",
+        "usage": "Seat preference stated at check-in",
+        "examples": [
+          "I prefer an aisle seat as I need to get up frequently.",
+          "Could I have a window seat on the left side of the plane?"
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "You are checking in for a long-haul flight. Ask about seat selection, baggage allowance, and in-flight meals.",
+      "Your carry-on bag is too heavy and the check-in agent is asking you to pay a fee. Negotiate a solution.",
+      "You arrive at the airport and your flight has been delayed by three hours. Speak to the airline representative about your options."
+    ]
+  },
+  {
+    "id": "travel-doctor",
+    "title": "Doctor's Appointment",
+    "description": "Describe symptoms clearly to a doctor, understand medical advice, and ask questions about treatment.",
+    "category": "travel",
+    "difficulty": "B1",
+    "dialogues": [
+      {
+        "speaker": "A",
+        "text": "Good morning, doctor. I have not been feeling well for the past three days.",
+        "turkishTranslation": "Günaydın doktor. Son üç gündür iyi hissetmiyorum."
+      },
+      {
+        "speaker": "B",
+        "text": "I am sorry to hear that. Please sit down and tell me what the problem is. Where does it hurt?",
+        "turkishTranslation": "Üzgünüm buna. Lütfen oturun ve sorunu bana anlatın. Neresi ağrıyor?"
+      },
+      {
+        "speaker": "A",
+        "text": "I have a sharp pain in my lower right abdomen. It started as a dull ache two days ago but it has gotten worse. I also feel nauseous and I have had a low-grade fever.",
+        "turkishTranslation": "Sağ alt karın bölgemde keskin bir ağrı var. İki gün önce hafif bir sancıyla başladı ama kötüleşti. Ayrıca midemi bulanık hissediyorum ve düşük ateşim var."
+      },
+      {
+        "speaker": "B",
+        "text": "I see. On a scale of one to ten, how would you rate the pain?",
+        "turkishTranslation": "Anlıyorum. Bir ile on arasında bir ölçekte ağrıyı nasıl değerlendirirsiniz?"
+      },
+      {
+        "speaker": "A",
+        "text": "I would say about a seven. It is worse when I press on the area or when I move quickly.",
+        "turkishTranslation": "Yedi derdim. Bölgeye bastırdığımda ya da hızlı hareket ettiğimde daha kötü oluyor."
+      },
+      {
+        "speaker": "B",
+        "text": "I am going to examine your abdomen. Please lie back on the bed. Tell me if the pain increases when I release pressure — that is called rebound tenderness.",
+        "turkishTranslation": "Karın bölgenizi muayene edeceğim. Lütfen yatağa uzanın. Basıncı bıraktığımda ağrı artarsa söyleyin — buna refleks hassasiyet denir."
+      },
+      {
+        "speaker": "A",
+        "text": "Yes — it hurts more when you release. What do you think it could be?",
+        "turkishTranslation": "Evet — bıraktığınızda daha çok acıyor. Sizce ne olabilir?"
+      },
+      {
+        "speaker": "B",
+        "text": "The symptoms are consistent with appendicitis. I need you to go to the hospital immediately for an ultrasound and blood tests. Do not eat or drink anything from now on, in case you need surgery.",
+        "turkishTranslation": "Belirtiler apandisitle tutarlı. Ultrason ve kan testleri için şimdi hastaneye gitmeniz gerekiyor. Ameliyata ihtiyaç duyulabileceği ihtimaline karşı bundan sonra hiçbir şey yemeyin ya da içmeyin."
+      },
+      {
+        "speaker": "A",
+        "text": "That sounds serious. Should I call an ambulance or can I take a taxi?",
+        "turkishTranslation": "Ciddi geliyor. Ambulans mı çağırmalıyım yoksa taksi mi tutabilirim?"
+      },
+      {
+        "speaker": "B",
+        "text": "Given the severity, I recommend calling an ambulance. I will write a referral letter for the emergency department. Try to stay calm and do not put pressure on the area.",
+        "turkishTranslation": "Ciddiyeti göz önünde bulundurarak ambulans çağırmanızı tavsiye ederim. Acil servis için sevk mektubu yazacağım. Sakin olmaya çalışın ve bölgeye baskı uygulamayın."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "on a scale of one to ten",
+        "meaning": "A standard clinical question to quantify pain intensity",
+        "usage": "Doctors use this to assess the severity of pain objectively",
+        "examples": [
+          "On a scale of one to ten, how bad is the pain right now?",
+          "The pain is about six out of ten — uncomfortable but manageable."
+        ]
+      },
+      {
+        "phrase": "rebound tenderness",
+        "meaning": "Pain that is worse upon release of pressure than during pressure, indicating peritoneal irritation",
+        "usage": "A clinical sign associated with appendicitis or other abdominal inflammation",
+        "examples": [
+          "Rebound tenderness in the lower right quadrant suggests appendicitis.",
+          "The doctor checked for rebound tenderness by pressing and quickly releasing."
+        ]
+      },
+      {
+        "phrase": "low-grade fever",
+        "meaning": "A mildly elevated body temperature, typically 37.5–38.5°C",
+        "usage": "Used when describing symptoms that suggest infection or inflammation",
+        "examples": [
+          "I have had a low-grade fever for two days.",
+          "A low-grade fever alongside abdominal pain is a warning sign."
+        ]
+      },
+      {
+        "phrase": "consistent with",
+        "meaning": "In agreement with; suggesting a particular diagnosis",
+        "usage": "Doctors use this phrase to link symptoms to a probable diagnosis",
+        "examples": [
+          "Your symptoms are consistent with a viral infection.",
+          "These test results are consistent with high cholesterol."
+        ]
+      },
+      {
+        "phrase": "referral letter",
+        "meaning": "A document from a doctor directing a patient to a specialist or hospital",
+        "usage": "Issued when a GP or ship's doctor sends a patient for further treatment",
+        "examples": [
+          "I will write a referral letter for the orthopaedic specialist.",
+          "Please bring your referral letter when you attend the hospital."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "You have a headache, dizziness, and blurred vision. Describe your symptoms clearly to a doctor.",
+      "The doctor prescribes medication and tells you to take one tablet twice a day with food for a week. Ask about side effects and what to do if symptoms don't improve.",
+      "You are the ship's officer and a crew member reports feeling unwell. Take a verbal medical history using proper medical English questions."
+    ]
+  },
+  {
+    "id": "work-job-interview",
+    "title": "Job Interview — Maritime Officer Position",
+    "description": "Prepare for a professional job interview in English, covering your qualifications, experience, and motivation.",
+    "category": "work",
+    "difficulty": "B2",
+    "dialogues": [
+      {
+        "speaker": "B",
+        "text": "Good morning, please come in and take a seat. My name is Captain Richards, and I am the fleet manager. Thank you for coming in today.",
+        "turkishTranslation": "Günaydın, lütfen içeri gelin ve oturun. Adım Kaptan Richards ve filo yöneticisiyim. Bugün geldiğiniz için teşekkürler."
+      },
+      {
+        "speaker": "A",
+        "text": "Good morning, Captain Richards. Thank you for the opportunity. I have been looking forward to this interview.",
+        "turkishTranslation": "Günaydın Kaptan Richards. Fırsat için teşekkürler. Bu görüşmeyi sabırsızlıkla bekliyordum."
+      },
+      {
+        "speaker": "B",
+        "text": "Please tell me about yourself and your current experience as an officer.",
+        "turkishTranslation": "Lütfen kendinizden ve mevcut subay deneyiminizden bahsedin."
+      },
+      {
+        "speaker": "A",
+        "text": "Certainly. I hold a Chief Mate certificate of competency and have five years of sea service on general cargo vessels and bulk carriers. I am STCW certified and hold a valid GMDSS certificate. My most recent position was as second officer on a bulk carrier trading between Turkey and Northern Europe.",
+        "turkishTranslation": "Tabii. Birinci subay yeterlilik sertifikasına sahibim ve genel kargo gemileri ile dökme yük gemilerinde beş yıl deniz hizmetim var. STCW sertifikalıyım ve geçerli bir GMDSS sertifikam var. En son görevim Türkiye ile Kuzey Avrupa arasında sefer yapan bir dökme yük gemisinde ikinci subay olarak çalışmaktı."
+      },
+      {
+        "speaker": "B",
+        "text": "Excellent. Tell me about a challenging situation you have faced at sea and how you handled it.",
+        "turkishTranslation": "Mükemmel. Denizde karşılaştığınız zorlu bir durumu ve bununla nasıl başa çıktığınızı anlatın."
+      },
+      {
+        "speaker": "A",
+        "text": "During a voyage through the North Sea in winter, we encountered severe weather with force nine winds and seven-metre swells. I was on watch and the ship was rolling heavily. I immediately notified the Master, reduced speed, and altered course to take the weather on the quarter. I also secured all deck fittings and ensured all crew were off the exposed decks. The ship came through safely.",
+        "turkishTranslation": "Kışın Kuzey Denizi'nden geçen bir seferde dokuz kuvvetinde rüzgar ve yedi metrelik dalgayla ciddi hava koşullarıyla karşılaştık. Nöbetteydim ve gemi çok sallıyordu. Hemen kaptanı haberdar ettim, hızı düşürdüm ve havayı kıçtan almak için rotayı değiştirdim. Ayrıca tüm güverte donanımlarını emniyet altına aldım ve tüm mürettebatın açık güvertelerin dışında olduğundan emin oldum. Gemi güvenle yolculuğunu tamamladı."
+      },
+      {
+        "speaker": "B",
+        "text": "Good decision-making. What would you say is your greatest professional strength?",
+        "turkishTranslation": "İyi karar verme. En büyük mesleki güçlü yönünüz nedir?"
+      },
+      {
+        "speaker": "A",
+        "text": "I would say my ability to remain calm under pressure and make sound decisions quickly. I also consider myself a strong communicator, both in English and when working with multicultural crews.",
+        "turkishTranslation": "Baskı altında sakin kalma ve hızlı doğru kararlar verme yeteneğim derdim. Ayrıca hem İngilizce hem de çok kültürlü ekiplerle çalışırken kendimi güçlü bir iletişimci olarak değerlendiriyorum."
+      },
+      {
+        "speaker": "B",
+        "text": "Where do you see yourself in five years?",
+        "turkishTranslation": "Beş yıl sonra kendinizi nerede görüyorsunuz?"
+      },
+      {
+        "speaker": "A",
+        "text": "I am working towards my Master's certificate. I would like to be commanding my own vessel within five years, ideally with this company. I am committed to continuing my professional development.",
+        "turkishTranslation": "Kaptan sertifikama doğru çalışıyorum. Beş yıl içinde kendi gemime komuta etmek istiyorum, ideali bu şirkette. Mesleki gelişimime devam etmeye kararlıyım."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "certificate of competency",
+        "meaning": "An official qualification issued by a maritime authority proving an officer's ability to serve at a certain rank",
+        "usage": "Used in CVs and interviews for maritime positions",
+        "examples": [
+          "I hold a Chief Mate certificate of competency issued by the Turkish Maritime Administration.",
+          "A Master certificate of competency is required to command a vessel over 3000 GT."
+        ]
+      },
+      {
+        "phrase": "STCW certified",
+        "meaning": "Holding the required training certificates under the International Convention on Standards of Training, Certification and Watchkeeping",
+        "usage": "Mentioned in interviews and on CVs as a basic qualification for seafarers",
+        "examples": [
+          "All officers on board are STCW certified.",
+          "My STCW basic safety training was completed at the Maritime Academy."
+        ]
+      },
+      {
+        "phrase": "make sound decisions",
+        "meaning": "To make good, well-reasoned judgements",
+        "usage": "Common in professional interviews when describing strengths",
+        "examples": [
+          "The ability to make sound decisions under pressure is essential for a ship's officer.",
+          "I pride myself on making sound decisions even in stressful situations."
+        ]
+      },
+      {
+        "phrase": "remain calm under pressure",
+        "meaning": "To stay composed and effective when facing stressful or dangerous situations",
+        "usage": "A highly valued skill in maritime and emergency professions",
+        "examples": [
+          "Officers must remain calm under pressure during emergencies.",
+          "I have trained myself to remain calm under pressure through drills and experience."
+        ]
+      },
+      {
+        "phrase": "sea service",
+        "meaning": "Time spent working on board a ship, counted towards certification requirements",
+        "usage": "Required for maritime licensing — stated in terms of months or years",
+        "examples": [
+          "I have completed twenty-four months of approved sea service.",
+          "You need twelve months of sea service to apply for the Officer of the Watch certificate."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "Tell me about yourself, your qualifications, and your most recent sea posting. Use maritime English vocabulary.",
+      "Describe a time when you had to handle an emergency on board. Explain what happened and the decisions you made.",
+      "The interviewer asks: 'Why do you want to work for our company?' Give a confident, professional answer."
+    ]
+  },
+  {
+    "id": "work-workplace-meeting",
+    "title": "Workplace Meeting — Project Update",
+    "description": "Participate in a professional meeting, give updates, and express opinions in a formal work context.",
+    "category": "work",
+    "difficulty": "B1",
+    "dialogues": [
+      {
+        "speaker": "B",
+        "text": "Good morning everyone. Let us begin. The purpose of today's meeting is to review progress on the safety management system update. I will start with you — can you give us an update on where things stand?",
+        "turkishTranslation": "Günaydın herkese. Başlayalım. Bugünkü toplantının amacı güvenlik yönetim sistemi güncellemesindeki ilerlemeyi gözden geçirmek. Sizinle başlayayım — durum hakkında bizi bilgilendirebilir misiniz?"
+      },
+      {
+        "speaker": "A",
+        "text": "Thank you. We have completed the review of all existing procedures. The gap analysis is finished and we have identified twelve areas that need updating. We are on track to submit the revised documents by the end of next week.",
+        "turkishTranslation": "Teşekkürler. Mevcut tüm prosedürlerin incelemesini tamamladık. Boşluk analizi bitti ve güncellenmesi gereken on iki alan belirledik. Revize edilmiş belgeleri gelecek haftanın sonuna kadar teslim etme yolundayız."
+      },
+      {
+        "speaker": "B",
+        "text": "Good progress. Are there any obstacles you are currently facing?",
+        "turkishTranslation": "İyi ilerleme. Şu anda karşılaştığınız herhangi bir engel var mı?"
+      },
+      {
+        "speaker": "A",
+        "text": "The main challenge has been getting sign-off from department heads. Two departments have not responded to our requests yet. I would appreciate it if you could follow up with them directly.",
+        "turkishTranslation": "Asıl zorluk departman başlarından onay almak oldu. İki departman henüz taleplerimize yanıt vermedi. Onlara doğrudan takip yapmanızı takdirle karşılarım."
+      },
+      {
+        "speaker": "B",
+        "text": "I will handle that. What is the timeline for the final audit?",
+        "turkishTranslation": "Bununla ben ilgileneceğim. Son denetim için zaman çizelgesi nedir?"
+      },
+      {
+        "speaker": "A",
+        "text": "The external auditor is scheduled to visit in six weeks. We need to have all documents finalised and crew training completed two weeks before that, to allow time for any last-minute corrections.",
+        "turkishTranslation": "Dış denetçi altı hafta içinde ziyaret için programlanmış. Son dakika düzeltmelerine zaman bırakmak için tüm belgelerin tamamlanmış ve mürettebat eğitiminin altı haftadan iki hafta önce tamamlanmış olması gerekiyor."
+      },
+      {
+        "speaker": "B",
+        "text": "That is a tight schedule. What resources do you need to meet that deadline?",
+        "turkishTranslation": "Sıkışık bir program. Bu son tarihi karşılamak için hangi kaynaklara ihtiyacınız var?"
+      },
+      {
+        "speaker": "A",
+        "text": "We need one additional person to assist with the training coordination. I have already drafted a brief for that role. I can share it with you after the meeting.",
+        "turkishTranslation": "Eğitim koordinasyonuna yardımcı olacak bir kişiye daha ihtiyacımız var. Bu rol için kısa bir brifing taslağı hazırladım bile. Toplantıdan sonra sizinle paylaşabilirim."
+      },
+      {
+        "speaker": "B",
+        "text": "Please do. Any other items to discuss today?",
+        "turkishTranslation": "Lütfen yapın. Bugün tartışılacak başka maddeler var mı?"
+      },
+      {
+        "speaker": "A",
+        "text": "Just one more thing — I would recommend scheduling a progress review in two weeks to make sure we are still on track.",
+        "turkishTranslation": "Bir şey daha — hâlâ doğru yolda olduğumuzdan emin olmak için iki hafta içinde bir ilerleme değerlendirmesi planlamanızı tavsiye ederim."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "on track",
+        "meaning": "Progressing as planned and likely to meet the deadline",
+        "usage": "Common in project updates to indicate things are going well",
+        "examples": [
+          "We are on track to deliver the report by Friday.",
+          "The project is on track despite the delays we encountered last month."
+        ]
+      },
+      {
+        "phrase": "gap analysis",
+        "meaning": "A study that identifies the difference between current performance and the desired standard",
+        "usage": "Common in quality management, safety audits, and training assessments",
+        "examples": [
+          "The gap analysis revealed several areas that do not meet ISM requirements.",
+          "We conducted a gap analysis before starting the SMS update."
+        ]
+      },
+      {
+        "phrase": "sign-off",
+        "meaning": "Official approval or authorisation from a person in authority",
+        "usage": "Used when waiting for a manager or department to approve a document or decision",
+        "examples": [
+          "We need sign-off from the chief engineer before we can proceed.",
+          "The document requires sign-off from three department heads."
+        ]
+      },
+      {
+        "phrase": "tight schedule",
+        "meaning": "A timeline with very little spare time, where delays cannot easily be absorbed",
+        "usage": "Describes a challenging timeframe that requires careful management",
+        "examples": [
+          "We are working to a tight schedule ahead of the port inspection.",
+          "A tight schedule means any delays will have consequences for the whole project."
+        ]
+      },
+      {
+        "phrase": "I would recommend",
+        "meaning": "A formal way to suggest a course of action to a superior or colleague",
+        "usage": "Used in professional meetings to make suggestions politely",
+        "examples": [
+          "I would recommend scheduling a review meeting in two weeks.",
+          "I would recommend we increase crew training frequency before the audit."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "Give a brief project status update in a meeting. Include what has been completed, what challenges you are facing, and what you need from the team leader.",
+      "Someone in the meeting disagrees with your timeline. Defend your position politely but firmly.",
+      "You are chairing a meeting. Open the meeting, guide the discussion, and close with a summary of action items."
+    ]
+  },
+  {
+    "id": "social-making-friends",
+    "title": "Making Friends — Small Talk",
+    "description": "Practise casual conversation skills including introductions, finding common ground, and maintaining a friendly dialogue.",
+    "category": "social",
+    "difficulty": "A2",
+    "dialogues": [
+      {
+        "speaker": "A",
+        "text": "Hi, I do not think we have met before. My name is Berkay. I am new here.",
+        "turkishTranslation": "Merhaba, sanırım daha önce tanışmadık. Adım Berkay. Ben burada yeniyim."
+      },
+      {
+        "speaker": "B",
+        "text": "Oh, welcome! I am James. I have been here for about two years. Are you from Turkey?",
+        "turkishTranslation": "Oh, hoş geldiniz! Ben James. Burada yaklaşık iki yıldır varım. Türkiye'den misiniz?"
+      },
+      {
+        "speaker": "A",
+        "text": "Yes, I am from Istanbul. I came here for work — I am a maritime officer. What do you do?",
+        "turkishTranslation": "Evet, İstanbul'danım. Buraya iş için geldim — deniz subayıyım. Siz ne iş yapıyorsunuz?"
+      },
+      {
+        "speaker": "B",
+        "text": "That is fascinating. I work in engineering — I design port infrastructure, so we actually work in related fields. Do you enjoy your work?",
+        "turkishTranslation": "Bu büyüleyici. Ben mühendislikte çalışıyorum — liman altyapısı tasarlıyorum, yani aslında birbiriyle ilgili alanlarda çalışıyoruz. İşinizden zevk alıyor musunuz?"
+      },
+      {
+        "speaker": "A",
+        "text": "Very much, although the time away from home is challenging. Do you travel much for your work?",
+        "turkishTranslation": "Çok, ama evden uzakta geçirilen süre zorlu. Siz işiniz için çok mu seyahat ediyorsunuz?"
+      },
+      {
+        "speaker": "B",
+        "text": "Yes, I travel to port sites about once a month. Do you have any free time here? What do you like to do in your spare time?",
+        "turkishTranslation": "Evet, ayda yaklaşık bir kez liman sahalarına gidiyorum. Burada boş vaktiniz var mı? Boş zamanlarınızda ne yapmaktan hoşlanıyorsunuz?"
+      },
+      {
+        "speaker": "A",
+        "text": "I enjoy reading, and I am trying to learn English more seriously now. I am also interested in history, especially naval history.",
+        "turkishTranslation": "Okumaktan hoşlanıyorum ve şimdi İngilizceyi daha ciddiye almaya çalışıyorum. Ayrıca tarihe, özellikle deniz tarihine ilgi duyuyorum."
+      },
+      {
+        "speaker": "B",
+        "text": "Oh, you would love the Maritime Museum here — it is excellent. I could show you around if you like. Are you free this weekend?",
+        "turkishTranslation": "Oh, buradaki Denizcilik Müzesi'ni çok beğenirsiniz — mükemmel. İsterseniz size eşlik edebilirim. Bu hafta sonu müsait misiniz?"
+      },
+      {
+        "speaker": "A",
+        "text": "That would be great, thank you! I am free on Sunday. What time would suit you?",
+        "turkishTranslation": "Harika olur, teşekkürler! Pazar günü müsaitim. Size hangi saat uygun?"
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "I do not think we have met before",
+        "meaning": "A polite way to introduce yourself to a stranger",
+        "usage": "Used at parties, events, or shared workplaces to start a conversation",
+        "examples": [
+          "Hi, I do not think we have met — I am the new second officer.",
+          "Hello, I do not think we have been introduced. My name is Sara."
+        ]
+      },
+      {
+        "phrase": "in related fields",
+        "meaning": "Working in areas that are connected or have overlap",
+        "usage": "Used to establish common ground during introductions",
+        "examples": [
+          "We are in related fields — both of us work in logistics.",
+          "As engineers and officers, we work in related fields and can learn from each other."
+        ]
+      },
+      {
+        "phrase": "spare time",
+        "meaning": "Free time when a person is not working or studying",
+        "usage": "Used when asking about hobbies and personal interests",
+        "examples": [
+          "In my spare time, I enjoy sailing and photography.",
+          "Do you have much spare time on board?"
+        ]
+      },
+      {
+        "phrase": "What time would suit you?",
+        "meaning": "Asking another person to choose a convenient time",
+        "usage": "Polite way to arrange a meeting or social occasion",
+        "examples": [
+          "We should have coffee — what time would suit you?",
+          "I am flexible. What time would suit you best?"
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "You are at a professional conference and you want to start a conversation with someone standing nearby. Introduce yourself and find common ground.",
+      "A colleague asks you about your hobbies and interests. Talk about what you enjoy doing in your free time.",
+      "You want to suggest meeting up at the weekend with someone you have just met. Make the suggestion politely and agree on a time and place."
+    ]
+  },
+  {
+    "id": "social-dinner-party",
+    "title": "Dinner Party Conversation",
+    "description": "Navigate dinner table conversation, express opinions, agree and disagree politely in a social setting.",
+    "category": "social",
+    "difficulty": "B1",
+    "dialogues": [
+      {
+        "speaker": "B",
+        "text": "This is delicious! Do you cook much at home?",
+        "turkishTranslation": "Bu çok lezzetli! Evde çok pişiriyor musunuz?"
+      },
+      {
+        "speaker": "A",
+        "text": "Not as much as I would like to. Being away at sea for months at a time means I am out of practice when I get home. But I love trying new restaurants.",
+        "turkishTranslation": "İstediğimden daha az. Aylarca denizde olmak, eve döndüğümde pratik yapamadığım anlamına geliyor. Ama yeni restoranlar denemekten çok hoşlanıyorum."
+      },
+      {
+        "speaker": "B",
+        "text": "I imagine the food on ships is quite basic. Is that true?",
+        "turkishTranslation": "Gemilerdeki yemeğin oldukça sıradan olduğunu tahmin ediyorum. Doğru mu?"
+      },
+      {
+        "speaker": "A",
+        "text": "It depends on the ship and the cook! On good ships the food is surprisingly varied. The cook is arguably the most important person on board for morale.",
+        "turkishTranslation": "Gemiye ve aşçıya bağlı! İyi gemilerde yemek şaşırtıcı derecede çeşitli oluyor. Manevi açıdan gemideki en önemli kişinin aşçı olduğu söylenebilir."
+      },
+      {
+        "speaker": "B",
+        "text": "I had not thought of it that way. Speaking of food, what do you think about Turkish cuisine becoming so popular internationally?",
+        "turkishTranslation": "Bunu o açıdan düşünmemiştim. Yemekten bahsetmişken, Türk mutfağının uluslararası alanda bu kadar popüler olması hakkında ne düşünüyorsunuz?"
+      },
+      {
+        "speaker": "A",
+        "text": "I think it is wonderful. Turkish food has always been rich and diverse but it was not well known outside Turkey. Now you can find good Turkish restaurants almost everywhere I travel.",
+        "turkishTranslation": "Harika olduğunu düşünüyorum. Türk yemeği her zaman zengin ve çeşitliydi ama Türkiye dışında pek bilinmiyordu. Şimdi seyahat ettiğim hemen her yerde iyi Türk restoranları bulabilirsiniz."
+      },
+      {
+        "speaker": "B",
+        "text": "I agree, although some people might say the versions outside Turkey are not as authentic. What do you think?",
+        "turkishTranslation": "Katılıyorum, ancak bazı insanlar Türkiye dışındaki versiyonların o kadar özgün olmadığını söyleyebilir. Ne düşünüyorsunuz?"
+      },
+      {
+        "speaker": "A",
+        "text": "I see their point, but I think authentic food evolves wherever it travels. The important thing is that it introduces people to the culture. I would rather someone enjoy an imperfect döner than never try Turkish food at all.",
+        "turkishTranslation": "Noktalarını görüyorum ama özgün yemeğin gittiği her yerde evrildiğini düşünüyorum. Önemli olan insanları kültürle tanıştırması. Birisinin mükemmel olmayan bir döner yemesini, hiç Türk yemeği denemesine tercih ederim."
+      },
+      {
+        "speaker": "B",
+        "text": "That is a lovely perspective. Now, who wants more dessert?",
+        "turkishTranslation": "Bu güzel bir bakış açısı. Şimdi, kim daha fazla tatlı istiyor?"
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "out of practice",
+        "meaning": "Having not done something for a long time, causing a loss of skill",
+        "usage": "Used when explaining that you are not currently doing something as well as you once did",
+        "examples": [
+          "I am out of practice with my piano — I have not played in months.",
+          "My German is a bit out of practice since I stopped using it at work."
+        ]
+      },
+      {
+        "phrase": "I see their point",
+        "meaning": "To acknowledge that someone else's argument has merit, even if you disagree",
+        "usage": "A diplomatic way to start a counter-argument without being dismissive",
+        "examples": [
+          "I see their point, but I think the benefits outweigh the risks.",
+          "I see their point about the cost, however the long-term savings are significant."
+        ]
+      },
+      {
+        "phrase": "arguably",
+        "meaning": "Used to suggest something is probably true but could be disputed",
+        "usage": "Adds nuance to a strong claim; avoids sounding too absolute",
+        "examples": [
+          "The cook is arguably the most important person for morale on a long voyage.",
+          "This is arguably the most significant maritime disaster of the century."
+        ]
+      },
+      {
+        "phrase": "evolves",
+        "meaning": "Gradually changes and develops over time",
+        "usage": "Used when talking about food, language, culture, or technology changing",
+        "examples": [
+          "Language evolves — words change their meaning over time.",
+          "Cuisine evolves as it is adopted by different cultures."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "At a dinner party, someone asks your opinion about climate change and its effect on shipping. Share your view and respond to their counterpoint politely.",
+      "Express a strong opinion about a topic you care about, then invite the other person to share their view.",
+      "Describe a memorable meal or dining experience. Use descriptive vocabulary to make it vivid."
+    ]
+  },
+  {
+    "id": "academic-presentation",
+    "title": "Academic Presentation — YDS Preparation",
+    "description": "Practise the structure and language of academic presentations, including signposting, evidence, and conclusions.",
+    "category": "academic",
+    "difficulty": "B2",
+    "dialogues": [
+      {
+        "speaker": "A",
+        "text": "Good morning. Today I would like to present my findings on the impact of autonomous navigation technology on maritime safety. I will begin with an overview, then examine the evidence, and conclude with recommendations.",
+        "turkishTranslation": "Günaydın. Bugün otonom navigasyon teknolojisinin deniz güvenliğine etkisi konusundaki bulgularımı sunmak istiyorum. Genel bir bakışla başlayacak, ardından kanıtları inceleyecek ve önerilerle bitireceğim."
+      },
+      {
+        "speaker": "B",
+        "text": "Thank you. Before you start, could you clarify the scope of your study? Are you focusing on commercial vessels or all types of maritime traffic?",
+        "turkishTranslation": "Teşekkürler. Başlamadan önce çalışmanızın kapsamını açıklar mısınız? Ticari gemilere mi yoksa tüm deniz trafiği türlerine mi odaklanıyorsunuz?"
+      },
+      {
+        "speaker": "A",
+        "text": "Good question. This study focuses primarily on large commercial vessels above 3000 gross tonnes operating on international routes. Data from small craft and coastal traffic has been excluded to maintain a consistent data set.",
+        "turkishTranslation": "Güzel soru. Bu çalışma, uluslararası güzergahlarda faaliyet gösteren üç bin gros ton üzerindeki büyük ticari gemilere öncelikle odaklanıyor. Tutarlı bir veri seti sağlamak için küçük tekneler ve kıyı trafiğine ait veriler dışarıda bırakılmıştır."
+      },
+      {
+        "speaker": "B",
+        "text": "Thank you for clarifying. Please continue.",
+        "turkishTranslation": "Açıkladığınız için teşekkürler. Lütfen devam edin."
+      },
+      {
+        "speaker": "A",
+        "text": "Moving on to the evidence. According to data from the International Maritime Organization, human error accounts for approximately seventy-five percent of maritime accidents. Autonomous navigation systems have the potential to reduce this significantly.",
+        "turkishTranslation": "Kanıtlara geçelim. Uluslararası Denizcilik Örgütü'nün verilerine göre insan hatası deniz kazalarının yaklaşık yüzde yetmiş beşini oluşturuyor. Otonom navigasyon sistemleri bunu önemli ölçüde azaltma potansiyeline sahip."
+      },
+      {
+        "speaker": "B",
+        "text": "That is a striking statistic. However, are there not also arguments that fully autonomous vessels create new risks, particularly in terms of cybersecurity?",
+        "turkishTranslation": "Bu çarpıcı bir istatistik. Ancak tam otonom gemilerin de yeni riskler yarattığına dair argümanlar yok mu, özellikle siber güvenlik açısından?"
+      },
+      {
+        "speaker": "A",
+        "text": "That is a valid counterargument. Cybersecurity is indeed a significant concern, and I address this in the third section of my paper. In short, the technology requires robust international regulation before full implementation can be considered safe.",
+        "turkishTranslation": "Bu geçerli bir karşı argüman. Siber güvenlik gerçekten ciddi bir endişe kaynağı ve bunu makalelerimin üçüncü bölümünde ele alıyorum. Kısaca söylemek gerekirse, tam uygulama güvenli sayılabilmeden önce teknoloji sağlam uluslararası düzenleme gerektiriyor."
+      },
+      {
+        "speaker": "B",
+        "text": "Could you elaborate on what you mean by 'robust international regulation'?",
+        "turkishTranslation": "'Sağlam uluslararası düzenleme' ile ne kastettiğinizi açabilir misiniz?"
+      },
+      {
+        "speaker": "A",
+        "text": "Certainly. I am referring to a unified legal framework under SOLAS and the IMO MASS code that defines liability, minimum safety standards, and cybersecurity requirements for all flag states. Currently, this framework does not yet exist.",
+        "turkishTranslation": "Tabii. Tüm bayrak devletleri için yükümlülüğü, minimum güvenlik standartlarını ve siber güvenlik gerekliliklerini tanımlayan SOLAS ve IMO MASS kodu kapsamında birleşik bir yasal çerçeveden bahsediyorum. Şu anda bu çerçeve henüz mevcut değil."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "signposting",
+        "meaning": "Using phrases to guide the audience through the structure of a presentation",
+        "usage": "Essential academic presentation technique for organising spoken or written content",
+        "examples": [
+          "Moving on to the evidence — this is a signposting phrase.",
+          "Good signposting helps your audience follow the logic of your argument."
+        ]
+      },
+      {
+        "phrase": "could you elaborate on",
+        "meaning": "A polite request for more detail or further explanation",
+        "usage": "Used in academic Q&A sessions and professional discussions",
+        "examples": [
+          "Could you elaborate on the methodology you used?",
+          "Could you elaborate on how this affects navigational safety?"
+        ]
+      },
+      {
+        "phrase": "valid counterargument",
+        "meaning": "An opposing point that has genuine merit and must be addressed",
+        "usage": "Used in academic writing and debate to acknowledge opposing views fairly",
+        "examples": [
+          "That is a valid counterargument, but the evidence still supports my position.",
+          "Ignoring valid counterarguments weakens your overall case."
+        ]
+      },
+      {
+        "phrase": "accounts for",
+        "meaning": "Constitutes or represents a specific proportion of a total",
+        "usage": "Common in academic and statistical writing to describe data",
+        "examples": [
+          "Human error accounts for seventy-five percent of maritime accidents.",
+          "Shipping accounts for approximately three percent of global CO2 emissions."
+        ]
+      },
+      {
+        "phrase": "has the potential to",
+        "meaning": "Is capable of doing something in the future under the right conditions",
+        "usage": "Used in academic language to make cautious, evidence-based claims",
+        "examples": [
+          "Autonomous systems have the potential to reduce accidents significantly.",
+          "This technology has the potential to transform international shipping."
+        ]
+      },
+      {
+        "phrase": "in short",
+        "meaning": "A phrase used to introduce a brief summary of a more complex point",
+        "usage": "Common in both spoken and written academic English",
+        "examples": [
+          "In short, further research is needed before conclusions can be drawn.",
+          "In short, the benefits outweigh the risks at this stage."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "Give a two-minute introduction to a presentation on a topic you know well. Use signposting phrases to structure your talk.",
+      "Someone challenges your argument with a counterpoint. Acknowledge their view and then defend your position using evidence.",
+      "Explain a complex technical idea from your field to someone outside it, using clear and accessible English."
+    ]
+  },
+  {
+    "id": "academic-library-research",
+    "title": "University Library — Research Assistance",
+    "description": "Ask a librarian for help finding academic sources, understand research databases, and discuss citation practices.",
+    "category": "academic",
+    "difficulty": "B1",
+    "dialogues": [
+      {
+        "speaker": "A",
+        "text": "Excuse me, I am working on a research paper on maritime pollution regulations and I am having trouble finding peer-reviewed sources. Could you help me?",
+        "turkishTranslation": "Affedersiniz, deniz kirliliği yönetmelikleri üzerine bir araştırma makalesi yazıyorum ve hakemli kaynak bulmakta zorlanıyorum. Yardımcı olabilir misiniz?"
+      },
+      {
+        "speaker": "B",
+        "text": "Of course. Have you used our academic database system? We have access to several databases including JSTOR, ScienceDirect, and the IMO library.",
+        "turkishTranslation": "Tabii. Akademik veri tabanı sistemimizi kullandınız mı? JSTOR, ScienceDirect ve IMO kütüphanesi dahil çeşitli veri tabanlarına erişimimiz var."
+      },
+      {
+        "speaker": "A",
+        "text": "I have tried JSTOR but I am finding a lot of the articles are quite old — from the nineteen nineties. I need more recent publications, ideally from the last ten years.",
+        "turkishTranslation": "JSTOR'u denedim ama makalelerin çoğunun oldukça eski olduğunu görüyorum — doksanlı yıllardan. Daha güncel yayınlara ihtiyacım var, ideali son on yıl."
+      },
+      {
+        "speaker": "B",
+        "text": "I would suggest filtering by publication date in your search. Also, the IMO website itself publishes circulars and resolutions which are authoritative primary sources. Have you looked there?",
+        "turkishTranslation": "Aramanızda yayın tarihine göre filtre uygulamanızı öneririm. Ayrıca IMO'nun kendi web sitesi yetkili birincil kaynaklar olan sirkülerleri ve kararları yayınlıyor. Oraya baktınız mı?"
+      },
+      {
+        "speaker": "A",
+        "text": "Not yet. I was not sure if those counted as academic sources. My supervisor told me I need at least eight peer-reviewed journal articles.",
+        "turkishTranslation": "Henüz bakmadım. Bunların akademik kaynak sayılıp sayılmadığından emin değildim. Danışmanım en az sekiz hakemli dergi makalesi gerektiğini söyledi."
+      },
+      {
+        "speaker": "B",
+        "text": "You are right to clarify that. IMO documents are primary sources — official legal instruments. They are excellent for supporting your argument but they do not replace peer-reviewed articles. For journal articles, I recommend ScienceDirect with the filters set to marine policy and environmental law.",
+        "turkishTranslation": "Bunu açıklığa kavuşturmanız doğru. IMO belgeleri birincil kaynaklardır — resmi hukuki belgeler. Argümanınızı desteklemek için mükemmeldirler ama hakemli makalelerin yerini alamazlar. Dergi makaleleri için ScienceDirect'i deniz politikası ve çevre hukuku filtresiyle kullanmanızı tavsiye ederim."
+      },
+      {
+        "speaker": "A",
+        "text": "That is very helpful. Could you also tell me the correct way to cite a journal article? My supervisor wants APA format.",
+        "turkishTranslation": "Bu çok yardımcı oluyor. Bir dergi makalesini doğru şekilde nasıl alıntılayacağımı da söyleyebilir misiniz? Danışmanım APA formatı istiyor."
+      },
+      {
+        "speaker": "B",
+        "text": "In APA format, for a journal article you include the author's last name and initials, the year, the article title in plain text, the journal name in italics, the volume and issue, the page numbers, and the DOI if available. I can print a guide for you if that would help.",
+        "turkishTranslation": "APA formatında, bir dergi makalesi için yazarın soyadını ve baş harflerini, yılı, düz metindeki makale başlığını, italik yazılmış dergi adını, cilt ve sayıyı, sayfa numaralarını ve varsa DOI'yi eklersiniz. İstersen size bir kılavuz bastırabilirim."
+      },
+      {
+        "speaker": "A",
+        "text": "Yes please, that would be great. Thank you so much for your help.",
+        "turkishTranslation": "Evet lütfen, harika olur. Yardımınız için çok teşekkür ederim."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "peer-reviewed",
+        "meaning": "Evaluated by independent experts before publication, ensuring academic quality",
+        "usage": "Describes academic journal articles and research papers that have been validated",
+        "examples": [
+          "I need at least eight peer-reviewed sources for my literature review.",
+          "Only peer-reviewed articles should be used in academic work."
+        ]
+      },
+      {
+        "phrase": "primary source",
+        "meaning": "Original, first-hand material such as official documents, legislation, or raw data",
+        "usage": "Distinguished from secondary sources (which analyse primary material)",
+        "examples": [
+          "The MARPOL convention is a primary source for marine pollution law.",
+          "Use primary sources wherever possible to strengthen your argument."
+        ]
+      },
+      {
+        "phrase": "authoritative",
+        "meaning": "Highly reliable and trusted; produced by an expert or official body",
+        "usage": "Used to describe sources that carry weight in academic or legal arguments",
+        "examples": [
+          "The IMO is the authoritative international body on maritime law.",
+          "Use authoritative sources to support your thesis statement."
+        ]
+      },
+      {
+        "phrase": "cite / citation",
+        "meaning": "To reference a source in your writing; a formal acknowledgement of the source",
+        "usage": "Required in academic writing to avoid plagiarism",
+        "examples": [
+          "Please cite all sources in APA format.",
+          "Your bibliography should include every citation used in the paper."
+        ]
+      },
+      {
+        "phrase": "literature review",
+        "meaning": "A section of academic writing that surveys and evaluates existing research on a topic",
+        "usage": "Standard part of academic papers, theses, and research proposals",
+        "examples": [
+          "The literature review identified a significant gap in research on maritime cybersecurity.",
+          "A thorough literature review shows your awareness of existing scholarship."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "You need to find sources for a research paper on ocean shipping and climate change. Ask a librarian for help finding credible academic databases and filtering results.",
+      "Your supervisor says your sources are not credible enough. Explain what you have found and ask for advice on finding better-quality academic material.",
+      "Discuss the difference between a primary source and a secondary source using examples from maritime or academic contexts."
+    ]
+  },
+  {
+    "id": "daily-weather",
+    "title": "Discussing the Weather",
+    "description": "Discuss weather conditions, seasonal changes, and weather forecasts in both everyday and maritime contexts.",
+    "category": "daily",
+    "difficulty": "A2",
+    "dialogues": [
+      {
+        "speaker": "A",
+        "text": "What terrible weather today! Did you get caught in the rain?",
+        "turkishTranslation": "Bugün ne kadar kötü bir hava! Yağmura yakalandınız mı?"
+      },
+      {
+        "speaker": "B",
+        "text": "Yes, unfortunately. I forgot my umbrella and I got completely soaked. What is the forecast for tomorrow?",
+        "turkishTranslation": "Evet, ne yazık ki. Şemsiyemi unuttum ve tamamen ıslandım. Yarın için tahmin nasıl?"
+      },
+      {
+        "speaker": "A",
+        "text": "According to the forecast, the rain should clear up by this evening. Tomorrow should be dry but quite cold — around five degrees.",
+        "turkishTranslation": "Tahmine göre yağmur bu akşama kadar geçmeli. Yarın kuru ama oldukça soğuk olmalı — yaklaşık beş derece."
+      },
+      {
+        "speaker": "B",
+        "text": "Five degrees — that is cold for this time of year. Is a frost expected?",
+        "turkishTranslation": "Beş derece — yılın bu zamanı için soğuk. Don bekleniyor mu?"
+      },
+      {
+        "speaker": "A",
+        "text": "They said there might be a ground frost overnight, so I need to be careful driving in the morning.",
+        "turkishTranslation": "Gece boyunca toprak donması olabileceğini söylediler, bu yüzden sabah araç kullanırken dikkatli olmam gerekiyor."
+      },
+      {
+        "speaker": "B",
+        "text": "At sea, this kind of weather must be even more difficult to deal with. How do you monitor weather conditions on a ship?",
+        "turkishTranslation": "Denizde bu tür hava koşullarıyla başa çıkmak çok daha zor olmalı. Gemide hava koşullarını nasıl izliyorsunuz?"
+      },
+      {
+        "speaker": "A",
+        "text": "We use a combination of methods. We receive NAVTEX bulletins and weather fax charts. We also have onboard weather routing software. Before departure, we always check the synoptic chart and look for any low-pressure systems on our route.",
+        "turkishTranslation": "Bir kombinasyon kullanıyoruz. NAVTEX bültenleri ve hava faks grafikleri alıyoruz. Gemide hava rotalaması yazılımımız da var. Kalkıştan önce her zaman sinoptik haritayı kontrol edip rotamızdaki alçak basınç sistemlerine bakıyoruz."
+      },
+      {
+        "speaker": "B",
+        "text": "What is NAVTEX? I have not heard of that before.",
+        "turkishTranslation": "NAVTEX ne? Bunu daha önce duymadım."
+      },
+      {
+        "speaker": "A",
+        "text": "NAVTEX is an international weather and navigation warning broadcast system. Ships receive printed messages automatically with gale warnings, ice reports, and navigation hazards for the area we are sailing in.",
+        "turkishTranslation": "NAVTEX, uluslararası bir hava durumu ve navigasyon uyarı yayın sistemidir. Gemiler, seyrettiğimiz bölge için fırtına uyarıları, buz raporları ve navigasyon tehlikelerine ilişkin basılı mesajları otomatik olarak alır."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "clear up",
+        "meaning": "For rain or clouds to stop and conditions to become better",
+        "usage": "Common phrase when describing improving weather",
+        "examples": [
+          "The fog should clear up by mid-morning.",
+          "If the weather clears up this afternoon, we will proceed to sea."
+        ]
+      },
+      {
+        "phrase": "synoptic chart",
+        "meaning": "A weather map showing atmospheric pressure, wind, and weather systems over a large area at a specific time",
+        "usage": "Used by mariners and meteorologists for route planning and passage planning",
+        "examples": [
+          "The synoptic chart shows a deep low-pressure system approaching from the west.",
+          "Before departure, always study the synoptic chart for the next 72 hours."
+        ]
+      },
+      {
+        "phrase": "low-pressure system",
+        "meaning": "An area of the atmosphere with lower pressure than its surroundings, associated with storms and strong winds",
+        "usage": "Used in weather discussions and maritime passage planning",
+        "examples": [
+          "A low-pressure system is expected to reach our route on Thursday.",
+          "The low-pressure system is intensifying — winds may increase to storm force."
+        ]
+      },
+      {
+        "phrase": "gale warning",
+        "meaning": "An official weather alert issued when wind speeds of Beaufort Force 8 (34–40 knots) are expected",
+        "usage": "Broadcast on NAVTEX and VHF radio as a navigation safety message",
+        "examples": [
+          "A gale warning has been issued for the North Sea.",
+          "We delayed departure when the gale warning was received."
+        ]
+      },
+      {
+        "phrase": "get caught in the rain",
+        "meaning": "To be outside when rain suddenly starts, without being prepared",
+        "usage": "Common everyday English expression for weather inconvenience",
+        "examples": [
+          "I got caught in the rain walking to the station.",
+          "Always carry a jacket at sea — you never want to get caught in the rain on deck."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "Describe today's weather in detail. Then predict what the weather will be like tomorrow and this weekend.",
+      "Explain to a friend how you monitor weather conditions before and during a sea voyage.",
+      "You are on a weather-delayed voyage. Call the port authority and explain that you are delaying departure due to a gale warning."
+    ]
+  },
+  {
+    "id": "daily-shopping",
+    "title": "Shopping — Buying Clothes",
+    "description": "Ask for help in a clothing shop, discuss sizes and fit, and handle payment and returns.",
+    "category": "daily",
+    "difficulty": "A2",
+    "dialogues": [
+      {
+        "speaker": "B",
+        "text": "Good afternoon. Can I help you with anything today?",
+        "turkishTranslation": "İyi öğleden sonra. Bugün size yardımcı olabilir miyim?"
+      },
+      {
+        "speaker": "A",
+        "text": "Yes please. I am looking for a formal shirt. I have a job interview next week.",
+        "turkishTranslation": "Evet lütfen. Resmi bir gömlek arıyorum. Gelecek hafta iş görüşmem var."
+      },
+      {
+        "speaker": "B",
+        "text": "Congratulations on the interview! What size are you? We have our formal shirts in this section over here.",
+        "turkishTranslation": "Görüşmeniz için tebrikler! Kaç bedensiniz? Resmi gömleklerimiz buradaki bölümde."
+      },
+      {
+        "speaker": "A",
+        "text": "I usually take a medium, but sizes vary between brands. Would it be possible to try a few on?",
+        "turkishTranslation": "Genellikle medium alırım ama ölçüler markadan markaya değişiyor. Birkaçını denesem olur mu?"
+      },
+      {
+        "speaker": "B",
+        "text": "Of course, the fitting rooms are at the back. I would suggest trying both a medium and a large in this style — it tends to run small.",
+        "turkishTranslation": "Tabii, fitting kabinleri arkada. Bu modelde hem medium hem de large denemenizi öneririm — bu model küçük çıkma eğilimindedir."
+      },
+      {
+        "speaker": "A",
+        "text": "Thank you. I also need a tie to go with it. Do you have anything in dark blue or grey?",
+        "turkishTranslation": "Teşekkürler. Ayrıca bununla kombinleyecek bir kravata ihtiyacım var. Koyu mavi veya gri bir şeyiniz var mı?"
+      },
+      {
+        "speaker": "B",
+        "text": "Yes, we have a good selection of ties just next to the shirts. These navy ones go well with a white shirt.",
+        "turkishTranslation": "Evet, gömleklerin hemen yanında iyi bir kravat çeşidimiz var. Bu lacivert kravatlar beyaz gömleğe çok yakışır."
+      },
+      {
+        "speaker": "A",
+        "text": "I like this one. How much is it?",
+        "turkishTranslation": "Bu hoşuma gitti. Fiyatı ne kadar?"
+      },
+      {
+        "speaker": "B",
+        "text": "The tie is twenty-five pounds and the shirt is forty-five. We have a promotion at the moment — if you spend over sixty pounds, you get ten percent off.",
+        "turkishTranslation": "Kravat yirmi beş pound, gömlek kırk beş pound. Şu anda bir promosyonumuz var — altmış poundun üzerinde harcama yaparsanız yüzde on indirim alırsınız."
+      },
+      {
+        "speaker": "A",
+        "text": "That works out well. I will take both. Do you accept card payments?",
+        "turkishTranslation": "Bu güzel olur. İkisini de alacağım. Kartla ödeme kabul ediyor musunuz?"
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "runs small / runs large",
+        "meaning": "A garment that is smaller or larger than its stated size compared to standard sizing",
+        "usage": "Used by shop assistants to advise on sizing",
+        "examples": [
+          "This brand runs small — I would recommend going up a size.",
+          "Our trousers tend to run large, so try your normal size first."
+        ]
+      },
+      {
+        "phrase": "fitting room",
+        "meaning": "A private cubicle in a shop where customers try on clothes before buying",
+        "usage": "Used when asking to try on garments",
+        "examples": [
+          "Could I use the fitting room to try these on?",
+          "The fitting rooms are at the back of the store on the left."
+        ]
+      },
+      {
+        "phrase": "to go with",
+        "meaning": "To match or complement another item of clothing or colour",
+        "usage": "Used when buying accessories or coordinating an outfit",
+        "examples": [
+          "I need a belt to go with these trousers.",
+          "Do you have any shoes to go with this suit?"
+        ]
+      },
+      {
+        "phrase": "promotion",
+        "meaning": "A special offer or discount available for a limited time",
+        "usage": "Used by shops to describe current sales or discounts",
+        "examples": [
+          "We have a buy-two-get-one-free promotion this week.",
+          "Take advantage of the promotion before it ends on Sunday."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "You are shopping for clothes for a formal occasion. Ask the shop assistant for help finding the right size and style.",
+      "The shirt you bought last week has a fault. Return to the shop and explain the problem, asking for a refund or exchange.",
+      "Compare two items you are considering buying — discuss the differences in price, quality, and style."
+    ]
+  },
+  {
+    "id": "daily-café-order",
+    "title": "Ordering at a Café",
+    "description": "Order food and drinks at a café, handle dietary requirements, and make small talk with staff.",
+    "category": "daily",
+    "difficulty": "A2",
+    "dialogues": [
+      {
+        "speaker": "B",
+        "text": "Good morning! What can I get for you?",
+        "turkishTranslation": "Günaydın! Ne getirebilirim?"
+      },
+      {
+        "speaker": "A",
+        "text": "Good morning. Could I have a flat white, please, and one of those croissants in the display?",
+        "turkishTranslation": "Günaydın. Bir flat white ve vitrinlerden bir croissant alabilir miyim lütfen?"
+      },
+      {
+        "speaker": "B",
+        "text": "Of course. Would you like the croissant toasted?",
+        "turkishTranslation": "Tabii. Croissantı kızartmamı ister misiniz?"
+      },
+      {
+        "speaker": "A",
+        "text": "Yes please. And could I have a glass of water as well?",
+        "turkishTranslation": "Evet lütfen. Ve bir de bardak su alabilir miyim?"
+      },
+      {
+        "speaker": "B",
+        "text": "Still or sparkling?",
+        "turkishTranslation": "Düz mı yoksa gazlı mı?"
+      },
+      {
+        "speaker": "A",
+        "text": "Still, please. I also wanted to ask — does the croissant contain nuts? I have an allergy.",
+        "turkishTranslation": "Düz lütfen. Ayrıca sormak istedim — croissant fındık içeriyor mu? Alerjim var."
+      },
+      {
+        "speaker": "B",
+        "text": "The plain croissants do not contain nuts, but I should mention they are made in a kitchen that also handles tree nuts. I can check with the kitchen if you need confirmation.",
+        "turkishTranslation": "Sade croissantlar fındık içermiyor ancak belirtmem gerekir ki bunlar sert kabuklu yemişlerin de işlendiği bir mutfakta yapılıyor. Onay gerekiyorsa mutfakla kontrol edebilirim."
+      },
+      {
+        "speaker": "A",
+        "text": "Yes please, if you would not mind checking. I appreciate it.",
+        "turkishTranslation": "Evet lütfen, kontrol edebilirseniz. Takdir ediyorum."
+      },
+      {
+        "speaker": "B",
+        "text": "No problem at all. I will check and let you know. What name should I put on the order?",
+        "turkishTranslation": "Sorun değil. Kontrol edip bildireceğim. Siparişe hangi ismi yazmamı istersiniz?"
+      },
+      {
+        "speaker": "A",
+        "text": "Berkay, please. And where should I pay? Here or at the counter?",
+        "turkishTranslation": "Berkay lütfen. Ve nerede ödeme yapacağım? Burada mı yoksa kasada mı?"
+      },
+      {
+        "speaker": "B",
+        "text": "You can pay here — contactless or card is fine. That will be six pounds fifty altogether.",
+        "turkishTranslation": "Burada ödeyebilirsiniz — temassız ya da kartla olur. Toplam altı pound elli."
+      }
+    ],
+    "keyPhrases": [
+      {
+        "phrase": "flat white",
+        "meaning": "A coffee drink made with espresso and a small amount of steamed milk",
+        "usage": "Common coffee order in the UK and Australia",
+        "examples": [
+          "Could I have a flat white with oat milk, please?",
+          "A flat white is smaller and stronger than a latte."
+        ]
+      },
+      {
+        "phrase": "still or sparkling",
+        "meaning": "Still water has no bubbles; sparkling water is carbonated",
+        "usage": "Standard question when ordering water at a restaurant or café",
+        "examples": [
+          "Would you like still or sparkling water with your meal?",
+          "Still, please — I do not like carbonated water."
+        ]
+      },
+      {
+        "phrase": "contain nuts / allergy",
+        "meaning": "To ask about allergens in food for health and safety reasons",
+        "usage": "Important question for people with food allergies when ordering",
+        "examples": [
+          "Does this dish contain nuts? I have a severe allergy.",
+          "Please inform staff of any allergies before ordering."
+        ]
+      },
+      {
+        "phrase": "contactless payment",
+        "meaning": "A payment method using a card or phone tap without a PIN, usually for small amounts",
+        "usage": "Standard in UK cafés and shops for amounts under £100",
+        "examples": [
+          "Contactless payment is accepted here.",
+          "I will pay by contactless — do you have a card machine?"
+        ]
+      },
+      {
+        "phrase": "I appreciate it",
+        "meaning": "An expression of gratitude for a favour or effort someone makes for you",
+        "usage": "Polite, slightly formal way to thank someone",
+        "examples": [
+          "Thank you for checking — I really appreciate it.",
+          "I appreciate your patience while I sorted out my booking."
+        ]
+      }
+    ],
+    "practicePrompts": [
+      "Order a complete breakfast at a café — coffee, food, and a juice. Ask about any allergens.",
+      "The barista gives you the wrong order. Politely explain the mistake and ask for the correct item.",
+      "You want to change your order after placing it. Explain what you would like instead and why."
+    ]
+  }
+]

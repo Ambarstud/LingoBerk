@@ -32,15 +32,34 @@ const RATING_CONFIG = [
 ];
 
 function ensureCardsLoaded(): FlashCard[] {
-  const existing = storage.get<FlashCard[]>(STORAGE_KEYS.FLASHCARDS);
-  if (existing && existing.length > 0) return existing;
-
-  // Initialize from yds-words.json
-  const cards: FlashCard[] = (ydsWords as Omit<FlashCard, 'interval' | 'repetition' | 'easeFactor' | 'nextReview' | 'lastReview'>[]).map(
+  const seedCards: FlashCard[] = (ydsWords as Omit<FlashCard, 'interval' | 'repetition' | 'easeFactor' | 'nextReview' | 'lastReview'>[]).map(
     (w) => initCard(w)
   );
-  storage.set(STORAGE_KEYS.FLASHCARDS, cards);
-  return cards;
+  const existing = storage.get<FlashCard[]>(STORAGE_KEYS.FLASHCARDS);
+  if (existing && existing.length > 0) {
+    const existingById = new Map(existing.map((card) => [card.id, card]));
+    const seedIds = new Set(seedCards.map((card) => card.id));
+    const mergedSeedCards = seedCards.map((seedCard) => {
+      const existingCard = existingById.get(seedCard.id);
+      if (!existingCard) return seedCard;
+
+      return {
+        ...seedCard,
+        interval: existingCard.interval,
+        repetition: existingCard.repetition,
+        easeFactor: existingCard.easeFactor,
+        nextReview: existingCard.nextReview,
+        lastReview: existingCard.lastReview,
+      };
+    });
+    const nonSeedCards = existing.filter((card) => !seedIds.has(card.id));
+    const mergedCards = [...mergedSeedCards, ...nonSeedCards];
+    storage.set(STORAGE_KEYS.FLASHCARDS, mergedCards);
+    return mergedCards;
+  }
+
+  storage.set(STORAGE_KEYS.FLASHCARDS, seedCards);
+  return seedCards;
 }
 
 export default function FlashcardsPage() {

@@ -126,6 +126,14 @@ export interface ChatConversation {
   provider: 'claude' | 'gpt' | 'gemini';
 }
 
+export interface GrammarTopicProgress {
+  topicId: string;
+  totalAttempts: number;
+  correctAttempts: number;
+  accuracy: number;
+  lastPracticed: string;
+}
+
 export type FlashcardRating = 1 | 2 | 3 | 4;
 
 export interface SessionResult {
