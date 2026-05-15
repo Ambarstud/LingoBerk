@@ -17,7 +17,7 @@
 | **Vercel project** | `denbat/lingoberk` |
 | **Phase 1** | ✅ Tamamlandı — 2026-05-15 |
 | **Phase 2** | 🔄 Kodlanıyor (AI/Grammar/Reading/Chat) |
-| **Phase 3** | 🔄 Kodlanıyor (Conversation/Stats) |
+| **Phase 3** | 🔄 Kodlanıyor (Conversation/Stats/Polish) |
 | **Claude API key** | ✅ `.env.local` + Vercel Production & Development'a eklendi |
 | **OpenAI API key** | ✅ `.env.local` + Vercel Production & Development'a eklendi; ⚠️ account quota/billing gerekli |
 | **Google AI key** | ⏳ Henüz eklenmedi |
@@ -65,7 +65,7 @@ The app is designed for a single user (the developer) and must feel like a polis
 lingoberk/
 ├── app/
 │   ├── layout.tsx                  ✅ Root layout, bottom nav, dark mode, iOS safe area
-│   ├── page.tsx                    ✅ Dashboard (home)
+│   ├── page.tsx                    ✅ Dashboard (home, daily plan, 6 module cards)
 │   ├── flashcards/
 │   │   └── page.tsx                ✅ SM-2 flashcard modülü
 │   ├── grammar/
@@ -73,11 +73,11 @@ lingoberk/
 │   ├── reading/
 │   │   └── page.tsx                ✅ Pasaj listesi, tappable vocabulary, question flow, progress
 │   ├── conversation/
-│   │   └── page.tsx                🔄 Phase 3'te oluşturuluyor
+│   │   └── page.tsx                ✅ Scenario grid, dialogue view, key phrases
 │   ├── chat/
 │   │   └── page.tsx                🔄 Phase 2'de tam modüle dönüştürülüyor
 │   ├── stats/
-│   │   └── page.tsx                🔄 Phase 3'te oluşturuluyor
+│   │   └── page.tsx                ✅ YDS readiness, coverage, weak topics
 │   ├── settings/
 │   │   └── page.tsx                ✅ Ayarlar (daily goal, dark mode, export/import)
 │   └── api/
@@ -106,7 +106,7 @@ lingoberk/
 │   ├── yds-words.json              ✅ 350 YDS kelimesi
 │   ├── grammar-topics.json         ✅ 10 grammar topics + summary/keyRules
 │   ├── reading-passages.json       ✅ 12 YDS passages + vocabulary/questions
-│   └── conversation-patterns.json  🔄 Phase 3'te oluşturuluyor
+│   └── conversation-patterns.json  ✅ 16 conversation scenarios
 ├── store/
 │   └── useStore.ts                 ✅ Zustand store
 ├── public/
@@ -197,8 +197,9 @@ The first screen. Shows daily progress and quick access to all modules.
 1. **Header bar** — App name "LingoBerk" (left), streak fire icon + count (right), settings gear (right)
 2. **Daily progress card** — Circular progress ring (0–100%), XP earned today / daily goal, current level with progress bar
 3. **Streak card** — Current streak count, calendar heatmap for last 30 days, best streak record
-4. **Module cards** (tappable 2-column grid, 3 rows = 6 cards) — Flashcards, Grammar, Reading, AI Chat, Conversations, Stats
-5. **Quick stats row** — Total words learned, exercises completed, average accuracy %
+4. **Daily study plan** — 4-step student plan: vocabulary, weak grammar, next reading, conversation shadowing
+5. **Module cards** (tappable 2-column grid, 3 rows = 6 cards) — Flashcards, Grammar, Reading, AI Chat, Conversations, Stats
+6. **Quick stats row** — mastered words, exercises completed, average accuracy %
 
 **XP system:**
 
@@ -355,7 +356,7 @@ interface ReadingPassage {
 
 ---
 
-### 5.5 Conversation module 🔄
+### 5.5 Conversation module ✅
 
 Scenario-based dialogues and key phrases.
 
@@ -375,10 +376,12 @@ interface ConversationScenario {
 **Initial data:** 16 scenarios (4 maritime) in `data/conversation-patterns.json`.
 
 **UI flow:**
-1. Scenario grid → category tabs (All/Travel/Work/Maritime/Daily/Academic/Social)
-2. Dialogue view → chat bubbles, tap for Turkish translation, key phrases accordion
-3. "Practice with AI" → /chat?scenario=... ile AI Chat'e geçiş
-4. Key phrases drill → flashcard-style
+1. Scenario grid → category tabs (All/Travel/Work/Maritime/Daily/Academic/Social), completion status
+2. Dialogue view → chat bubbles, tap for Turkish translation
+3. Key phrases accordion → phrase meaning, usage, examples, add-to-flashcards
+4. Practice prompts → speaking tasks for shadowing/roleplay
+5. "Practice with AI" → `/chat?scenario=...` ile AI Chat'e geçiş
+6. Mark complete → `conversation_progress` update + 5 XP on first completion
 
 ---
 
@@ -416,7 +419,7 @@ Context: {scenarioContext or "free conversation"}
 
 ---
 
-### 5.7 Statistics module 🔄
+### 5.7 Statistics module ✅
 
 **YDS readiness formula:**
 ```
@@ -432,8 +435,8 @@ ydsScore = (
 1. Overview cards (level, XP, study days, accuracy)
 2. YDS readiness score (büyük dairesel gösterge)
 3. Streak calendar (GitHub heatmap, 90 gün)
-4. Weekly XP bar chart (Recharts)
-5. Module breakdown (flashcards/grammar/reading/conversations/chat)
+4. Module breakdown bars (vocabulary/grammar/reading/conversation/chat)
+5. Coverage cards (grammar/reading/speaking completion)
 6. Weak grammar topics (accuracy <70%, "Practice" link)
 
 ---
@@ -531,7 +534,7 @@ Service worker: next-pwa ile otomatik. Statik varlıklar + JSON data offline cac
 - [x] Project structure
 - [x] Storage utility (lib/storage.ts) — prefix: `lingoberk_`
 - [x] Bottom navigation (5 items)
-- [x] Dashboard with XP ring, streak calendar, module cards
+- [x] Dashboard with XP ring, daily study plan, streak calendar, 6 module cards
 - [x] Flashcard module with SM-2 algorithm + flip animation
 - [x] XP and streak system
 - [x] PWA manifest + service worker (next-pwa)
@@ -557,11 +560,11 @@ Service worker: next-pwa ile otomatik. Statik varlıklar + JSON data offline cac
 
 ### Phase 3 — Conversations + Stats + Polish 🔄 KODLANIYOR (2026-05-15)
 
-- [ ] Conversation module (senaryo grid, diyalog görünümü, key phrases drill)
-- [ ] Conversation dataset (data/conversation-patterns.json — 16 senaryo, 4 maritime)
-- [ ] "Practice with AI" — conversation'dan chat'e geçiş (/chat?scenario=...)
-- [ ] Statistics page (YDS skoru, heatmap, Recharts grafikleri)
-- [ ] Dashboard güncelleme (6 modül kartı: +Conversations, +Stats)
+- [x] Conversation module (senaryo grid, diyalog görünümü, key phrases, practice prompts, completion XP)
+- [x] Conversation dataset (data/conversation-patterns.json — 16 senaryo, 4 maritime)
+- [x] "Practice with AI" — conversation'dan chat'e geçiş (/chat?scenario=...)
+- [x] Statistics page (YDS skoru, 90 gün heatmap, module breakdown, weak topics)
+- [x] Dashboard güncelleme (daily plan + 6 modül kartı: +Conversations, +Stats)
 - [ ] STORAGE_KEYS.CONVERSATION_PROGRESS → ✅ lib/storage.ts'e eklendi
 - [ ] GrammarTopicProgress tipi → ✅ lib/types.ts'e eklendi
 

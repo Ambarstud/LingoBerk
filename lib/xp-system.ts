@@ -6,6 +6,7 @@ export const XP_VALUES = {
   flashcardStreakBonus: 10, // when streak >= 7 days
   grammar: 15,
   reading: 20,
+  conversation: 5,
   chat: 10, // per 5 messages
   dailyGoal: 200,
 } as const;
