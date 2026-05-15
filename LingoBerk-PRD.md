@@ -489,6 +489,8 @@ interface AIResponse {
 
 > **Model seçim gerekçesi:** B1–B2 eğitim uygulaması için en ucuz ve hızlı modeller yeterli. Haiku 4.5, grammar açıklama ve AI sohbet için fazlasıyla kapasiteli.
 
+**Provider görev dağılımı:** Aynı kullanıcı görevi için birden fazla LLM çağrısı yapılmaz. Grammar exercise generation ve yanlış cevap açıklamaları varsayılan olarak Claude Haiku 4.5 kullanır. GPT (`gpt-4o-mini`) ileride AI Chat, conversation roleplay ve daha serbest değerlendirme akışları için ayrılır; OpenAI quota/billing aktif değilse GPT çağrıları yerine Claude kullanılmaz, kullanıcıya net hata mesajı gösterilir. Bu politika token tüketimini kontrol altında tutmak içindir.
+
 **Eksik/limitli key davranışı:** API key yoksa UI'da "API key gerekli" mesajı gösterir, uygulama çökmez. OpenAI `insufficient_quota` döndürürse GPT provider kullanıcıya billing/quota gerektiğini söylemeli; varsayılan provider Claude kalır.
 
 ---
@@ -582,7 +584,7 @@ Before any module is complete:
 
 2. **Mobile-first.** Design for 375px first. Use `max-w-lg mx-auto` to center on desktop.
 
-3. **Cheap AI calls.** Use smallest capable model per provider (Haiku, gpt-4o-mini, gemini-flash). Never use Sonnet/Opus/GPT-4o for educational prompts.
+3. **Cheap AI calls.** Use smallest capable model per provider (Haiku, gpt-4o-mini, gemini-flash). Never use Sonnet/Opus/GPT-4o for educational prompts. Never call Claude and GPT for the same task unless the user explicitly asks for model comparison.
 
 4. **Offline capability.** Flashcards and grammar with preloaded data must work without internet.
 

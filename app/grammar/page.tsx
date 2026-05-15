@@ -42,7 +42,7 @@ const TOPIC_ICONS: Record<string, string> = {
 const allTopics = grammarTopicsData as GrammarTopic[];
 
 export default function GrammarPage() {
-  const { addXP, settings } = useStore();
+  const { addXP } = useStore();
   const [screen, setScreen] = useState<Screen>('topics');
   const [progress, setProgress] = useState<GrammarProgress>({});
   const [selectedTopic, setSelectedTopic] = useState<GrammarTopic | null>(null);
@@ -102,7 +102,7 @@ export default function GrammarPage() {
           topic: topic.name,
           subtopic: topic.subtopics[0],
           count: 8,
-          provider: settings.preferredProvider,
+          provider: 'claude',
         }),
       });
       const data = (await res.json()) as { exercises?: GrammarExercise[]; error?: string };
@@ -165,7 +165,7 @@ export default function GrammarPage() {
               question: exercise.question,
               userAnswer: exercise.options[index],
               correctAnswer: exercise.options[exercise.correctIndex],
-              provider: settings.preferredProvider,
+              provider: 'claude',
             }),
           });
           const data = (await res.json()) as { explanation?: string; error?: string };
@@ -187,7 +187,7 @@ export default function GrammarPage() {
 
       setScreen('feedback');
     },
-    [selectedAnswer, exercises, currentIndex, selectedTopic, progress, addXP, settings.preferredProvider]
+    [selectedAnswer, exercises, currentIndex, selectedTopic, progress, addXP]
   );
 
   const handleNext = () => {
