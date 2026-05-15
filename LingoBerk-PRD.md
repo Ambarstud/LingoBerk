@@ -19,7 +19,7 @@
 | **Phase 2** | 🔄 Kodlanıyor (AI/Grammar/Reading/Chat) |
 | **Phase 3** | 🔄 Kodlanıyor (Conversation/Stats) |
 | **Claude API key** | ✅ `.env.local` + Vercel Production & Development'a eklendi |
-| **OpenAI API key** | ⏳ Henüz eklenmedi |
+| **OpenAI API key** | ✅ `.env.local` + Vercel Production & Development'a eklendi |
 | **Google AI key** | ⏳ Henüz eklenmedi |
 
 ---
@@ -128,7 +128,7 @@ lingoberk/
 # Claude Haiku 4.5 — eklendi ✅
 ANTHROPIC_API_KEY=sk-ant-...
 
-# OpenAI gpt-4o-mini — henüz eklenmedi
+# OpenAI gpt-4o-mini — eklendi ✅
 OPENAI_API_KEY=sk-...
 
 # Google Gemini Flash — henüz eklenmedi
@@ -142,7 +142,7 @@ GEMINI_MODEL=gemini-2.0-flash
 
 **Vercel env durumu:**
 - `ANTHROPIC_API_KEY` → ✅ Production, ✅ Development
-- `OPENAI_API_KEY` → ⏳ Eklenmedi
+- `OPENAI_API_KEY` → ✅ Production, ✅ Development
 - `GOOGLE_AI_API_KEY` → ⏳ Eklenmedi
 
 Yeni key eklemek için: `vercel env add KEY_ADI production`
@@ -544,7 +544,8 @@ Service worker: next-pwa ile otomatik. Statik varlıklar + JSON data offline cac
 - [ ] Reading module tam implementasyon (tappable words, question flow)
 - [ ] Reading dataset (data/reading-passages.json — 12 pasaj, 2 maritime)
 - [ ] AI Chat (sohbet balonları, grammar düzeltme kutusu, provider seçici)
-- [ ] Anthropic API key → ✅ `.env.local` ve Vercel'e eklendi
+- [x] Anthropic API key → ✅ `.env.local` ve Vercel'e eklendi
+- [x] OpenAI API key → ✅ `.env.local` ve Vercel Production/Development'a eklendi
 
 ### Phase 3 — Conversations + Stats + Polish 🔄 KODLANIYOR (2026-05-15)
 
