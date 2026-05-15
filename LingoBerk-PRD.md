@@ -19,7 +19,8 @@ The app is designed for a single user (the developer) and must feel like a polis
 - **Type:** Progressive Web App (PWA)
 - **Primary use case:** Daily English practice (30+ min/day) with YDS exam preparation
 - **Secondary use case:** Maritime English vocabulary (COLREG, bridge communication, IMO terms)
-- **Deployment:** Vercel (vercel.app subdomain)
+- **Deployment:** Vercel — https://lingoberk.vercel.app
+- **GitHub:** https://github.com/Ambarstud/LingoBerk
 - **Data storage:** Browser localStorage (Phase 1), optional Supabase migration later
 
 ---
@@ -529,9 +530,11 @@ interface AIResponse {
 
 | Provider | Endpoint | Model | Auth |
 |----------|----------|-------|------|
-| Claude | `api.anthropic.com/v1/messages` | claude-sonnet-4-20250514 | `x-api-key` header |
+| Claude | `api.anthropic.com/v1/messages` | **claude-haiku-4-5-20251001** | `x-api-key` header |
 | GPT | `api.openai.com/v1/chat/completions` | gpt-4o-mini | `Authorization: Bearer` |
 | Gemini | `generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent` | gemini-2.0-flash | `key` query param |
+
+> **Model seçimi notu:** B1–B2 seviye eğitim uygulaması için en hızlı ve en ucuz modeller seçildi. Haiku 4.5, grammar explanation ve AI chat için fazlasıyla yeterli.
 
 ---
 
@@ -559,19 +562,19 @@ interface AIResponse {
 
 ## 9. Development phases
 
-### Phase 1 — Foundation + Flashcards (Week 1–2)
+### Phase 1 — Foundation + Flashcards ✅ TAMAMLANDI (2026-05-15)
 
-- [ ] Next.js project: TypeScript + Tailwind + Zustand
-- [ ] Project structure (Section 2)
-- [ ] Storage utility (lib/storage.ts)
-- [ ] Bottom navigation
-- [ ] Dashboard with XP, streak, level
-- [ ] Flashcard module with SM-2
-- [ ] XP and streak system
-- [ ] PWA manifest + service worker
-- [ ] YDS vocabulary dataset (200+ words)
-- [ ] Deploy to Vercel
-- [ ] Dark mode
+- [x] Next.js project: TypeScript + Tailwind + Zustand
+- [x] Project structure (Section 2)
+- [x] Storage utility (lib/storage.ts)
+- [x] Bottom navigation
+- [x] Dashboard with XP, streak, level
+- [x] Flashcard module with SM-2
+- [x] XP and streak system
+- [x] PWA manifest + service worker
+- [x] YDS vocabulary dataset (205 words)
+- [x] Deploy to Vercel → https://lingoberk.vercel.app
+- [x] Dark mode
 
 ### Phase 2 — AI + Grammar + Reading (Week 3–5)
 
