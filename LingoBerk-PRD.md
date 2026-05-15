@@ -69,9 +69,9 @@ lingoberk/
 │   ├── flashcards/
 │   │   └── page.tsx                ✅ SM-2 flashcard modülü
 │   ├── grammar/
-│   │   └── page.tsx                🔄 Phase 2'de tam modüle dönüştürülüyor
+│   │   └── page.tsx                ✅ Grammar practice, AI açıklama, completion/accuracy ayrımı
 │   ├── reading/
-│   │   └── page.tsx                🔄 Phase 2'de tam modüle dönüştürülüyor
+│   │   └── page.tsx                ✅ Pasaj listesi, tappable vocabulary, question flow, progress
 │   ├── conversation/
 │   │   └── page.tsx                🔄 Phase 3'te oluşturuluyor
 │   ├── chat/
@@ -82,11 +82,11 @@ lingoberk/
 │   │   └── page.tsx                ✅ Ayarlar (daily goal, dark mode, export/import)
 │   └── api/
 │       ├── ai/
-│       │   └── route.ts            🔄 Phase 2'de oluşturuluyor
+│       │   └── route.ts            ✅ Provider proxy route
 │       ├── generate-exercise/
-│       │   └── route.ts            🔄 Phase 2'de oluşturuluyor
+│       │   └── route.ts            ✅ AI grammar exercise generation
 │       └── check-answer/
-│           └── route.ts            🔄 Phase 2'de oluşturuluyor
+│           └── route.ts            ✅ AI grammar answer explanation
 ├── components/
 │   ├── ui/
 │   │   ├── ProgressRing.tsx        ✅ SVG dairesel ilerleme
@@ -97,15 +97,15 @@ lingoberk/
 │       └── StoreInitializer.tsx    ✅ Zustand hydration
 ├── lib/
 │   ├── storage.ts                  ✅ localStorage katmanı (prefix: lingoberk_)
-│   ├── ai-provider.ts              🔄 Phase 2'de oluşturuluyor
+│   ├── ai-provider.ts              ✅ Claude/GPT/Gemini provider abstraction
 │   ├── spaced-repetition.ts        ✅ SM-2 algoritması
 │   ├── xp-system.ts                ✅ XP ve seviye sistemi
 │   ├── streak.ts                   ✅ Streak takibi
 │   └── types.ts                    ✅ Tüm TypeScript tipleri
 ├── data/
 │   ├── yds-words.json              ✅ 350 YDS kelimesi
-│   ├── grammar-topics.json         🔄 Phase 2'de oluşturuluyor
-│   ├── reading-passages.json       🔄 Phase 2'de oluşturuluyor
+│   ├── grammar-topics.json         ✅ 10 grammar topics + summary/keyRules
+│   ├── reading-passages.json       ✅ 12 YDS passages + vocabulary/questions
 │   └── conversation-patterns.json  🔄 Phase 3'te oluşturuluyor
 ├── store/
 │   └── useStore.ts                 ✅ Zustand store
@@ -329,7 +329,7 @@ Keep it concise. The student is at B1-B2 level.
 
 ---
 
-### 5.4 Reading module 🔄
+### 5.4 Reading module ✅
 
 YDS-style paragraph questions.
 
@@ -346,11 +346,12 @@ interface ReadingPassage {
 ```
 
 **UI flow:**
-1. Passage list → difficulty filter, completion status
-2. Reading screen → tappable words (definition popup), questions below
-3. Results → score, vocabulary → add to flashcards
+1. Passage list → search, difficulty/category filters, completion status, previous score
+2. Reading screen → highlighted tappable vocabulary, definition popup, add-to-flashcards action
+3. Question flow → YDS question types, immediate explanation, answered-question progress bar
+4. Results → score, first-completion XP, vocabulary → add to flashcards, `reading_progress` update
 
-**Initial data:** 12 passages (2 maritime) in `data/reading-passages.json`.
+**Initial data:** 12 passages (2 maritime), 5 questions each, 4 vocabulary items each in `data/reading-passages.json`.
 
 ---
 
@@ -446,7 +447,7 @@ ydsScore = (
 | `flashcards` | `FlashCard[]` | All seed + custom cards with SM-2 fields; seed cards are merged from `data/yds-words.json` without losing review progress |
 | `custom_cards` | `FlashCard[]` | User-added cards |
 | `grammar_progress` | `Record<topicId, { correct: number; total: number; lastPlayed: string }>` | Topic-level grammar attempts; completion and accuracy must be displayed separately |
-| `reading_progress` | `Record<passageId, ReadingResult>` | Completion data |
+| `reading_progress` | `Record<passageId, ReadingResult>` | Reading score, total questions, completion timestamp, time spent |
 | `chat_history` | `ChatConversation[]` | Last 10 conversations |
 | `user_stats` | `UserStats` | Aggregated statistics |
 | `settings` | `UserSettings` | App settings |
@@ -540,16 +541,16 @@ Service worker: next-pwa ile otomatik. Statik varlıklar + JSON data offline cac
 - [x] Settings page (daily goal, dark mode toggle, export/import/clear)
 - [x] GitHub repo → https://github.com/Ambarstud/LingoBerk
 
-### Phase 2 — AI + Grammar + Reading + Chat 🔄 KODLANIYÖR (2026-05-15)
+### Phase 2 — AI + Grammar + Reading + Chat 🔄 KODLANIYOR (2026-05-15)
 
-- [ ] AI provider abstraction (lib/ai-provider.ts)
-- [ ] API Route Handler: POST /api/ai
-- [ ] API Route Handler: POST /api/generate-exercise
-- [ ] API Route Handler: POST /api/check-answer
+- [x] AI provider abstraction (lib/ai-provider.ts)
+- [x] API Route Handler: POST /api/ai
+- [x] API Route Handler: POST /api/generate-exercise
+- [x] API Route Handler: POST /api/check-answer
 - [x] Grammar module tam implementasyon (4 exercise type, AI açıklama, completion vs accuracy ayrımı)
 - [x] Grammar dataset (data/grammar-topics.json — 10 konu, 8+ alıştırma/konu, summary/keyRules)
-- [ ] Reading module tam implementasyon (tappable words, question flow)
-- [ ] Reading dataset (data/reading-passages.json — 12 pasaj, 2 maritime)
+- [x] Reading module tam implementasyon (search/filter, tappable words, question flow, localStorage progress, vocabulary → flashcards)
+- [x] Reading dataset (data/reading-passages.json — 12 pasaj, 2 maritime, 5 soru/pasaj)
 - [ ] AI Chat (sohbet balonları, grammar düzeltme kutusu, provider seçici)
 - [x] Anthropic API key → ✅ `.env.local` ve Vercel'e eklendi
 - [x] OpenAI API key → ✅ `.env.local` ve Vercel Production/Development'a eklendi; ⚠️ OpenAI account quota/billing açılmalı
