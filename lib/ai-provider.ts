@@ -100,6 +100,13 @@ export async function callAI(request: AIRequest): Promise<AIResponse> {
 
       if (!res.ok) {
         const err = await res.text();
+        if (res.status === 429 && err.includes('insufficient_quota')) {
+          return {
+            content: '',
+            provider,
+            error: 'OpenAI quota exceeded. Check billing or choose Claude in settings.',
+          };
+        }
         return { content: '', provider, error: `GPT API error: ${res.status} ${err}` };
       }
 

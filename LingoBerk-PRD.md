@@ -19,7 +19,7 @@
 | **Phase 2** | 🔄 Kodlanıyor (AI/Grammar/Reading/Chat) |
 | **Phase 3** | 🔄 Kodlanıyor (Conversation/Stats) |
 | **Claude API key** | ✅ `.env.local` + Vercel Production & Development'a eklendi |
-| **OpenAI API key** | ✅ `.env.local` + Vercel Production & Development'a eklendi |
+| **OpenAI API key** | ✅ `.env.local` + Vercel Production & Development'a eklendi; ⚠️ account quota/billing gerekli |
 | **Google AI key** | ⏳ Henüz eklenmedi |
 
 ---
@@ -142,7 +142,7 @@ GEMINI_MODEL=gemini-2.0-flash
 
 **Vercel env durumu:**
 - `ANTHROPIC_API_KEY` → ✅ Production, ✅ Development
-- `OPENAI_API_KEY` → ✅ Production, ✅ Development
+- `OPENAI_API_KEY` → ✅ Production, ✅ Development; canlı test `429 insufficient_quota` döndürüyor, OpenAI billing/quota açılınca çalışır
 - `GOOGLE_AI_API_KEY` → ⏳ Eklenmedi
 
 Yeni key eklemek için: `vercel env add KEY_ADI production`
@@ -489,7 +489,7 @@ interface AIResponse {
 
 > **Model seçim gerekçesi:** B1–B2 eğitim uygulaması için en ucuz ve hızlı modeller yeterli. Haiku 4.5, grammar açıklama ve AI sohbet için fazlasıyla kapasiteli.
 
-**Eksik key davranışı:** API key yoksa UI'da "API key gerekli" mesajı gösterir, uygulama çökmez.
+**Eksik/limitli key davranışı:** API key yoksa UI'da "API key gerekli" mesajı gösterir, uygulama çökmez. OpenAI `insufficient_quota` döndürürse GPT provider kullanıcıya billing/quota gerektiğini söylemeli; varsayılan provider Claude kalır.
 
 ---
 
@@ -545,7 +545,7 @@ Service worker: next-pwa ile otomatik. Statik varlıklar + JSON data offline cac
 - [ ] Reading dataset (data/reading-passages.json — 12 pasaj, 2 maritime)
 - [ ] AI Chat (sohbet balonları, grammar düzeltme kutusu, provider seçici)
 - [x] Anthropic API key → ✅ `.env.local` ve Vercel'e eklendi
-- [x] OpenAI API key → ✅ `.env.local` ve Vercel Production/Development'a eklendi
+- [x] OpenAI API key → ✅ `.env.local` ve Vercel Production/Development'a eklendi; ⚠️ OpenAI account quota/billing açılmalı
 
 ### Phase 3 — Conversations + Stats + Polish 🔄 KODLANIYOR (2026-05-15)
 
