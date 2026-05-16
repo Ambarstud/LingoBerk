@@ -308,7 +308,7 @@ export default function GrammarPage() {
                   <Card 
                     key={topic.id} 
                     className="overflow-hidden hover:border-accent/30 transition-colors"
-                    padding="none"
+                    
                   >
                     <div className="p-4">
                       <div className="flex items-start justify-between mb-3">

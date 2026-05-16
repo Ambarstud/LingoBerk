@@ -342,7 +342,7 @@ export default function ReadingPage() {
                 const result = progress[passage.id];
                 const accuracy = getPassageAccuracy(result);
                 return (
-                  <Card key={passage.id} className="overflow-hidden hover:border-accent/30 transition-colors" padding="none">
+                  <Card key={passage.id} className="overflow-hidden hover:border-accent/30 transition-colors" >
                     <div className="p-4">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-3">
