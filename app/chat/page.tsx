@@ -96,6 +96,44 @@ function MessageBubble({
 }) {
   const [translation, setTranslation] = useState<string | null>(null);
   const [isTranslating, setIsTranslating] = useState(false);
+  const [selText, setSelText]     = useState('');
+  const [popupPos, setPopupPos]   = useState<{ x: number; y: number } | null>(null);
+  const [selTranslation, setSelTranslation] = useState<string | null>(null);
+  const [isSelTranslating, setIsSelTranslating] = useState(false);
+
+  const handlePointerUp = () => {
+    const sel = window.getSelection();
+    const text = sel?.toString().trim() ?? '';
+    if (text.length > 0 && text.length < 60) {
+      const rect = sel!.getRangeAt(0).getBoundingClientRect();
+      setSelText(text);
+      setSelTranslation(null);
+      setPopupPos({ x: rect.left + rect.width / 2, y: rect.top + window.scrollY });
+    } else {
+      setPopupPos(null);
+      setSelText('');
+    }
+  };
+
+  const closePopup = () => { setPopupPos(null); setSelText(''); setSelTranslation(null); };
+
+  const translateSel = async () => {
+    if (selTranslation) { setSelTranslation(null); return; }
+    setIsSelTranslating(true);
+    try {
+      const res = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          provider: 'groq',
+          systemPrompt: 'Translate the following English word or phrase into Turkish. Give a short, direct answer — just the translation.',
+          userMessage: selText,
+        }),
+      });
+      const d = await res.json();
+      setSelTranslation(d.content?.trim() ?? '');
+    } catch { /* ignore */ } finally { setIsSelTranslating(false); }
+  };
 
   const translate = async () => {
     if (translation) { setTranslation(null); return; }
@@ -156,6 +194,41 @@ function MessageBubble({
   const isUser = msg.role === 'user';
 
   return (
+    <>
+    {/* Selection popup — fixed above selected text */}
+    {popupPos && selText && (
+      <div
+        className="fixed z-50 flex flex-col items-center gap-1"
+        style={{ left: popupPos.x, top: popupPos.y - 8, transform: 'translate(-50%, -100%)' }}
+      >
+        <div className="bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-2xl shadow-xl px-3 py-2 flex items-center gap-2 text-xs font-bold whitespace-nowrap">
+          <span className="max-w-[120px] truncate opacity-60">{selText}</span>
+          <div className="w-px h-4 bg-white/20 dark:bg-gray-900/20" />
+          <button
+            onPointerDown={e => { e.preventDefault(); translateSel(); }}
+            className="flex items-center gap-1 hover:text-accent transition-colors"
+          >
+            {isSelTranslating ? <Loader2 size={11} className="animate-spin" /> : <Languages size={11} />}
+            {selTranslation ? <span className="text-accent">{selTranslation}</span> : 'Çevir'}
+          </button>
+          <div className="w-px h-4 bg-white/20 dark:bg-gray-900/20" />
+          <button
+            onPointerDown={e => {
+              e.preventDefault();
+              const word = selText.replace(/[^a-zA-Z\s]/g, '').trim().split(/\s+/)[0];
+              if (word) { onAddWord(word); closePopup(); }
+            }}
+            className="flex items-center gap-1 hover:text-green-400 transition-colors"
+          >
+            <PlusCircle size={11} /> Kart
+          </button>
+          <button onPointerDown={e => { e.preventDefault(); closePopup(); }} className="opacity-40 hover:opacity-100 ml-1">
+            <X size={10} />
+          </button>
+        </div>
+        <div className="w-2 h-2 bg-gray-900 dark:bg-gray-100 rotate-45 -mt-1" />
+      </div>
+    )}
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
       <div className={`flex gap-2.5 max-w-[85%] ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
         {/* Avatar */}
@@ -183,7 +256,7 @@ function MessageBubble({
               <img src={msg.imageBase64} alt="shared" className="rounded-xl mb-2 max-h-48 w-auto object-cover" />
             )}
             {msg.aiImageUrl && <AIImage url={msg.aiImageUrl} />}
-            <div className="whitespace-pre-wrap">
+            <div className="whitespace-pre-wrap" onPointerUp={handlePointerUp}>
               {main.split('\n').map((line, i) => renderLine(line, i))}
             </div>
 
@@ -231,6 +304,7 @@ function MessageBubble({
         </div>
       </div>
     </div>
+    </>
   );
 }
 
