@@ -1,5 +1,10 @@
 export type AIProvider = 'claude' | 'gpt' | 'gemini' | 'groq';
 
+export interface HistoryMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
 export interface AIRequest {
   provider: AIProvider;
   systemPrompt: string;
@@ -8,6 +13,25 @@ export interface AIRequest {
   temperature?: number;
   maxTokens?: number;
   responseFormat?: 'text' | 'json';
+  history?: HistoryMessage[];
+}
+
+const GROQ_FALLBACK_MODEL = 'mixtral-8x7b-instruct';
+
+const REFUSAL_MARKERS = [
+  "I can't do this roleplay",
+  "I need to be direct with you",
+  "crosses lines I maintain",
+  "I don't roleplay sexual",
+  "I don't roleplay romantic",
+  "I appreciate you testing",
+  "I cannot engage in",
+  "I'm not able to participate",
+  "I must respectfully decline",
+];
+
+function isRefusal(text: string): boolean {
+  return REFUSAL_MARKERS.some(m => text.includes(m));
 }
 
 export interface AIResponse {
@@ -26,6 +50,7 @@ export async function callAI(request: AIRequest): Promise<AIResponse> {
     temperature = 0.7,
     maxTokens = 1000,
     responseFormat = 'text',
+    history = [],
   } = request;
 
   const finalSystemPrompt =
@@ -172,52 +197,67 @@ export async function callAI(request: AIRequest): Promise<AIResponse> {
         return { content: '', provider, error: 'GROQ API anahtarı ayarlanmamış. Lütfen .env.local dosyasını kontrol edin.' };
       }
 
-      const userContent: unknown = imageBase64
-        ? [
-            { type: 'text', text: userMessage || 'What do you see in this image?' },
-            { type: 'image_url', image_url: { url: imageBase64 } },
-          ]
-        : userMessage;
-
-      const body: Record<string, unknown> = {
-        model: imageBase64 ? 'meta-llama/llama-4-scout-17b-16e-instruct' : 'llama-3.3-70b-versatile',
-        max_tokens: maxTokens,
-        temperature,
-        messages: [
-          { role: 'system', content: finalSystemPrompt },
-          { role: 'user', content: userContent },
-        ],
-      };
-
-      if (responseFormat === 'json' && !imageBase64) {
-        body.response_format = { type: 'json_object' };
-      }
-
-      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify(body),
-      });
-
-      if (!res.ok) {
-        const err = await res.text();
-        if (res.status === 429) {
-          return { content: '', provider, error: 'Groq rate limit aşıldı. Birkaç saniye bekleyip tekrar deneyin.' };
-        }
-        return { content: '', provider, error: `Groq API error: ${res.status} ${err}` };
-      }
-
       interface GroqResponse {
         choices: Array<{ message: { content: string } }>;
         usage?: { total_tokens: number };
       }
-      const data = (await res.json()) as GroqResponse;
-      const content = data.choices?.[0]?.message?.content ?? '';
-      const tokensUsed = data.usage?.total_tokens;
-      return { content, provider, tokensUsed };
+
+      const callGroq = async (model: string): Promise<{ ok: boolean; content: string; tokensUsed?: number; error?: string }> => {
+        const userContent: unknown = imageBase64
+          ? [
+              { type: 'text', text: userMessage || 'What do you see in this image?' },
+              { type: 'image_url', image_url: { url: imageBase64 } },
+            ]
+          : userMessage;
+
+        const historyMessages = history.map(m => ({ role: m.role, content: m.content }));
+
+        const body: Record<string, unknown> = {
+          model,
+          max_tokens: maxTokens,
+          temperature,
+          messages: [
+            { role: 'system', content: finalSystemPrompt },
+            ...historyMessages,
+            { role: 'user', content: userContent },
+          ],
+        };
+
+        if (responseFormat === 'json' && !imageBase64) {
+          body.response_format = { type: 'json_object' };
+        }
+
+        const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
+          body: JSON.stringify(body),
+        });
+
+        if (!res.ok) {
+          const err = await res.text();
+          if (res.status === 429) return { ok: false, content: '', error: 'Groq rate limit aşıldı. Birkaç saniye bekleyip tekrar deneyin.' };
+          return { ok: false, content: '', error: `Groq API error: ${res.status} ${err}` };
+        }
+
+        const data = (await res.json()) as GroqResponse;
+        const content = data.choices?.[0]?.message?.content ?? '';
+        return { ok: true, content, tokensUsed: data.usage?.total_tokens };
+      };
+
+      const primaryModel = imageBase64 ? 'meta-llama/llama-4-scout-17b-16e-instruct' : 'llama-3.3-70b-versatile';
+      const primary = await callGroq(primaryModel);
+
+      if (!primary.ok) return { content: '', provider, error: primary.error };
+
+      // If primary model refused, silently retry with fallback
+      if (!imageBase64 && isRefusal(primary.content)) {
+        const fallback = await callGroq(GROQ_FALLBACK_MODEL);
+        if (fallback.ok && fallback.content) {
+          return { content: fallback.content, provider, tokensUsed: fallback.tokensUsed };
+        }
+      }
+
+      return { content: primary.content, provider, tokensUsed: primary.tokensUsed };
     }
 
     return { content: '', provider, error: 'Unknown provider' };
