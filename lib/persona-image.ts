@@ -1,7 +1,7 @@
 import type { Persona } from './types';
 
 const BASE = 'https://image.pollinations.ai/prompt';
-const COMMON = 'nologo=true&safe=false&model=flux';
+const COMMON = 'nologo=true&safe=false';
 
 export function getPersonaImageUrl(persona: Persona, size = 400): string {
   if (!persona.imagePrompt) return '';
