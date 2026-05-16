@@ -276,7 +276,7 @@ export async function callAI(request: AIRequest): Promise<AIResponse> {
       const historyMessages = history.map(m => ({ role: m.role, content: m.content }));
 
       const body: Record<string, unknown> = {
-        model: 'neversleep/llama-3.1-lumimaid-70b',
+        model: 'sao10k/l3.3-euryale-70b',
         max_tokens: maxTokens,
         temperature,
         messages: [
