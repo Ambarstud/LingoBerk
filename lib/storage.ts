@@ -40,4 +40,6 @@ export const STORAGE_KEYS = {
   SETTINGS: 'settings',
   STREAK: 'streak',
   CONVERSATION_PROGRESS: 'conversation_progress',
+  PERSONA_MEMORIES: 'persona_memories',
+  PERSONA_STATS: 'persona_stats',
 } as const;

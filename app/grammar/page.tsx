@@ -2,10 +2,26 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Zap, AlertTriangle, CheckCircle, XCircle, RefreshCw, BookOpen, Loader2 } from 'lucide-react';
+import { 
+  ArrowLeft, 
+  Zap, 
+  AlertTriangle, 
+  CheckCircle, 
+  XCircle, 
+  RefreshCw, 
+  BookOpen, 
+  Loader2, 
+  Info,
+  ChevronRight,
+  Sparkles,
+  Lightbulb,
+  GraduationCap
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { storage, STORAGE_KEYS } from '@/lib/storage';
 import { useStore } from '@/store/useStore';
+import { Card } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
 import type { GrammarExercise } from '@/lib/types';
 import grammarTopicsData from '@/data/grammar-topics.json';
 
@@ -16,6 +32,10 @@ interface GrammarTopic {
   keyRules: string[];
   subtopics: string[];
   exercises: GrammarExercise[];
+  // New fields for study mode
+  detailedExplanation?: string;
+  examples?: { en: string; tr: string; note?: string }[];
+  tips?: string[];
 }
 
 interface TopicProgress {
@@ -26,7 +46,7 @@ interface TopicProgress {
 
 type GrammarProgress = Record<string, TopicProgress>;
 
-type Screen = 'topics' | 'exercise' | 'feedback' | 'summary';
+type Screen = 'topics' | 'study' | 'exercise' | 'feedback' | 'summary';
 
 const TOPIC_ICONS: Record<string, string> = {
   tenses: '🕐',
@@ -54,11 +74,18 @@ export default function GrammarPage() {
   const [sessionCorrect, setSessionCorrect] = useState(0);
   const [sessionXP, setSessionXP] = useState(0);
   const [sessionStartTime, setSessionStartTime] = useState<number>(0);
-  const [exerciseStartTime, setExerciseStartTime] = useState<number>(0);
   const [aiExplanation, setAiExplanation] = useState<string>('');
   const [loadingExplanation, setLoadingExplanation] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [generateError, setGenerateError] = useState<string>('');
+  
+  // Study mode states
+  const [loadingStudyContent, setLoadingStudyContent] = useState(false);
+  const [studyContent, setStudyContent] = useState<{
+    explanation: string;
+    examples: { en: string; tr: string; note?: string }[];
+    tips: string[];
+  } | null>(null);
 
   useEffect(() => {
     const saved = storage.get<GrammarProgress>(STORAGE_KEYS.GRAMMAR_PROGRESS);
@@ -82,22 +109,57 @@ export default function GrammarPage() {
     };
   };
 
-  const getAccuracy = (topicId: string) => {
-    const p = progress[topicId];
-    if (!p || p.total === 0) return null;
-    return Math.round((p.correct / p.total) * 100);
+  const startStudy = async (topic: GrammarTopic) => {
+    setSelectedTopic(topic);
+    setScreen('study');
+    setLoadingStudyContent(true);
+    
+    // Check if we already have study content in JSON or state
+    if (topic.detailedExplanation) {
+      setStudyContent({
+        explanation: topic.detailedExplanation,
+        examples: topic.examples || [],
+        tips: topic.tips || []
+      });
+      setLoadingStudyContent(false);
+      return;
+    }
+
+    // Try to get from AI if not in JSON (Dynamic teaching!)
+    try {
+      const systemPrompt = `You are an expert English teacher for Turkish students preparing for YDS. 
+      Provide a concise, clear, and highly educational explanation for the grammar topic.
+      Format your response as a JSON object with:
+      {
+        "explanation": "Simple B1-B2 level explanation in English with Turkish nuances",
+        "examples": [{"en": "English sentence", "tr": "Turkish translation", "note": "Why this example matters"}],
+        "tips": ["Tip 1", "Tip 2"]
+      }`;
+
+      const res = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          provider: 'groq',
+          systemPrompt,
+          userMessage: `Explain the grammar topic: ${topic.name}. Focus on YDS exam requirements and common traps.`,
+          responseFormat: 'json'
+        }),
+      });
+      
+      const data = await res.json();
+      if (data.content) {
+        const parsed = typeof data.content === 'string' ? JSON.parse(data.content) : data.content;
+        setStudyContent(parsed);
+      }
+    } catch (err) {
+      console.error('Failed to load study content', err);
+    } finally {
+      setLoadingStudyContent(false);
+    }
   };
 
-  const sortedTopics = [...allTopics].sort((a, b) => {
-    const accA = getAccuracy(a.id);
-    const accB = getAccuracy(b.id);
-    if (accA === null && accB === null) return 0;
-    if (accA === null) return -1;
-    if (accB === null) return 1;
-    return accA - accB;
-  });
-
-  const startTopic = (topic: GrammarTopic) => {
+  const startPractice = (topic: GrammarTopic) => {
     setSelectedTopic(topic);
     setExercises([...topic.exercises].sort(() => Math.random() - 0.5).slice(0, 10));
     setCurrentIndex(0);
@@ -106,7 +168,6 @@ export default function GrammarPage() {
     setSessionXP(0);
     setAiExplanation('');
     setSessionStartTime(Date.now());
-    setExerciseStartTime(Date.now());
     setScreen('exercise');
   };
 
@@ -121,12 +182,12 @@ export default function GrammarPage() {
           topic: topic.name,
           subtopic: topic.subtopics[0],
           count: 8,
-          provider: 'claude',
+          provider: 'groq',
         }),
       });
       const data = (await res.json()) as { exercises?: GrammarExercise[]; error?: string };
       if (data.error) {
-        setGenerateError(data.error.includes('API key') ? 'AI özelliği için API key gerekli. Ayarlar sayfasından ekleyin.' : data.error);
+        setGenerateError(data.error.includes('API key') ? 'AI özelliği için API key gerekli.' : data.error);
       } else if (data.exercises && data.exercises.length > 0) {
         setSelectedTopic(topic);
         setExercises(data.exercises);
@@ -136,7 +197,6 @@ export default function GrammarPage() {
         setSessionXP(0);
         setAiExplanation('');
         setSessionStartTime(Date.now());
-        setExerciseStartTime(Date.now());
         setScreen('exercise');
       }
     } catch {
@@ -184,19 +244,11 @@ export default function GrammarPage() {
               question: exercise.question,
               userAnswer: exercise.options[index],
               correctAnswer: exercise.options[exercise.correctIndex],
-              provider: 'claude',
+              provider: 'groq',
             }),
           });
           const data = (await res.json()) as { explanation?: string; error?: string };
-          if (data.error) {
-            if (data.error.includes('API key')) {
-              setAiExplanation('AI özelliği için API key gerekli. Ayarlar sayfasından ekleyin.');
-            } else {
-              setAiExplanation(exercise.explanation);
-            }
-          } else {
-            setAiExplanation(data.explanation ?? exercise.explanation);
-          }
+          setAiExplanation(data.explanation || exercise.explanation);
         } catch {
           setAiExplanation(exercise.explanation);
         } finally {
@@ -216,7 +268,6 @@ export default function GrammarPage() {
       setCurrentIndex((i) => i + 1);
       setSelectedAnswer(null);
       setAiExplanation('');
-      setExerciseStartTime(Date.now());
       setScreen('exercise');
     }
   };
@@ -224,147 +275,232 @@ export default function GrammarPage() {
   const currentExercise = exercises[currentIndex];
 
   return (
-    <div className="px-4 pt-6 pb-4">
+    <div className="px-4 pt-6 pb-20 max-w-lg mx-auto min-h-screen bg-white dark:bg-[#1A1A1A]">
       <AnimatePresence mode="wait">
         {screen === 'topics' && (
           <motion.div key="topics" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="flex items-center gap-3 mb-6">
-              <Link
-                href="/"
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 min-h-[44px] min-w-[44px] flex items-center justify-center"
-              >
-                <ArrowLeft size={20} />
-              </Link>
-              <h1 className="text-xl font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">Grammar</h1>
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <Link href="/" className="p-2 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+                  <ArrowLeft size={20} />
+                </Link>
+                <h1 className="text-xl font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">Grammar</h1>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full flex items-center gap-1.5">
+                <GraduationCap size={16} className="text-accent" />
+                <span className="text-xs font-bold text-accent">YDS Focus</span>
+              </div>
             </div>
 
             {generateError && (
-              <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-700 dark:text-red-400 text-sm">
-                {generateError}
-              </div>
+              <Card className="mb-6 bg-red-50 dark:bg-red-900/10 border-red-100 dark:border-red-900/30">
+                <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
+                  <AlertTriangle size={18} />
+                  <p className="text-sm font-medium">{generateError}</p>
+                </div>
+              </Card>
             )}
 
-            <div className="grid grid-cols-1 gap-3">
-              {sortedTopics.map((topic) => {
+            <div className="space-y-4">
+              {allTopics.map((topic) => {
                 const stats = getTopicStats(topic);
-                const isWeak = stats.attempts >= 3 && stats.accuracy !== null && stats.accuracy < 60;
                 return (
-                  <div
-                    key={topic.id}
-                    className="bg-white dark:bg-[#242424] rounded-xl border border-gray-100 dark:border-gray-800 p-3 shadow-sm"
+                  <Card 
+                    key={topic.id} 
+                    className="overflow-hidden hover:border-accent/30 transition-colors"
+                    padding="none"
                   >
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl">{TOPIC_ICONS[topic.id] ?? '📖'}</span>
-                        <div>
-                          <p className="text-sm font-semibold text-[#1A1A1A] dark:text-[#F5F5F5]">{topic.name}</p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">
-                            {stats.answered}/{stats.totalExercises} answered
-                            {stats.accuracy !== null ? ` • ${stats.accuracy}% correct` : ''}
-                          </p>
+                    <div className="p-4">
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 rounded-2xl bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-2xl">
+                            {TOPIC_ICONS[topic.id] || '📖'}
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">{topic.name}</h3>
+                            <div className="flex items-center gap-2 mt-0.5">
+                              <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                                {topic.subtopics.length} SUBTOPICS
+                              </span>
+                              {stats.accuracy !== null && (
+                                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                                  stats.accuracy > 75 ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
+                                }`}>
+                                  {stats.accuracy}% ACCURACY
+                                </span>
+                              )}
+                            </div>
+                          </div>
                         </div>
+                        {stats.isComplete && <CheckCircle size={20} className="text-success" />}
                       </div>
-                      {isWeak ? (
-                        <AlertTriangle size={16} className="text-warning mt-0.5" />
-                      ) : stats.isComplete ? (
-                        <CheckCircle size={16} className="text-success mt-0.5" />
-                      ) : null}
-                    </div>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-2">{topic.summary}</p>
 
-                    <div className="flex flex-wrap gap-1.5 mb-2">
-                      {topic.keyRules.slice(0, 2).map((rule) => (
-                        <span
-                          key={rule}
-                          className="text-[11px] px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 line-clamp-2">
+                        {topic.summary}
+                      </p>
+
+                      <div className="flex items-center gap-2">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="flex-1 text-xs gap-1.5"
+                          onClick={() => startStudy(topic)}
                         >
-                          {rule}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="mb-2">
-                      <div className="flex justify-between text-xs mb-1 text-gray-500 dark:text-gray-400">
-                        <span>Topic progress</span>
-                        <span>{stats.completion}%</span>
-                      </div>
-                      <div className="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <div
-                          className={`h-full rounded-full ${isWeak ? 'bg-warning' : stats.isComplete ? 'bg-success' : 'bg-accent'}`}
-                          style={{ width: `${stats.completion}%` }}
-                        />
+                          <BookOpen size={14} />
+                          Learn
+                        </Button>
+                        <Button 
+                          variant="primary" 
+                          size="sm" 
+                          className="flex-1 text-xs gap-1.5"
+                          onClick={() => startPractice(topic)}
+                        >
+                          <Zap size={14} />
+                          Practice
+                        </Button>
                       </div>
                     </div>
-
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        onClick={() => startTopic(topic)}
-                        className="w-full text-xs py-1.5 rounded-lg bg-accent text-white font-medium min-h-[34px] active:scale-95 transition-transform"
-                      >
-                        Practice
-                      </button>
-                      <button
-                        onClick={() => handleGenerateNew(topic)}
-                        disabled={generating}
-                        className="w-full text-xs py-1.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-medium min-h-[34px] active:scale-95 transition-transform flex items-center justify-center gap-1 disabled:opacity-50"
-                      >
-                        {generating ? <Loader2 size={12} className="animate-spin" /> : <Zap size={12} />}
-                        AI New
-                      </button>
+                    {/* Progress Bar at the bottom of card */}
+                    <div className="h-1 w-full bg-gray-100 dark:bg-gray-800">
+                      <div 
+                        className="h-full bg-accent transition-all duration-500" 
+                        style={{ width: `${stats.completion}%` }}
+                      />
                     </div>
-                  </div>
+                  </Card>
                 );
               })}
             </div>
           </motion.div>
         )}
 
-        {screen === 'exercise' && currentExercise && (
-          <motion.div key={`exercise-${currentIndex}`} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}>
-            <div className="flex items-center gap-3 mb-4">
-              <button
-                onClick={() => setScreen('topics')}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 min-h-[44px] min-w-[44px] flex items-center justify-center"
-              >
+        {screen === 'study' && selectedTopic && (
+          <motion.div key="study" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+            <div className="flex items-center gap-3 mb-6">
+              <button onClick={() => setScreen('topics')} className="p-2 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
                 <ArrowLeft size={20} />
               </button>
-              <div className="flex-1">
-                <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
-                  <span>{selectedTopic?.name}</span>
-                  <span>Question {currentIndex + 1} / {exercises.length}</span>
-                </div>
-                <div className="h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-accent rounded-full transition-all duration-300"
-                    style={{ width: `${(currentIndex / exercises.length) * 100}%` }}
+              <h1 className="text-lg font-bold">{selectedTopic.name}</h1>
+            </div>
+
+            {loadingStudyContent ? (
+              <div className="flex flex-col items-center justify-center py-20 text-center space-y-4">
+                <Loader2 size={40} className="animate-spin text-accent" />
+                <p className="text-gray-500">AI Teacher is preparing the lesson...</p>
+              </div>
+            ) : studyContent ? (
+              <div className="space-y-6">
+                <section>
+                  <h2 className="text-sm font-bold text-accent uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <Info size={16} />
+                    Overview
+                  </h2>
+                  <div className="prose dark:prose-invert max-w-none">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed bg-gray-50 dark:bg-gray-800/50 p-4 rounded-2xl border border-gray-100 dark:border-gray-800">
+                      {studyContent.explanation}
+                    </p>
+                  </div>
+                </section>
+
+                <section>
+                  <h2 className="text-sm font-bold text-success uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <Sparkles size={16} />
+                    Key Examples
+                  </h2>
+                  <div className="space-y-3">
+                    {studyContent.examples.map((ex, i) => (
+                      <div key={i} className="p-4 rounded-2xl bg-white dark:bg-[#242424] border border-gray-100 dark:border-gray-800 shadow-sm">
+                        <p className="font-semibold text-lg mb-1">{ex.en}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 italic mb-2">{ex.tr}</p>
+                        {ex.note && (
+                          <div className="flex items-start gap-2 pt-2 border-t border-gray-50 dark:border-gray-800 text-xs text-blue-600 dark:text-blue-400">
+                            <Lightbulb size={14} className="shrink-0 mt-0.5" />
+                            <span>{ex.note}</span>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                <section>
+                  <h2 className="text-sm font-bold text-warning uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <Zap size={16} />
+                    YDS Tips & Traps
+                  </h2>
+                  <div className="bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-900/30 rounded-2xl p-4">
+                    <ul className="space-y-3">
+                      {studyContent.tips.map((tip, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-amber-900 dark:text-amber-200">
+                          <ChevronRight size={18} className="shrink-0 text-amber-500" />
+                          <span>{tip}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </section>
+
+                <Button 
+                  fullWidth 
+                  size="lg" 
+                  className="rounded-2xl h-14 text-lg font-bold"
+                  onClick={() => startPractice(selectedTopic)}
+                >
+                  Start Practice Test
+                </Button>
+              </div>
+            ) : (
+              <div className="text-center py-10">
+                <p className="text-red-500">Could not load study content. Please try again.</p>
+                <Button variant="ghost" className="mt-4" onClick={() => startStudy(selectedTopic)}>Retry</Button>
+              </div>
+            )}
+          </motion.div>
+        )}
+
+        {screen === 'exercise' && currentExercise && (
+          <motion.div key={`exercise-${currentIndex}`} initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}>
+            <div className="flex items-center justify-between mb-8">
+              <button onClick={() => setScreen('topics')} className="p-2 -ml-2 rounded-full hover:bg-gray-100">
+                <ArrowLeft size={20} />
+              </button>
+              <div className="flex-1 px-4">
+                <div className="h-2 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                  <motion.div 
+                    className="h-full bg-accent"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${((currentIndex + 1) / exercises.length) * 100}%` }}
                   />
                 </div>
               </div>
+              <span className="text-xs font-bold text-gray-400">{currentIndex + 1}/{exercises.length}</span>
             </div>
 
-            {selectedTopic?.keyRules[0] && (
-              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-xl p-3 mb-4">
-                <p className="text-xs font-semibold text-accent mb-1">Quick rule</p>
-                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{selectedTopic.keyRules[0]}</p>
-              </div>
-            )}
-
-            <div className="bg-white dark:bg-[#242424] rounded-xl p-4 border border-gray-100 dark:border-gray-800 mb-4">
-              <span className="inline-block text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-accent px-2 py-0.5 rounded-full mb-3">
+            <div className="mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/20 text-accent text-[10px] font-bold uppercase tracking-wider mb-4">
+                <Sparkles size={12} />
                 {currentExercise.type.replace(/_/g, ' ')}
-              </span>
-              <p className="text-[#1A1A1A] dark:text-[#F5F5F5] text-base leading-relaxed">{currentExercise.question}</p>
+              </div>
+              <h2 className="text-xl font-medium leading-relaxed text-[#1A1A1A] dark:text-[#F5F5F5]">
+                {currentExercise.question}
+              </h2>
             </div>
 
-            <div className="space-y-3">
+            <div className="grid gap-3">
               {currentExercise.options.map((option, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleAnswer(idx)}
-                  className="w-full text-left p-4 rounded-xl border-2 border-gray-100 dark:border-gray-700 bg-white dark:bg-[#242424] text-[#1A1A1A] dark:text-[#F5F5F5] min-h-[52px] active:scale-[0.98] transition-transform hover:border-accent"
+                  className="group relative w-full text-left p-5 rounded-2xl border-2 border-gray-100 dark:border-gray-800 hover:border-accent hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all duration-200 active:scale-[0.98]"
                 >
-                  <span className="font-medium text-accent mr-2">{String.fromCharCode(65 + idx)}.</span>
-                  {option.replace(/^[A-D]\)\s*/, '')}
+                  <div className="flex items-center gap-4">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 text-sm font-bold group-hover:bg-accent group-hover:text-white transition-colors">
+                      {String.fromCharCode(65 + idx)}
+                    </span>
+                    <span className="flex-1 text-[#1A1A1A] dark:text-[#F5F5F5] font-medium">
+                      {option.replace(/^[A-D]\)\s*/, '')}
+                    </span>
+                  </div>
                 </button>
               ))}
             </div>
@@ -372,170 +508,147 @@ export default function GrammarPage() {
         )}
 
         {screen === 'feedback' && currentExercise && (
-          <motion.div
-            key="feedback"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <button
-                onClick={() => setScreen('topics')}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 min-h-[44px] min-w-[44px] flex items-center justify-center"
-              >
+          <motion.div key="feedback" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+             <div className="flex items-center justify-between mb-8">
+              <button onClick={() => setScreen('topics')} className="p-2 -ml-2 rounded-full hover:bg-gray-100">
                 <ArrowLeft size={20} />
               </button>
-              <div className="flex-1">
-                <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
-                  <span>{selectedTopic?.name}</span>
-                  <span>{currentIndex + 1} / {exercises.length}</span>
-                </div>
-                <div className="h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-accent rounded-full"
+              <div className="flex-1 px-4">
+                <div className="h-2 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-accent"
                     style={{ width: `${((currentIndex + 1) / exercises.length) * 100}%` }}
                   />
                 </div>
               </div>
+              <span className="text-xs font-bold text-gray-400">{currentIndex + 1}/{exercises.length}</span>
             </div>
 
-            <div className="bg-white dark:bg-[#242424] rounded-xl p-4 border border-gray-100 dark:border-gray-800 mb-4 opacity-60">
-              <p className="text-[#1A1A1A] dark:text-[#F5F5F5] text-sm leading-relaxed">{currentExercise.question}</p>
-            </div>
+            <Card className="mb-6 opacity-60">
+              <p className="text-lg leading-relaxed">{currentExercise.question}</p>
+            </Card>
 
-            <div
-              className={`rounded-xl p-4 mb-4 border-2 ${
-                selectedAnswer === currentExercise.correctIndex
-                  ? 'bg-green-50 dark:bg-green-900/20 border-green-300 dark:border-green-700'
-                  : 'bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-700'
-              }`}
-            >
-              <div className="flex items-center gap-2 mb-2">
+            <div className={`p-6 rounded-3xl mb-6 border-2 transition-all ${
+              selectedAnswer === currentExercise.correctIndex 
+                ? 'bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800/50' 
+                : 'bg-red-50 dark:bg-red-900/10 border-red-200 dark:border-red-800/50'
+            }`}>
+              <div className="flex items-center gap-3 mb-4">
                 {selectedAnswer === currentExercise.correctIndex ? (
-                  <>
-                    <CheckCircle size={20} className="text-success" />
-                    <span className="font-bold text-success text-lg">Correct! +15 XP</span>
-                  </>
+                  <CheckCircle size={32} className="text-green-500" />
                 ) : (
-                  <>
-                    <XCircle size={20} className="text-error" />
-                    <span className="font-bold text-error text-lg">Incorrect</span>
-                  </>
+                  <XCircle size={32} className="text-red-500" />
+                )}
+                <h3 className={`text-2xl font-black ${
+                  selectedAnswer === currentExercise.correctIndex ? 'text-green-600' : 'text-red-600'
+                }`}>
+                  {selectedAnswer === currentExercise.correctIndex ? 'GENIUS!' : 'NOT QUITE'}
+                </h3>
+              </div>
+
+              <div className="space-y-4 mb-6">
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center shrink-0 mt-0.5">
+                    <CheckCircle size={14} className="text-white" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-green-600 uppercase tracking-widest mb-1">Correct Answer</p>
+                    <p className="font-semibold">{currentExercise.options[currentExercise.correctIndex]}</p>
+                  </div>
+                </div>
+
+                {selectedAnswer !== currentExercise.correctIndex && (
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center shrink-0 mt-0.5">
+                      <XCircle size={14} className="text-white" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-red-600 uppercase tracking-widest mb-1">Your Answer</p>
+                      <p className="font-semibold">{currentExercise.options[selectedAnswer!]}</p>
+                    </div>
+                  </div>
                 )}
               </div>
 
-              <div className="space-y-2">
-                {currentExercise.options.map((option, idx) => (
-                  <div
-                    key={idx}
-                    className={`p-2 rounded-lg text-sm ${
-                      idx === currentExercise.correctIndex
-                        ? 'bg-green-100 dark:bg-green-800/40 text-green-800 dark:text-green-200 font-medium'
-                        : idx === selectedAnswer && idx !== currentExercise.correctIndex
-                        ? 'bg-red-100 dark:bg-red-800/40 text-red-800 dark:text-red-200 line-through'
-                        : 'text-gray-400 dark:text-gray-500'
-                    }`}
-                  >
-                    <span className="font-semibold mr-1">{String.fromCharCode(65 + idx)}.</span>
-                    {option.replace(/^[A-D]\)\s*/, '')}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {selectedAnswer !== currentExercise.correctIndex && (
-              <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4 mb-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <BookOpen size={16} className="text-warning" />
-                  <span className="text-sm font-semibold text-warning">Explanation</span>
-                </div>
+              <div className="bg-white/50 dark:bg-black/20 p-4 rounded-2xl">
+                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-2">
+                  <BookOpen size={14} />
+                  Lesson
+                </h4>
                 {loadingExplanation ? (
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <div className="flex items-center gap-2 text-sm text-gray-500 italic">
                     <Loader2 size={14} className="animate-spin" />
-                    Getting AI explanation...
+                    AI Tutor is explaining...
                   </div>
                 ) : (
-                  <p className="text-sm text-[#1A1A1A] dark:text-[#F5F5F5] leading-relaxed">
+                  <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
                     {aiExplanation || currentExercise.explanation}
                   </p>
                 )}
               </div>
-            )}
+            </div>
 
-            {selectedAnswer === currentExercise.correctIndex && (
-              <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-3 mb-4">
-                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                  <span className="font-medium">Why: </span>{currentExercise.explanation}
-                </p>
-              </div>
-            )}
-
-            <button
-              onClick={handleNext}
-              className="w-full py-3.5 rounded-xl bg-accent text-white font-semibold text-base min-h-[52px] active:scale-[0.98] transition-transform"
-            >
-              {currentIndex + 1 >= exercises.length ? 'See Results' : 'Next Question'}
-            </button>
+            <Button fullWidth size="lg" className="h-14 rounded-2xl font-bold" onClick={handleNext}>
+              {currentIndex + 1 >= exercises.length ? 'Show Results' : 'Continue'}
+            </Button>
           </motion.div>
         )}
 
         {screen === 'summary' && selectedTopic && (
-          <motion.div key="summary" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>
-            <div className="flex items-center gap-3 mb-6">
-              <button
-                onClick={() => setScreen('topics')}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 min-h-[44px] min-w-[44px] flex items-center justify-center"
-              >
-                <ArrowLeft size={20} />
-              </button>
-              <h1 className="text-xl font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">Results</h1>
+          <motion.div key="summary" className="text-center py-10" initial={{ opacity: 0, scale: 0.9 }}>
+            <div className="w-24 h-24 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Trophy size={48} className="text-accent" />
             </div>
+            <h1 className="text-3xl font-black mb-2">Well Done!</h1>
+            <p className="text-gray-500 mb-8">You finished practicing {selectedTopic.name}</p>
 
-            <div className="bg-white dark:bg-[#242424] rounded-xl p-6 border border-gray-100 dark:border-gray-800 mb-4 text-center">
-              <p className="text-4xl font-bold text-[#1A1A1A] dark:text-[#F5F5F5] mb-1">
-                {sessionCorrect}/{exercises.length}
-              </p>
-              <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
-                {Math.round((sessionCorrect / exercises.length) * 100)}% accuracy
-              </p>
-              <div className="flex items-center justify-center gap-2 text-warning font-semibold">
-                <Zap size={18} />
-                <span>+{sessionXP} XP earned</span>
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-3xl">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Accuracy</p>
+                <p className="text-2xl font-black text-accent">{Math.round((sessionCorrect / exercises.length) * 100)}%</p>
               </div>
-              <p className="text-xs text-gray-400 mt-2">
-                Time: {Math.round((Date.now() - sessionStartTime) / 1000)}s
-              </p>
+              <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-3xl">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">XP Earned</p>
+                <p className="text-2xl font-black text-warning">+{sessionXP}</p>
+              </div>
             </div>
-
-            {Math.round((sessionCorrect / exercises.length) * 100) < 60 && (
-              <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4 mb-4">
-                <div className="flex items-center gap-2">
-                  <AlertTriangle size={16} className="text-warning" />
-                  <p className="text-sm text-warning font-medium">
-                    Accuracy below 60% — this is a weak area. Keep practicing!
-                  </p>
-                </div>
-              </div>
-            )}
 
             <div className="space-y-3">
-              <button
-                onClick={() => startTopic(selectedTopic)}
-                className="w-full py-3.5 rounded-xl bg-accent text-white font-semibold flex items-center justify-center gap-2 min-h-[52px] active:scale-[0.98] transition-transform"
-              >
-                <RefreshCw size={18} />
-                Try Again
-              </button>
-              <button
-                onClick={() => setScreen('topics')}
-                className="w-full py-3.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-[#1A1A1A] dark:text-[#F5F5F5] font-semibold min-h-[52px] active:scale-[0.98] transition-transform"
-              >
+              <Button fullWidth size="lg" className="h-14 rounded-2xl" onClick={() => startPractice(selectedTopic)}>
+                <RefreshCw size={18} className="mr-2" />
+                Practice Again
+              </Button>
+              <Button fullWidth variant="ghost" size="lg" className="h-14 rounded-2xl" onClick={() => setScreen('topics')}>
                 Back to Topics
-              </button>
+              </Button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+function Trophy(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+      <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+      <path d="M4 22h16" />
+      <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+      <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+      <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+    </svg>
   );
 }

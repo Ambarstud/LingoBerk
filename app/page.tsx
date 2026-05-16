@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   BarChart3,
   BookOpen,
@@ -14,6 +15,7 @@ import {
   Target,
   Trophy,
   Zap,
+  Users,
 } from 'lucide-react';
 import { ProgressRing } from '@/components/ui/ProgressRing';
 import { Card } from '@/components/ui/Card';
@@ -21,11 +23,15 @@ import { useStore } from '@/store/useStore';
 import { getLevel, getXPToNextLevel } from '@/lib/xp-system';
 import { getCalendar } from '@/lib/streak';
 import { storage, STORAGE_KEYS } from '@/lib/storage';
-import type { FlashCard, ReadingResult } from '@/lib/types';
+import type { FlashCard, ReadingResult, Persona } from '@/lib/types';
 import { getDueCards, getMasteredCards } from '@/lib/spaced-repetition';
+import { getPersonaImageUrl } from '@/lib/persona-image';
 import grammarTopics from '@/data/grammar-topics.json';
 import readingPassages from '@/data/reading-passages.json';
 import conversationScenarios from '@/data/conversation-patterns.json';
+import personasData from '@/data/personas.json';
+
+const personas = personasData as Persona[];
 
 interface GrammarProgressItem {
   correct: number;
@@ -48,57 +54,49 @@ interface DashboardMetrics {
 }
 
 const modules = [
-  {
-    href: '/flashcards',
-    label: 'Flashcards',
-    icon: BookOpen,
-    color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400',
-  },
-  {
-    href: '/grammar',
-    label: 'Grammar',
-    icon: PenLine,
-    color: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400',
-  },
-  {
-    href: '/reading',
-    label: 'Reading',
-    icon: FileText,
-    color: 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400',
-  },
-  {
-    href: '/conversation',
-    label: 'Conversation',
-    icon: MessagesSquare,
-    color: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300',
-  },
-  {
-    href: '/chat',
-    label: 'AI Chat',
-    icon: MessageCircle,
-    color: 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400',
-  },
-  {
-    href: '/stats',
-    label: 'Stats',
-    icon: BarChart3,
-    color: 'bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400',
-  },
+  { href: '/flashcards', label: 'Flashcards', icon: BookOpen, color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' },
+  { href: '/grammar', label: 'Grammar', icon: PenLine, color: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' },
+  { href: '/reading', label: 'Reading', icon: FileText, color: 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' },
+  { href: '/conversation', label: 'Conversation', icon: MessagesSquare, color: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300' },
+  { href: '/stats', label: 'Stats', icon: BarChart3, color: 'bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400' },
 ];
 
 const defaultMetrics: DashboardMetrics = {
-  dueCount: 0,
-  masteredWords: 0,
-  grammarAnswered: 0,
-  grammarTotal: 0,
-  grammarAccuracy: null,
-  readingCompleted: 0,
-  readingTotal: 0,
-  conversationCompleted: 0,
-  conversationTotal: 0,
+  dueCount: 0, masteredWords: 0, grammarAnswered: 0, grammarTotal: 0,
+  grammarAccuracy: null, readingCompleted: 0, readingTotal: 0,
+  conversationCompleted: 0, conversationTotal: 0,
   nextReadingTitle: 'Start your first reading passage',
   weakGrammarTopic: 'Start with Tenses',
 };
+
+function PersonaCard({ persona }: { persona: Persona }) {
+  const [imgError, setImgError] = useState(false);
+  const imageUrl = getPersonaImageUrl(persona, 300);
+
+  return (
+    <Link href={`/chat?persona=${persona.id}`} className="relative flex-shrink-0 w-36 rounded-3xl overflow-hidden group cursor-pointer">
+      <div className="aspect-[3/4] relative">
+        {!imgError && imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={persona.name}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-5xl" style={{ background: `${persona.accentColor}20` }}>
+            {persona.avatar}
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-3">
+          <p className="text-white font-black text-sm leading-none">{persona.name}</p>
+          <p className="text-white/60 text-[10px] mt-0.5 leading-tight">{persona.role}</p>
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 export default function DashboardPage() {
   const { userStats, streakData, settings } = useStore();
@@ -141,9 +139,7 @@ export default function DashboardPage() {
     setMetrics({
       dueCount: getDueCards(cards).length,
       masteredWords: getMasteredCards(cards).length,
-      grammarAnswered,
-      grammarTotal,
-      grammarAccuracy,
+      grammarAnswered, grammarTotal, grammarAccuracy,
       readingCompleted: Object.keys(readingProgress).length,
       readingTotal: (readingPassages as unknown[]).length,
       conversationCompleted: Object.values(conversationProgress).filter(Boolean).length,
@@ -154,158 +150,157 @@ export default function DashboardPage() {
     setCalendar(getCalendar(30));
   }, []);
 
-  const dailyPlan = useMemo(
-    () => [
-      {
-        href: '/flashcards',
-        title: metrics.dueCount > 0 ? `Review ${metrics.dueCount} due cards` : 'Learn 10 new YDS cards',
-        detail: 'Vocabulary first keeps the rest easier.',
-      },
-      {
-        href: '/grammar',
-        title: `Practice ${metrics.weakGrammarTopic}`,
-        detail: metrics.grammarAccuracy === null ? 'Build your first grammar baseline.' : `Current grammar accuracy: ${metrics.grammarAccuracy}%`,
-      },
-      {
-        href: '/reading',
-        title: metrics.nextReadingTitle,
-        detail: `${metrics.readingCompleted}/${metrics.readingTotal} passages completed.`,
-      },
-      {
-        href: '/conversation',
-        title: 'Shadow one conversation scenario',
-        detail: `${metrics.conversationCompleted}/${metrics.conversationTotal} speaking scenarios done.`,
-      },
-    ],
-    [metrics]
-  );
+  const dailyPlan = useMemo(() => [
+    { href: '/flashcards', title: metrics.dueCount > 0 ? `Review ${metrics.dueCount} due cards` : 'Learn 10 new YDS cards', detail: 'Vocabulary first keeps the rest easier.' },
+    { href: '/grammar', title: `Practice ${metrics.weakGrammarTopic}`, detail: metrics.grammarAccuracy === null ? 'Build your first grammar baseline.' : `Current grammar accuracy: ${metrics.grammarAccuracy}%` },
+    { href: '/reading', title: metrics.nextReadingTitle, detail: `${metrics.readingCompleted}/${metrics.readingTotal} passages completed.` },
+    { href: '/conversation', title: 'Shadow one conversation scenario', detail: `${metrics.conversationCompleted}/${metrics.conversationTotal} speaking scenarios done.` },
+  ], [metrics]);
 
   return (
-    <div className="px-4 pt-6 pb-4 space-y-4">
-      <div className="flex items-center justify-between">
+    <div className="pb-8 space-y-6 max-w-lg mx-auto">
+
+      {/* Header */}
+      <div className="px-5 pt-6 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">LingoBerk</h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Level {level} student dashboard</p>
+          <h1 className="text-2xl font-black text-[#1A1A1A] dark:text-[#F5F5F5] tracking-tight">LingoBerk</h1>
+          <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Level {level} · {userStats.todayXP} XP today</p>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 bg-orange-50 dark:bg-orange-900/20 px-3 py-1.5 rounded-full">
-            <Flame size={16} className="text-warning" />
-            <span className="text-sm font-bold text-warning">{streakData.currentStreak}</span>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 bg-orange-50 dark:bg-orange-900/20 px-3 py-1.5 rounded-full">
+            <Flame size={14} className="text-warning" />
+            <span className="text-sm font-black text-warning">{streakData.currentStreak}</span>
           </div>
-          <Link href="/settings" className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center">
-            <Settings size={20} className="text-gray-500 dark:text-gray-400" />
+          <Link href="/settings" className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <Settings size={20} className="text-gray-400" />
           </Link>
         </div>
       </div>
 
-      <Card>
-        <div className="flex items-center gap-4">
-          <ProgressRing progress={dailyProgress} size={100} strokeWidth={8} color="#2563EB" trackColor="var(--border, #E5E7EB)">
-            <div className="text-center">
-              <div className="text-lg font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">{dailyProgress}%</div>
-            </div>
-          </ProgressRing>
-          <div className="flex-1 space-y-3">
-            <div>
-              <div className="flex items-center gap-1.5 mb-1">
-                <Zap size={14} className="text-accent" />
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Today&apos;s study goal</span>
-              </div>
-              <p className="text-2xl font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">
-                {userStats.todayXP}
-                <span className="text-base font-normal text-gray-400"> / {settings.dailyGoal} XP</span>
-              </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                {xpRemaining > 0 ? `${xpRemaining} XP left for today` : 'Daily goal completed'}
-              </p>
-            </div>
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-xs text-gray-500 dark:text-gray-400">Level {level}</span>
-                <span className="text-xs text-gray-500 dark:text-gray-400">{xpProgress.current}/{xpProgress.needed} XP</span>
-              </div>
-              <div className="h-2 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
-                <div className="h-full bg-accent rounded-full transition-all duration-500" style={{ width: `${xpProgress.progress}%` }} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </Card>
-
-      <Card>
-        <div className="flex items-center justify-between mb-3">
+      {/* AI Partners — full width scroll */}
+      <div>
+        <div className="px-5 flex items-center justify-between mb-3">
           <div>
-            <h2 className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5]">Today&apos;s study plan</h2>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Vocabulary, grammar, reading, speaking</p>
+            <h2 className="font-black text-base text-[#1A1A1A] dark:text-[#F5F5F5]">AI Partners</h2>
+            <p className="text-[11px] text-gray-400 font-medium">Practice English with a real conversation</p>
           </div>
-          <Target size={20} className="text-success" />
+          <Link href="/chat" className="text-[11px] font-black text-accent uppercase tracking-widest">See all</Link>
+        </div>
+        <div className="flex gap-3 overflow-x-auto px-5 pb-1 no-scrollbar">
+          {personas.map(p => <PersonaCard key={p.id} persona={p} />)}
+          <Link
+            href="/chat"
+            className="relative flex-shrink-0 w-36 rounded-3xl overflow-hidden border-2 border-dashed border-gray-200 dark:border-gray-700 flex flex-col items-center justify-center gap-2 aspect-[3/4] text-gray-300 dark:text-gray-600 hover:border-accent hover:text-accent transition-colors"
+          >
+            <Users size={28} />
+            <span className="text-[11px] font-black uppercase tracking-widest">Group Chat</span>
+          </Link>
+        </div>
+      </div>
+
+      {/* XP Progress */}
+      <div className="px-5">
+        <Card>
+          <div className="flex items-center gap-4">
+            <ProgressRing progress={dailyProgress} size={88} strokeWidth={7} color="#2563EB" trackColor="var(--border, #E5E7EB)">
+              <div className="text-center">
+                <div className="text-base font-black text-[#1A1A1A] dark:text-[#F5F5F5]">{dailyProgress}%</div>
+              </div>
+            </ProgressRing>
+            <div className="flex-1 space-y-2">
+              <div>
+                <p className="text-sm font-black text-[#1A1A1A] dark:text-[#F5F5F5]">
+                  {userStats.todayXP}<span className="text-sm font-normal text-gray-400"> / {settings.dailyGoal} XP</span>
+                </p>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  {xpRemaining > 0 ? `${xpRemaining} XP left` : '🎯 Daily goal done!'}
+                </p>
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className="text-[11px] text-gray-400 font-bold">Level {level}</span>
+                  <span className="text-[11px] text-gray-400">{xpProgress.current}/{xpProgress.needed} XP</span>
+                </div>
+                <div className="h-1.5 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-accent rounded-full transition-all duration-500" style={{ width: `${xpProgress.progress}%` }} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </div>
+
+      {/* Daily Plan */}
+      <div className="px-5">
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="font-black text-base text-[#1A1A1A] dark:text-[#F5F5F5]">Today&apos;s Plan</h2>
+          <Target size={16} className="text-success" />
         </div>
         <div className="space-y-2">
-          {dailyPlan.map((item, index) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex items-center gap-3 rounded-lg bg-gray-50 dark:bg-gray-800/70 p-3 active:scale-[0.98] transition-transform"
+          {dailyPlan.map((item, i) => (
+            <Link key={item.href} href={item.href}
+              className="flex items-center gap-3 rounded-2xl bg-gray-50 dark:bg-gray-800/70 p-3.5 active:scale-[0.98] transition-transform"
             >
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-[#242424] text-xs font-bold text-accent">
-                {index + 1}
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-[#242424] text-xs font-black text-accent shrink-0">
+                {i + 1}
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block text-sm font-semibold text-[#1A1A1A] dark:text-[#F5F5F5] truncate">{item.title}</span>
-                <span className="block text-xs text-gray-500 dark:text-gray-400">{item.detail}</span>
+                <span className="block text-sm font-bold text-[#1A1A1A] dark:text-[#F5F5F5] truncate">{item.title}</span>
+                <span className="block text-xs text-gray-400">{item.detail}</span>
               </span>
             </Link>
           ))}
         </div>
-      </Card>
+      </div>
 
-      <Card>
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <Flame size={20} className="text-warning" />
-            <h2 className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5]">Streak</h2>
+      {/* Stats row */}
+      <div className="px-5 grid grid-cols-3 gap-3">
+        <Card padding="sm">
+          <div className="text-center">
+            <Trophy size={15} className="text-accent mx-auto mb-1" />
+            <p className="text-lg font-black text-[#1A1A1A] dark:text-[#F5F5F5]">{metrics.masteredWords}</p>
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Mastered</p>
           </div>
-          <div className="text-right">
-            <span className="text-2xl font-bold text-warning">{streakData.currentStreak}</span>
-            <span className="text-sm text-gray-400 ml-1">days</span>
+        </Card>
+        <Card padding="sm">
+          <div className="text-center">
+            <Target size={15} className="text-success mx-auto mb-1" />
+            <p className="text-lg font-black text-[#1A1A1A] dark:text-[#F5F5F5]">{userStats.exercisesCompleted}</p>
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Exercises</p>
           </div>
-        </div>
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs text-gray-500 dark:text-gray-400">Best: {streakData.bestStreak} days</span>
-          <span className="text-xs text-gray-500 dark:text-gray-400">Last 30 days</span>
-        </div>
-        <div className="grid gap-1" style={{ gridTemplateColumns: 'repeat(10, 1fr)' }}>
-          {calendar.slice(-30).map(({ date, active }) => (
-            <div key={date} title={date} className={`aspect-square rounded-sm ${active ? 'bg-accent' : 'bg-gray-100 dark:bg-gray-800'}`} />
-          ))}
-        </div>
-      </Card>
+        </Card>
+        <Card padding="sm">
+          <div className="text-center">
+            <Zap size={15} className="text-warning mx-auto mb-1" />
+            <p className="text-lg font-black text-[#1A1A1A] dark:text-[#F5F5F5]">
+              {userStats.averageAccuracy > 0 ? `${Math.round(userStats.averageAccuracy)}%` : '--'}
+            </p>
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Accuracy</p>
+          </div>
+        </Card>
+      </div>
 
-      <div>
-        <h2 className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5] mb-3">Modules</h2>
+      {/* Modules */}
+      <div className="px-5">
+        <h2 className="font-black text-base text-[#1A1A1A] dark:text-[#F5F5F5] mb-3">Modules</h2>
         <div className="grid grid-cols-2 gap-3">
           {modules.map(({ href, label, icon: Icon, color }) => {
             const badge = href === '/flashcards' && metrics.dueCount > 0 ? metrics.dueCount : null;
             return (
-              <Link
-                key={href}
-                href={href}
-                className="rounded-xl bg-white dark:bg-[#242424] border border-gray-100 dark:border-gray-800 p-4 flex flex-col gap-3 active:scale-[0.97] transition-transform shadow-sm"
+              <Link key={href} href={href}
+                className="rounded-2xl bg-white dark:bg-[#242424] border border-gray-100 dark:border-gray-800 p-4 flex flex-col gap-3 active:scale-[0.97] transition-transform shadow-sm"
               >
                 <div className="flex items-start justify-between">
-                  <div className={`p-2.5 rounded-lg ${color}`}>
-                    <Icon size={20} />
-                  </div>
-                  {badge !== null && <span className="bg-error text-white text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center">{badge}</span>}
+                  <div className={`p-2.5 rounded-xl ${color}`}><Icon size={18} /></div>
+                  {badge !== null && <span className="bg-error text-white text-xs font-black px-1.5 py-0.5 rounded-full">{badge}</span>}
                 </div>
                 <div>
-                  <p className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5]">{label}</p>
-                  {href === '/flashcards' && <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{metrics.dueCount > 0 ? `${metrics.dueCount} cards due` : 'All caught up'}</p>}
-                  {href === '/grammar' && <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{metrics.grammarAnswered}/{metrics.grammarTotal} answered</p>}
-                  {href === '/reading' && <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{metrics.readingCompleted}/{metrics.readingTotal} passages</p>}
-                  {href === '/conversation' && <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{metrics.conversationCompleted}/{metrics.conversationTotal} scenarios</p>}
-                  {href === '/chat' && <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">AI practice</p>}
-                  {href === '/stats' && <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">YDS readiness</p>}
+                  <p className="font-bold text-sm text-[#1A1A1A] dark:text-[#F5F5F5]">{label}</p>
+                  {href === '/flashcards' && <p className="text-xs text-gray-400 mt-0.5">{metrics.dueCount > 0 ? `${metrics.dueCount} cards due` : 'All caught up'}</p>}
+                  {href === '/grammar' && <p className="text-xs text-gray-400 mt-0.5">{metrics.grammarAnswered}/{metrics.grammarTotal} answered</p>}
+                  {href === '/reading' && <p className="text-xs text-gray-400 mt-0.5">{metrics.readingCompleted}/{metrics.readingTotal} passages</p>}
+                  {href === '/conversation' && <p className="text-xs text-gray-400 mt-0.5">{metrics.conversationCompleted}/{metrics.conversationTotal} scenarios</p>}
+                  {href === '/stats' && <p className="text-xs text-gray-400 mt-0.5">YDS readiness</p>}
                 </div>
               </Link>
             );
@@ -313,28 +308,23 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-3">
-        <Card padding="sm">
-          <div className="text-center">
-            <Trophy size={16} className="text-accent mx-auto mb-1" />
-            <p className="text-lg font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">{metrics.masteredWords}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Mastered</p>
+      {/* Streak calendar */}
+      <div className="px-5">
+        <Card>
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <Flame size={18} className="text-warning" />
+              <h2 className="font-black text-sm text-[#1A1A1A] dark:text-[#F5F5F5]">Streak</h2>
+            </div>
+            <div>
+              <span className="text-xl font-black text-warning">{streakData.currentStreak}</span>
+              <span className="text-xs text-gray-400 ml-1">days · best {streakData.bestStreak}</span>
+            </div>
           </div>
-        </Card>
-        <Card padding="sm">
-          <div className="text-center">
-            <Target size={16} className="text-success mx-auto mb-1" />
-            <p className="text-lg font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">{userStats.exercisesCompleted}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Exercises</p>
-          </div>
-        </Card>
-        <Card padding="sm">
-          <div className="text-center">
-            <Zap size={16} className="text-warning mx-auto mb-1" />
-            <p className="text-lg font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">
-              {userStats.averageAccuracy > 0 ? `${Math.round(userStats.averageAccuracy)}%` : '--'}
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Accuracy</p>
+          <div className="grid gap-1" style={{ gridTemplateColumns: 'repeat(10, 1fr)' }}>
+            {calendar.slice(-30).map(({ date, active }) => (
+              <div key={date} title={date} className={`aspect-square rounded-sm ${active ? 'bg-accent' : 'bg-gray-100 dark:bg-gray-800'}`} />
+            ))}
           </div>
         </Card>
       </div>

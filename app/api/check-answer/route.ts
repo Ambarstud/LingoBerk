@@ -11,7 +11,7 @@ interface RequestBody {
 
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as RequestBody;
-  const { question, userAnswer, correctAnswer, provider = 'claude' } = body;
+  const { question, userAnswer, correctAnswer, provider = 'gemini' } = body;
 
   if (!question || !userAnswer || !correctAnswer) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });

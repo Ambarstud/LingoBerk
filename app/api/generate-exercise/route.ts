@@ -12,7 +12,7 @@ interface RequestBody {
 
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as RequestBody;
-  const { topic, subtopic, count = 5, provider = 'claude' } = body;
+  const { topic, subtopic, count = 5, provider = 'gemini' } = body;
 
   if (!topic) {
     return NextResponse.json({ error: 'Missing topic' }, { status: 400 });

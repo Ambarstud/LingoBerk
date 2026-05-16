@@ -46,7 +46,7 @@ export interface UserSettings {
   dailyGoal: number;
   darkMode: boolean;
   notifications: boolean;
-  preferredProvider: 'claude' | 'gpt' | 'gemini';
+  preferredProvider: 'claude' | 'gpt' | 'gemini' | 'groq';
 }
 
 export interface ExerciseResult {
@@ -111,19 +111,58 @@ export interface ConversationScenario {
   practicePrompts: string[];
 }
 
+export interface PersonaScenario {
+  id: string;
+  label: string;
+  emoji: string;
+  description: string;
+  prompt: string;
+}
+
+export interface Persona {
+  id: string;
+  name: string;
+  role: string;
+  avatar: string;
+  description: string;
+  basePrompt: string;
+  greeting: string;
+  imagePrompt?: string;
+  imageSeed?: number;
+  accentColor?: string;
+  scenarios?: PersonaScenario[];
+}
+
+export interface PersonaMemory {
+  personaId: string;
+  notes: string[];
+  lastUpdate: string;
+  relationshipLevel: number;
+}
+
+export interface PersonaStats {
+  personaId: string;
+  love: number;
+  arousal: number;
+  eroticism: number;
+  friendship: number;
+  trust: number;
+}
+
 export interface ChatMessage {
   id: string;
   role: 'user' | 'assistant';
   content: string;
   timestamp: string;
   corrections?: string;
+  imageBase64?: string;
 }
 
 export interface ChatConversation {
   id: string;
   messages: ChatMessage[];
   createdAt: string;
-  provider: 'claude' | 'gpt' | 'gemini';
+  provider: 'claude' | 'gpt' | 'gemini' | 'groq';
 }
 
 export interface GrammarTopicProgress {

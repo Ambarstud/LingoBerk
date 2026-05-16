@@ -554,19 +554,20 @@ Service worker: next-pwa ile otomatik. Statik varlıklar + JSON data offline cac
 - [x] Grammar dataset (data/grammar-topics.json — 10 konu, 8+ alıştırma/konu, summary/keyRules)
 - [x] Reading module tam implementasyon (search/filter, tappable words, question flow, localStorage progress, vocabulary → flashcards)
 - [x] Reading dataset (data/reading-passages.json — 12 pasaj, 2 maritime, 5 soru/pasaj)
-- [ ] AI Chat (sohbet balonları, grammar düzeltme kutusu, provider seçici)
+- [x] AI Chat (sohbet balonları, grammar düzeltme kutusu, provider seçici)
 - [x] Anthropic API key → ✅ `.env.local` ve Vercel'e eklendi
 - [x] OpenAI API key → ✅ `.env.local` ve Vercel Production/Development'a eklendi; ⚠️ OpenAI account quota/billing açılmalı
+- [x] Google AI key → ✅ `.env.local` dosyasına eklendi (Gemini 2.0 Flash aktif)
 
-### Phase 3 — Conversations + Stats + Polish 🔄 KODLANIYOR (2026-05-15)
+### Phase 3 — Conversations + Stats + Polish ✅ TAMAMLANDI (2026-05-16)
 
 - [x] Conversation module (senaryo grid, diyalog görünümü, key phrases, practice prompts, completion XP)
 - [x] Conversation dataset (data/conversation-patterns.json — 16 senaryo, 4 maritime)
 - [x] "Practice with AI" — conversation'dan chat'e geçiş (/chat?scenario=...)
 - [x] Statistics page (YDS skoru, 90 gün heatmap, module breakdown, weak topics)
 - [x] Dashboard güncelleme (daily plan + 6 modül kartı: +Conversations, +Stats)
-- [ ] STORAGE_KEYS.CONVERSATION_PROGRESS → ✅ lib/storage.ts'e eklendi
-- [ ] GrammarTopicProgress tipi → ✅ lib/types.ts'e eklendi
+- [x] STORAGE_KEYS.CONVERSATION_PROGRESS → ✅ lib/storage.ts'e eklendi
+- [x] GrammarTopicProgress tipi → ✅ lib/types.ts'e eklendi
 
 ---
 

@@ -6,6 +6,7 @@ interface RequestBody {
   provider: AIProvider;
   systemPrompt: string;
   userMessage: string;
+  imageBase64?: string;
   temperature?: number;
   maxTokens?: number;
   responseFormat?: 'text' | 'json';
@@ -13,13 +14,13 @@ interface RequestBody {
 
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as RequestBody;
-  const { provider, systemPrompt, userMessage, temperature, maxTokens, responseFormat } = body;
+  const { provider, systemPrompt, userMessage, imageBase64, temperature, maxTokens, responseFormat } = body;
 
-  if (!provider || !systemPrompt || !userMessage) {
+  if (!provider || !systemPrompt) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
   }
 
-  const result = await callAI({ provider, systemPrompt, userMessage, temperature, maxTokens, responseFormat });
+  const result = await callAI({ provider, systemPrompt, userMessage, imageBase64, temperature, maxTokens, responseFormat });
 
   return NextResponse.json({
     content: result.content,
