@@ -276,14 +276,19 @@ function ChatContent() {
     if (saved?.messages.length) {
       setMessages(saved.messages);
     } else {
-      setMessages([{
+      const greeting: ChatMessage = {
         id: 'greeting',
         role: 'assistant',
         content: activePersona === 'group'
           ? "Hey! Everyone is here. Ready? 🔥"
           : (activePersona as Persona).greeting,
         timestamp: new Date().toISOString(),
-      }]);
+      };
+      setMessages([greeting]);
+      // Save greeting immediately so next open doesn't reset
+      const prov = 'openrouter' as AIProvider;
+      const next: ChatConversation = { id: chatId, messages: [greeting], createdAt: new Date().toISOString(), provider: prov };
+      storage.set(STORAGE_KEYS.CHAT_HISTORY, [next, ...history.filter(h => h.id !== chatId)].slice(0, 20));
     }
     setShowSelector(false);
     setActiveScenario(null);
@@ -408,8 +413,8 @@ PHOTO SHARING: You can send a photo by adding [IMAGE: scene description] anywher
 
     const newMessages = [...messages, userMsg];
     setMessages(newMessages);
+    saveHistory(newMessages, activePersona, provider); // save immediately, don't wait for AI
     setInput('');
-    setPendingImage(null);
     setIsLoading(true);
     setError(null);
 
