@@ -16,7 +16,7 @@ export interface AIRequest {
   history?: HistoryMessage[];
 }
 
-const GROQ_FALLBACK_MODEL = 'mixtral-8x7b-instruct';
+const GROQ_FALLBACK_MODEL = 'llama-3.1-8b-instant';
 
 const REFUSAL_MARKERS = [
   "I can't do this roleplay",
