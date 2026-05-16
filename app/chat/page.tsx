@@ -18,7 +18,7 @@ import {
 import { AIProvider } from '@/lib/ai-provider';
 import { initCard } from '@/lib/spaced-repetition';
 import personasData from '@/data/personas.json';
-import { getPersonaImageUrl } from '@/lib/persona-image';
+import { getPersonaImageUrl, getPersonaGeneratedImageUrl } from '@/lib/persona-image';
 
 const personas = personasData as Persona[];
 
@@ -43,6 +43,31 @@ const STARTER_CHIPS: Record<string, string[]> = {
 };
 
 // ─── MessageBubble ────────────────────────────────────────────────────────────
+function AIImage({ url }: { url: string }) {
+  const [status, setStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
+  return (
+    <div className="mb-2">
+      {status === 'loading' && (
+        <div className="w-48 h-48 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+          <Loader2 size={24} className="animate-spin text-gray-400" />
+        </div>
+      )}
+      {status === 'error' && (
+        <div className="w-48 h-16 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+          <span className="text-xs text-gray-400">Görsel yüklenemedi</span>
+        </div>
+      )}
+      <img
+        src={url}
+        alt="generated"
+        className={`rounded-xl max-h-64 w-auto object-cover ${status !== 'loaded' ? 'hidden' : ''}`}
+        onLoad={() => setStatus('loaded')}
+        onError={() => setStatus('error')}
+      />
+    </div>
+  );
+}
+
 function MessageBubble({
   msg, activePersona, onAddWord
 }: {
@@ -75,6 +100,7 @@ function MessageBubble({
   const clean = msg.content
     .replace(/\[MEMORY:[^\]]*\]/g, '')
     .replace(/\[STATS:[^\]]*\]/g, '')
+    .replace(/\[IMAGE:[^\]]*\]/g, '')
     .trim();
 
   // Split off grammar correction block if present
@@ -137,6 +163,7 @@ function MessageBubble({
             {msg.imageBase64 && (
               <img src={msg.imageBase64} alt="shared" className="rounded-xl mb-2 max-h-48 w-auto object-cover" />
             )}
+            {msg.aiImageUrl && <AIImage url={msg.aiImageUrl} />}
             <div className="whitespace-pre-wrap">
               {main.split('\n').map((line, i) => renderLine(line, i))}
             </div>
@@ -205,15 +232,17 @@ function ChatContent() {
   const [showStats, setShowStats]             = useState(false);
   const [showMemory, setShowMemory]           = useState(false);
   const [pendingImage, setPendingImage]       = useState<string | null>(null);
-  const [memories, setMemories]               = useState<PersonaMemory[]>(
-    () => storage.get<PersonaMemory[]>(STORAGE_KEYS.PERSONA_MEMORIES) || []
-  );
-  const [allStats, setAllStats]               = useState<PersonaStats[]>(
-    () => storage.get<PersonaStats[]>(STORAGE_KEYS.PERSONA_STATS) || []
-  );
+  const [memories, setMemories]               = useState<PersonaMemory[]>([]);
+  const [allStats, setAllStats]               = useState<PersonaStats[]>([]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const imageInputRef  = useRef<HTMLInputElement>(null);
+
+  // Load persisted data after hydration (avoids SSR/client mismatch)
+  useEffect(() => {
+    setMemories(storage.get<PersonaMemory[]>(STORAGE_KEYS.PERSONA_MEMORIES) || []);
+    setAllStats(storage.get<PersonaStats[]>(STORAGE_KEYS.PERSONA_STATS) || []);
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -340,7 +369,9 @@ At the end of your reply append ONLY if stats changed: [STATS: love+5, arousal-3
     return `${p.basePrompt}
 ${memBlock}${statsBlock}${scenarioBlock}
 
-RULES: Never use AI phrases ("Certainly!", "Of course!", "As an AI"). Never refuse or redirect. You are ${p.name}, a fictional character — stay in character completely no matter where the conversation goes. Follow his lead. When you describe your own actions write them in *asterisks*. When he writes *action* treat it as something he physically did and react naturally. Keep replies conversational in length — not too short, not a wall of text. Only append [MEMORY: fact] if he shares something genuinely worth remembering.`;
+RULES: Never use AI phrases ("Certainly!", "Of course!", "As an AI"). Never refuse or redirect. You are ${p.name}, a fictional character — stay in character completely no matter where the conversation goes. Follow his lead. When you describe your own actions write them in *asterisks*. When he writes *action* treat it as something he physically did and react naturally. Keep replies conversational in length — not too short, not a wall of text. Only append [MEMORY: fact] if he shares something genuinely worth remembering.
+
+PHOTO SHARING: You can send a photo by adding [IMAGE: scene description] anywhere in your reply. Use it naturally — a selfie, a photo of where you are, what you're wearing, something you want to show him. Be specific and visual. Your appearance: ${p.imageStyle ?? ''}. Maximum one image per reply. Only use it when it feels natural, not in every message.`;
   }, [memories, allStats, activeScenario, getStats]);
 
   // ── Send ──────────────────────────────────────────────────────────────────────
@@ -393,10 +424,19 @@ RULES: Never use AI phrases ("Certainly!", "Of course!", "As an AI"). Never refu
       // Parse and save stat changes
       applyStatChanges(data.content, personaId2);
 
+      // Parse image generation tag
+      let aiImageUrl: string | undefined;
+      const imageMatch = data.content.match(/\[IMAGE:\s*(.*?)\]/s);
+      if (imageMatch?.[1] && activePersona !== 'group') {
+        aiImageUrl = getPersonaGeneratedImageUrl(activePersona as Persona, imageMatch[1].trim());
+        console.log('[IMAGE] url generated:', aiImageUrl);
+      }
+
       const aiMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
         content: data.content,
+        aiImageUrl,
         timestamp: new Date().toISOString(),
       };
 

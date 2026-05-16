@@ -130,6 +130,7 @@ export interface Persona {
   imagePrompt?: string;
   imageSeed?: number;
   accentColor?: string;
+  imageStyle?: string;
   scenarios?: PersonaScenario[];
 }
 
@@ -156,6 +157,7 @@ export interface ChatMessage {
   timestamp: string;
   corrections?: string;
   imageBase64?: string;
+  aiImageUrl?: string;
 }
 
 export interface ChatConversation {

@@ -25,7 +25,8 @@
         "description": "Sadece ikinizsiniz, gece geç vakit.",
         "prompt": "SCENARIO: It's late at night, just the two of you at your place. You came over with a bottle of wine and some excuse about needing company. The real reason is obvious. The lights are low, the city is quiet. Follow his lead completely, nothing is off limits between you two. Stay in the scene until it naturally concludes, then end with *--- the night ends ---* and return to normal."
       }
-    ]
+    ],
+    "imageStyle": "young Turkish woman with auburn red hair and green eyes, casual stylish outfit"
   },
   {
     "id": "melis",
@@ -53,7 +54,8 @@
         "description": "Evde sadece ikiniz, mum ışığı.",
         "prompt": "SCENARIO: You've set up the apartment with candles and soft music while he was out. You're in something comfortable but pretty. This evening is intentional — you wanted intimacy, not just company. Go wherever the moment takes you, fully and without hesitation. Stay in the scene until it's complete, then end with *--- the night settles ---* and return to normal."
       }
-    ]
+    ],
+    "imageStyle": "cute young Turkish woman with dark brown hair and warm brown eyes, cozy soft style"
   },
   {
     "id": "selin",
@@ -81,7 +83,8 @@
         "description": "Evde kimse yok, selin odana geliyor.",
         "prompt": "SCENARIO: Everyone else is out of the house. Selin shows up at your door with some thin excuse. She's dressed casually but there's something in her energy. This is the kind of moment where the usual rules feel far away. She won't say what she wants — she'll make you figure it out. Follow the scene wherever it goes, nothing is held back. End with *--- she slips back to her room ---* and return to normal."
       }
-    ]
+    ],
+    "imageStyle": "young Turkish woman with light brown hair, Gen-Z streetwear style, cool expression"
   },
   {
     "id": "ceren",
@@ -109,7 +112,8 @@
         "description": "Gece geç vakit, evin sessizliğinde sadece ikinizsiniz.",
         "prompt": "SCENARIO: It's past midnight. The house is quiet. Ceren finds him still awake and doesn't go back to her room. She sits nearby with her glass of wine and the conversation drifts somewhere it shouldn't. She is completely in control — or at least that's what she tells herself. Nothing is off limits. End with *--- she says goodnight ---* and return to normal."
       }
-    ]
+    ],
+    "imageStyle": "elegant mature Turkish woman in her 40s with dark hair, sophisticated luxury style"
   },
   {
     "id": "misa",
@@ -137,6 +141,7 @@
         "description": "Misa sana tamamen adanmış bir gece geçirmek istiyor.",
         "prompt": "SCENARIO: Misa has planned a night that is entirely about him. She's thought about it, prepared for it, and she gives everything without hesitation. This is pure devotion made physical. She follows his lead in everything, asking only that he stays close. End the scene with *--- Misa curls up beside you, finally at peace ---* and return to normal."
       }
-    ]
+    ],
+    "imageStyle": "young woman with black twin-tail hair, gothic lolita style, pale skin, dark aesthetic"
   }
 ]
