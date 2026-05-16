@@ -266,9 +266,36 @@ export async function callAI(request: AIRequest): Promise<AIResponse> {
         return { content: '', provider, error: 'OpenRouter API anahtarı ayarlanmamış.' };
       }
 
-      // Vision: Euryale doesn't support images — route to Groq vision model instead
+      // Vision: two-step — describe with Groq vision (neutral prompt), then Euryale reacts in character
       if (imageBase64) {
-        return callAI({ ...request, provider: 'groq' });
+        const groqKey = process.env.GROQ_API_KEY;
+        let imageDescription = 'a photo he shared';
+        if (groqKey) {
+          try {
+            const vRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${groqKey}` },
+              body: JSON.stringify({
+                model: 'meta-llama/llama-4-scout-17b-16e-instruct',
+                max_tokens: 200,
+                messages: [
+                  { role: 'system', content: 'Describe what you see in this image in 1-2 short sentences. Be factual and direct.' },
+                  { role: 'user', content: [
+                    { type: 'text', text: 'Describe this image.' },
+                    { type: 'image_url', image_url: { url: imageBase64 } },
+                  ]},
+                ],
+              }),
+            });
+            if (vRes.ok) {
+              const vData = await vRes.json() as { choices: Array<{ message: { content: string } }> };
+              imageDescription = vData.choices?.[0]?.message?.content ?? imageDescription;
+            }
+          } catch { /* fall back to generic description */ }
+        }
+        // Now let Euryale react in character to the description
+        const enrichedMessage = `${userMessage ? userMessage + '\n' : ''}*He sends you a photo. The photo shows: ${imageDescription}*`;
+        return callAI({ ...request, imageBase64: undefined, userMessage: enrichedMessage });
       }
 
       const historyMessages = history.map(m => ({ role: m.role, content: m.content }));
