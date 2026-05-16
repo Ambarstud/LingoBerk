@@ -23,7 +23,7 @@ const DEFAULT_SETTINGS: UserSettings = {
   dailyGoal: 200,
   darkMode: false,
   notifications: false,
-  preferredProvider: 'groq',
+  preferredProvider: 'openrouter',
 };
 
 export const useStore = create<AppState>((set, get) => ({

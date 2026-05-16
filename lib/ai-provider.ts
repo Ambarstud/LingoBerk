@@ -1,4 +1,4 @@
-export type AIProvider = 'claude' | 'gpt' | 'gemini' | 'groq';
+export type AIProvider = 'claude' | 'gpt' | 'gemini' | 'groq' | 'openrouter';
 
 export interface HistoryMessage {
   role: 'user' | 'assistant';
@@ -258,6 +258,57 @@ export async function callAI(request: AIRequest): Promise<AIResponse> {
       }
 
       return { content: primary.content, provider, tokensUsed: primary.tokensUsed };
+    }
+
+    if (provider === 'openrouter') {
+      const apiKey = process.env.OPENROUTER_API_KEY;
+      if (!apiKey) {
+        return { content: '', provider, error: 'OpenRouter API anahtarı ayarlanmamış.' };
+      }
+
+      const userContent: unknown = imageBase64
+        ? [
+            { type: 'text', text: userMessage || 'What do you see in this image?' },
+            { type: 'image_url', image_url: { url: imageBase64 } },
+          ]
+        : userMessage;
+
+      const historyMessages = history.map(m => ({ role: m.role, content: m.content }));
+
+      const body: Record<string, unknown> = {
+        model: 'neversleep/llama-3.1-lumimaid-70b',
+        max_tokens: maxTokens,
+        temperature,
+        messages: [
+          { role: 'system', content: finalSystemPrompt },
+          ...historyMessages,
+          { role: 'user', content: userContent },
+        ],
+      };
+
+      const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
+          'HTTP-Referer': 'https://lingoberk.vercel.app',
+          'X-Title': 'LingoBerk',
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) {
+        const err = await res.text();
+        return { content: '', provider, error: `OpenRouter error: ${res.status} ${err}` };
+      }
+
+      interface ORResponse {
+        choices: Array<{ message: { content: string } }>;
+        usage?: { total_tokens: number };
+      }
+      const data = (await res.json()) as ORResponse;
+      const content = data.choices?.[0]?.message?.content ?? '';
+      return { content, provider, tokensUsed: data.usage?.total_tokens };
     }
 
     return { content: '', provider, error: 'Unknown provider' };

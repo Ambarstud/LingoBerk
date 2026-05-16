@@ -46,7 +46,7 @@ export interface UserSettings {
   dailyGoal: number;
   darkMode: boolean;
   notifications: boolean;
-  preferredProvider: 'claude' | 'gpt' | 'gemini' | 'groq';
+  preferredProvider: 'claude' | 'gpt' | 'gemini' | 'groq' | 'openrouter';
 }
 
 export interface ExerciseResult {
@@ -164,7 +164,7 @@ export interface ChatConversation {
   id: string;
   messages: ChatMessage[];
   createdAt: string;
-  provider: 'claude' | 'gpt' | 'gemini' | 'groq';
+  provider: 'claude' | 'gpt' | 'gemini' | 'groq' | 'openrouter';
 }
 
 export interface GrammarTopicProgress {
