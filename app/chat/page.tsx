@@ -426,7 +426,7 @@ PHOTO SHARING: You can send a photo by adding [IMAGE: scene description] anywher
 
       // Parse image generation tag
       let aiImageUrl: string | undefined;
-      const imageMatch = data.content.match(/\[IMAGE:\s*(.*?)\]/s);
+      const imageMatch = data.content.match(/\[IMAGE:\s*([^\]]*)\]/);
       if (imageMatch?.[1] && activePersona !== 'group') {
         aiImageUrl = getPersonaGeneratedImageUrl(activePersona as Persona, imageMatch[1].trim());
         console.log('[IMAGE] url generated:', aiImageUrl);
