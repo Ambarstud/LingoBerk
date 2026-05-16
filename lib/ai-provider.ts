@@ -269,41 +269,48 @@ export async function callAI(request: AIRequest): Promise<AIResponse> {
       // Image upload disabled for this provider — ignore imageBase64
 
       const historyMessages = history.map(m => ({ role: m.role, content: m.content }));
-
-      const body: Record<string, unknown> = {
-        model: 'sao10k/l3.3-euryale-70b',
-        max_tokens: maxTokens,
-        temperature,
-        messages: [
-          { role: 'system', content: finalSystemPrompt },
-          ...historyMessages,
-          { role: 'user', content: userMessage },
-        ],
-      };
-
-      const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-          'HTTP-Referer': 'https://lingoberk.vercel.app',
-          'X-Title': 'LingoBerk',
-        },
-        body: JSON.stringify(body),
-      });
-
-      if (!res.ok) {
-        const err = await res.text();
-        return { content: '', provider, error: `OpenRouter error: ${res.status} ${err}` };
-      }
+      const msgs = [
+        { role: 'system', content: finalSystemPrompt },
+        ...historyMessages,
+        { role: 'user', content: userMessage },
+      ];
 
       interface ORResponse {
         choices: Array<{ message: { content: string } }>;
         usage?: { total_tokens: number };
       }
-      const data = (await res.json()) as ORResponse;
-      const content = data.choices?.[0]?.message?.content ?? '';
-      return { content, provider, tokensUsed: data.usage?.total_tokens };
+
+      const callOR = async (model: string) => {
+        const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`,
+            'HTTP-Referer': 'https://lingoberk.vercel.app',
+            'X-Title': 'LingoBerk',
+          },
+          body: JSON.stringify({ model, max_tokens: maxTokens, temperature, messages: msgs }),
+        });
+        return res;
+      };
+
+      // Primary model, fallback on 429
+      const MODELS = [
+        'sao10k/l3.3-euryale-70b',
+        'cognitivecomputations/dolphin-mistral-24b-venice-edition:free',
+        'nousresearch/hermes-3-llama-3.1-70b',
+      ];
+
+      let lastErr = '';
+      for (const model of MODELS) {
+        const res = await callOR(model);
+        if (res.status === 429) { lastErr = `Rate limited (${model})`; continue; }
+        if (!res.ok) { lastErr = `OpenRouter error: ${res.status}`; continue; }
+        const data = (await res.json()) as ORResponse;
+        const content = data.choices?.[0]?.message?.content ?? '';
+        if (content) return { content, provider, tokensUsed: data.usage?.total_tokens };
+      }
+      return { content: '', provider, error: lastErr || 'Tüm modeller meşgul, biraz sonra tekrar dene.' };
     }
 
     return { content: '', provider, error: 'Unknown provider' };
