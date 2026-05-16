@@ -266,12 +266,10 @@ export async function callAI(request: AIRequest): Promise<AIResponse> {
         return { content: '', provider, error: 'OpenRouter API anahtarı ayarlanmamış.' };
       }
 
-      const userContent: unknown = imageBase64
-        ? [
-            { type: 'text', text: userMessage || 'What do you see in this image?' },
-            { type: 'image_url', image_url: { url: imageBase64 } },
-          ]
-        : userMessage;
+      // Vision: Euryale doesn't support images — route to Groq vision model instead
+      if (imageBase64) {
+        return callAI({ ...request, provider: 'groq' });
+      }
 
       const historyMessages = history.map(m => ({ role: m.role, content: m.content }));
 
@@ -282,7 +280,7 @@ export async function callAI(request: AIRequest): Promise<AIResponse> {
         messages: [
           { role: 'system', content: finalSystemPrompt },
           ...historyMessages,
-          { role: 'user', content: userContent },
+          { role: 'user', content: userMessage },
         ],
       };
 

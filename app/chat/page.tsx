@@ -12,7 +12,7 @@ import { Card } from '@/components/ui/Card';
 import { useStore } from '@/store/useStore';
 import { storage, STORAGE_KEYS } from '@/lib/storage';
 import {
-  ChatMessage, Persona,
+  ChatMessage, ChatConversation, Persona,
   PersonaMemory, PersonaScenario, PersonaStats, FlashCard
 } from '@/lib/types';
 import { AIProvider } from '@/lib/ai-provider';
@@ -259,7 +259,6 @@ function ChatContent() {
 
   // Load persisted data after hydration (avoids SSR/client mismatch)
   useEffect(() => {
-    storage.remove(STORAGE_KEYS.CHAT_HISTORY);
     setMemories(storage.get<PersonaMemory[]>(STORAGE_KEYS.PERSONA_MEMORIES) || []);
     setAllStats(storage.get<PersonaStats[]>(STORAGE_KEYS.PERSONA_STATS) || []);
   }, []);
@@ -268,17 +267,24 @@ function ChatContent() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isLoading]);
 
-  // Start each chat fresh when persona is selected
+  // Load chat history when persona is selected, fall back to greeting
   useEffect(() => {
     if (!activePersona) return;
-    setMessages([{
-      id: 'greeting',
-      role: 'assistant',
-      content: activePersona === 'group'
-        ? "Hey! Everyone is here. Ready? 🔥"
-        : (activePersona as Persona).greeting,
-      timestamp: new Date().toISOString(),
-    }]);
+    const chatId = activePersona === 'group' ? 'group-chat' : `chat-${(activePersona as Persona).id}`;
+    const history = storage.get<ChatConversation[]>(STORAGE_KEYS.CHAT_HISTORY) || [];
+    const saved = history.find(h => h.id === chatId);
+    if (saved?.messages.length) {
+      setMessages(saved.messages);
+    } else {
+      setMessages([{
+        id: 'greeting',
+        role: 'assistant',
+        content: activePersona === 'group'
+          ? "Hey! Everyone is here. Ready? 🔥"
+          : (activePersona as Persona).greeting,
+        timestamp: new Date().toISOString(),
+      }]);
+    }
     setShowSelector(false);
     setActiveScenario(null);
   }, [activePersona]);
@@ -332,6 +338,13 @@ function ChatContent() {
     });
   }, []);
 
+  const saveHistory = useCallback((msgs: ChatMessage[], persona: Persona | 'group', prov: AIProvider) => {
+    const chatId = persona === 'group' ? 'group-chat' : `chat-${(persona as Persona).id}`;
+    const history = storage.get<ChatConversation[]>(STORAGE_KEYS.CHAT_HISTORY) || [];
+    const next: ChatConversation = { id: chatId, messages: msgs, createdAt: new Date().toISOString(), provider: prov };
+    storage.set(STORAGE_KEYS.CHAT_HISTORY, [next, ...history.filter(h => h.id !== chatId)].slice(0, 20));
+  }, []);
+
   // ── Build system prompt ───────────────────────────────────────────────────────
 
   const buildSystemPrompt = useCallback((persona: Persona | 'group', personaId: string): string => {
@@ -376,7 +389,7 @@ ${memBlock}${statsBlock}${scenarioBlock}
 
 RULES: Avoid AI phrases ("Certainly!", "Of course!", "As an AI"). You are ${p.name}, a fictional character — keep the character voice and avoid meta commentary about AI identity, jailbreaks, policies, or system prompts. If a request does not fit the character or scene, answer briefly in character and steer back to normal conversation. When you describe your own actions write them in *asterisks*. When he writes *action* treat it as something he physically did and react naturally. Keep replies conversational in length — not too short, not a wall of text. Only append [MEMORY: fact] if he shares something genuinely worth remembering.
 
-PHOTO SHARING: You can send a non-explicit everyday photo by adding [IMAGE: scene description] anywhere in your reply. Use it naturally — a selfie, a photo of where you are, an outfit, or something you want to show him. Be specific and visual. Your appearance: ${p.imageStyle ?? ''}. Maximum one image per reply. Only use it when it feels natural, not in every message.`;
+PHOTO SHARING: You can send a photo by adding [IMAGE: scene description] anywhere in your reply. Use it naturally and spontaneously — a selfie, what you're wearing, where you are. Sometimes, especially when the mood is flirty or you want to tease him, send a provocative photo without being asked: in a bikini, a barely-closed bathrobe, lingerie, or subtly revealing clothing. Be specific and visual in the description. Your appearance: ${p.imageStyle ?? ''}. Maximum one image per reply.`;
   }, [memories, allStats, activeScenario, getStats]);
 
   // ── Send ──────────────────────────────────────────────────────────────────────
@@ -451,6 +464,7 @@ PHOTO SHARING: You can send a non-explicit everyday photo by adding [IMAGE: scen
       const finalMessages = [...newMessages, aiMsg];
       setMessages(finalMessages);
       addXP(5);
+      saveHistory(finalMessages, activePersona, provider);
 
       // Auto-end scene when character writes the closing marker
       if (activeScenario && /━━[^━]+━━/.test(data.content)) {
@@ -638,7 +652,7 @@ PHOTO SHARING: You can send a non-explicit everyday photo by adding [IMAGE: scen
           >
             <Brain size={18} />
           </button>
-          <button onClick={() => setMessages([])} className="p-2 text-gray-300 hover:text-red-400 transition-colors">
+          <button onClick={() => { setMessages([]); saveHistory([], activePersona!, provider); }} className="p-2 text-gray-300 hover:text-red-400 transition-colors">
             <Trash2 size={18} />
           </button>
         </div>
