@@ -800,31 +800,17 @@ PHOTO SHARING: You can send a photo by adding [IMAGE: scene description] anywher
 
       {/* ── Input ── */}
       <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-[#1A1A1A] pb-safe">
-        {pendingImage && (
-          <div className="mb-2 relative inline-block">
-            <img src={pendingImage} alt="preview" className="h-16 rounded-xl object-cover border border-accent/30" />
-            <button onClick={() => setPendingImage(null)}
-              className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center">
-              <X size={10} />
-            </button>
-          </div>
-        )}
         <form onSubmit={e => { e.preventDefault(); handleSend(); }} className="flex items-center gap-2">
-          <input ref={imageInputRef} type="file" accept="image/*" className="hidden" onChange={handleImageSelect} />
-          <button type="button" onClick={() => imageInputRef.current?.click()}
-            className="w-11 h-11 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-400 hover:text-accent flex items-center justify-center shrink-0 transition-colors">
-            <ImagePlus size={18} />
-          </button>
           <input
             type="text"
             value={input}
             onChange={e => setInput(e.target.value)}
-            placeholder={pendingImage ? "Bir şey yaz ya da gönder..." : "Yaz ya da *hareket* yap..."}
+            placeholder="Yaz ya da *hareket* yap..."
             className="flex-1 bg-gray-50 dark:bg-gray-800 border-none rounded-2xl px-5 py-3.5 outline-none focus:ring-2 focus:ring-accent font-medium text-sm"
             disabled={isLoading}
           />
           <button type="submit"
-            disabled={(!input.trim() && !pendingImage) || isLoading}
+            disabled={!input.trim() || isLoading}
             className="w-14 h-14 rounded-2xl bg-accent text-white flex items-center justify-center disabled:opacity-40 shadow-lg shadow-accent/20 transition-all active:scale-90">
             {isLoading ? <Loader2 size={22} className="animate-spin" /> : <Send size={22} />}
           </button>
