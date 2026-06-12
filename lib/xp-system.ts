@@ -7,7 +7,6 @@ export const XP_VALUES = {
   grammar: 15,
   reading: 20,
   conversation: 5,
-  chat: 10, // per 5 messages
   dailyGoal: 200,
 } as const;
 
@@ -40,7 +39,6 @@ export function getDefaultStats(): UserStats {
     cardsReviewed: 0,
     exercisesCompleted: 0,
     passagesRead: 0,
-    chatMessages: 0,
     studyMinutes: 0,
     totalWordsLearned: 0,
     averageAccuracy: 0,

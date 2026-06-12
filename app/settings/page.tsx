@@ -37,7 +37,6 @@ export default function SettingsPage() {
       customCards: storage.get<FlashCard[]>(STORAGE_KEYS.CUSTOM_CARDS),
       grammarProgress: storage.get(STORAGE_KEYS.GRAMMAR_PROGRESS),
       readingProgress: storage.get(STORAGE_KEYS.READING_PROGRESS),
-      chatHistory: storage.get(STORAGE_KEYS.CHAT_HISTORY),
       userStats: storage.get<UserStats>(STORAGE_KEYS.USER_STATS),
       settings: storage.get<UserSettings>(STORAGE_KEYS.SETTINGS),
       streak: storage.get<StreakData>(STORAGE_KEYS.STREAK),
@@ -67,7 +66,6 @@ export default function SettingsPage() {
         if (data.customCards) storage.set(STORAGE_KEYS.CUSTOM_CARDS, data.customCards);
         if (data.grammarProgress) storage.set(STORAGE_KEYS.GRAMMAR_PROGRESS, data.grammarProgress);
         if (data.readingProgress) storage.set(STORAGE_KEYS.READING_PROGRESS, data.readingProgress);
-        if (data.chatHistory) storage.set(STORAGE_KEYS.CHAT_HISTORY, data.chatHistory);
         if (data.userStats) storage.set(STORAGE_KEYS.USER_STATS, data.userStats);
         if (data.settings) storage.set(STORAGE_KEYS.SETTINGS, data.settings);
         if (data.streak) storage.set(STORAGE_KEYS.STREAK, data.streak);

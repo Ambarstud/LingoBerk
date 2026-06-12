@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle, Languages, MessageCircle, Play, Plus, RotateCcw, Send, Star } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Languages, MessageCircle, Play, Plus, RotateCcw, Star } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { storage, STORAGE_KEYS } from '@/lib/storage';
@@ -205,13 +205,6 @@ export default function ConversationPage() {
         </Card>
 
         <div className="grid grid-cols-1 gap-3">
-          <Link
-            href={`/chat?scenario=${selectedScenario.id}`}
-            className="w-full py-3.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-[#1A1A1A] dark:text-[#F5F5F5] font-semibold flex items-center justify-center gap-2 min-h-[52px] active:scale-[0.98] transition-transform"
-          >
-            <Send size={18} />
-            Practice with AI
-          </Link>
           <Button fullWidth variant={isComplete ? 'success' : 'primary'} onClick={markComplete}>
             {isComplete ? (
               <>

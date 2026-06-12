@@ -35,11 +35,8 @@ export const STORAGE_KEYS = {
   CUSTOM_CARDS: 'custom_cards',
   GRAMMAR_PROGRESS: 'grammar_progress',
   READING_PROGRESS: 'reading_progress',
-  CHAT_HISTORY: 'chat_history',
   USER_STATS: 'user_stats',
   SETTINGS: 'settings',
   STREAK: 'streak',
   CONVERSATION_PROGRESS: 'conversation_progress',
-  PERSONA_MEMORIES: 'persona_memories',
-  PERSONA_STATS: 'persona_stats',
 } as const;

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, BarChart3, BookOpen, FileText, MessageCircle, MessagesSquare, PenLine, Target, Trophy } from 'lucide-react';
+import { ArrowLeft, BarChart3, BookOpen, FileText, MessagesSquare, PenLine, Target, Trophy } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { ProgressRing } from '@/components/ui/ProgressRing';
 import { storage, STORAGE_KEYS } from '@/lib/storage';
@@ -105,8 +105,10 @@ export default function StatsPage() {
 
   const ydsReadiness = useMemo(() => {
     const vocabularyScore = snapshot.totalCards > 0 ? (snapshot.masteredCards / snapshot.totalCards) * 100 : 0;
-    const chatBonus = Math.min(100, snapshot.userStats.chatMessages * 2);
-    return clampScore(vocabularyScore * 0.25 + snapshot.grammarAccuracy * 0.3 + snapshot.readingAccuracy * 0.35 + chatBonus * 0.1);
+    const conversationScore = (conversationScenarios as unknown[]).length > 0
+      ? (snapshot.conversationCompleted / (conversationScenarios as unknown[]).length) * 100
+      : 0;
+    return clampScore(vocabularyScore * 0.3 + snapshot.grammarAccuracy * 0.35 + snapshot.readingAccuracy * 0.25 + conversationScore * 0.1);
   }, [snapshot]);
 
   const level = getLevel(snapshot.userStats.totalXP);
@@ -119,7 +121,6 @@ export default function StatsPage() {
     { label: 'Grammar accuracy', value: snapshot.grammarAccuracy, icon: PenLine, href: '/grammar' },
     { label: 'Reading accuracy', value: snapshot.readingAccuracy, icon: FileText, href: '/reading' },
     { label: 'Conversation progress', value: conversationProgress, icon: MessagesSquare, href: '/conversation' },
-    { label: 'AI practice bonus', value: Math.min(100, snapshot.userStats.chatMessages * 2), icon: MessageCircle, href: '/chat' },
   ];
 
   return (

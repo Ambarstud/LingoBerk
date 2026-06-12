@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BookOpen, PenLine, FileText, MessageCircle } from 'lucide-react';
+import { Home, BookOpen, PenLine, FileText, MessagesSquare } from 'lucide-react';
 
 const navItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/flashcards', label: 'Flashcards', icon: BookOpen },
   { href: '/grammar', label: 'Grammar', icon: PenLine },
   { href: '/reading', label: 'Reading', icon: FileText },
-  { href: '/chat', label: 'Chat', icon: MessageCircle },
+  { href: '/conversation', label: 'Speaking', icon: MessagesSquare },
 ];
 
 export function BottomNav() {

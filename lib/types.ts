@@ -29,7 +29,6 @@ export interface UserStats {
   cardsReviewed: number;
   exercisesCompleted: number;
   passagesRead: number;
-  chatMessages: number;
   studyMinutes: number;
   totalWordsLearned: number;
   averageAccuracy: number;
@@ -109,62 +108,6 @@ export interface ConversationScenario {
   dialogues: { speaker: 'A' | 'B'; text: string; turkishTranslation: string }[];
   keyPhrases: { phrase: string; meaning: string; usage: string; examples: string[] }[];
   practicePrompts: string[];
-}
-
-export interface PersonaScenario {
-  id: string;
-  label: string;
-  emoji: string;
-  description: string;
-  prompt: string;
-}
-
-export interface Persona {
-  id: string;
-  name: string;
-  role: string;
-  avatar: string;
-  description: string;
-  basePrompt: string;
-  greeting: string;
-  imagePrompt?: string;
-  imageSeed?: number;
-  accentColor?: string;
-  imageStyle?: string;
-  scenarios?: PersonaScenario[];
-}
-
-export interface PersonaMemory {
-  personaId: string;
-  notes: string[];
-  lastUpdate: string;
-  relationshipLevel: number;
-}
-
-export interface PersonaStats {
-  personaId: string;
-  love: number;
-  arousal: number;
-  eroticism: number;
-  friendship: number;
-  trust: number;
-}
-
-export interface ChatMessage {
-  id: string;
-  role: 'user' | 'assistant';
-  content: string;
-  timestamp: string;
-  corrections?: string;
-  imageBase64?: string;
-  aiImageUrl?: string;
-}
-
-export interface ChatConversation {
-  id: string;
-  messages: ChatMessage[];
-  createdAt: string;
-  provider: 'claude' | 'gpt' | 'gemini' | 'groq' | 'openrouter';
 }
 
 export interface GrammarTopicProgress {

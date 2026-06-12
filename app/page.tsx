@@ -2,20 +2,17 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import {
   BarChart3,
   BookOpen,
   FileText,
   Flame,
-  MessageCircle,
   MessagesSquare,
   PenLine,
   Settings,
   Target,
   Trophy,
   Zap,
-  Users,
 } from 'lucide-react';
 import { ProgressRing } from '@/components/ui/ProgressRing';
 import { Card } from '@/components/ui/Card';
@@ -23,15 +20,11 @@ import { useStore } from '@/store/useStore';
 import { getLevel, getXPToNextLevel } from '@/lib/xp-system';
 import { getCalendar } from '@/lib/streak';
 import { storage, STORAGE_KEYS } from '@/lib/storage';
-import type { FlashCard, ReadingResult, Persona } from '@/lib/types';
+import type { FlashCard, ReadingResult } from '@/lib/types';
 import { getDueCards, getMasteredCards } from '@/lib/spaced-repetition';
-import { getPersonaImageUrl } from '@/lib/persona-image';
 import grammarTopics from '@/data/grammar-topics.json';
 import readingPassages from '@/data/reading-passages.json';
 import conversationScenarios from '@/data/conversation-patterns.json';
-import personasData from '@/data/personas.json';
-
-const personas = personasData as Persona[];
 
 interface GrammarProgressItem {
   correct: number;
@@ -68,35 +61,6 @@ const defaultMetrics: DashboardMetrics = {
   nextReadingTitle: 'Start your first reading passage',
   weakGrammarTopic: 'Start with Tenses',
 };
-
-function PersonaCard({ persona }: { persona: Persona }) {
-  const [imgError, setImgError] = useState(false);
-  const imageUrl = getPersonaImageUrl(persona, 300);
-
-  return (
-    <Link href={`/chat?persona=${persona.id}`} className="relative flex-shrink-0 w-36 rounded-3xl overflow-hidden group cursor-pointer">
-      <div className="aspect-[3/4] relative">
-        {!imgError && imageUrl ? (
-          <img
-            src={imageUrl}
-            alt={persona.name}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            onError={() => setImgError(true)}
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-5xl" style={{ background: `${persona.accentColor}20` }}>
-            {persona.avatar}
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-3">
-          <p className="text-white font-black text-sm leading-none">{persona.name}</p>
-          <p className="text-white/60 text-[10px] mt-0.5 leading-tight">{persona.role}</p>
-        </div>
-      </div>
-    </Link>
-  );
-}
 
 export default function DashboardPage() {
   const { userStats, streakData, settings } = useStore();
@@ -173,27 +137,6 @@ export default function DashboardPage() {
           </div>
           <Link href="/settings" className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <Settings size={20} className="text-gray-400" />
-          </Link>
-        </div>
-      </div>
-
-      {/* AI Partners — full width scroll */}
-      <div>
-        <div className="px-5 flex items-center justify-between mb-3">
-          <div>
-            <h2 className="font-black text-base text-[#1A1A1A] dark:text-[#F5F5F5]">AI Partners</h2>
-            <p className="text-[11px] text-gray-400 font-medium">Practice English with a real conversation</p>
-          </div>
-          <Link href="/chat" className="text-[11px] font-black text-accent uppercase tracking-widest">See all</Link>
-        </div>
-        <div className="flex gap-3 overflow-x-auto px-5 pb-1 no-scrollbar">
-          {personas.map(p => <PersonaCard key={p.id} persona={p} />)}
-          <Link
-            href="/chat"
-            className="relative flex-shrink-0 w-36 rounded-3xl overflow-hidden border-2 border-dashed border-gray-200 dark:border-gray-700 flex flex-col items-center justify-center gap-2 aspect-[3/4] text-gray-300 dark:text-gray-600 hover:border-accent hover:text-accent transition-colors"
-          >
-            <Users size={28} />
-            <span className="text-[11px] font-black uppercase tracking-widest">Group Chat</span>
           </Link>
         </div>
       </div>
