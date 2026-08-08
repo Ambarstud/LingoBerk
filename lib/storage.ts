@@ -39,4 +39,6 @@ export const STORAGE_KEYS = {
   SETTINGS: 'settings',
   STREAK: 'streak',
   CONVERSATION_PROGRESS: 'conversation_progress',
+  NEW_CARDS_LOG: 'new_cards_log',
+  TASK_PROGRESS: 'task_progress',
 } as const;

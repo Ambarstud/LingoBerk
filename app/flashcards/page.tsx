@@ -22,7 +22,8 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { useStore } from '@/store/useStore';
 import { storage, STORAGE_KEYS } from '@/lib/storage';
-import { applyReview, getDueCards, initCard } from '@/lib/spaced-repetition';
+import { applyReview, isDue, initCard } from '@/lib/spaced-repetition';
+import { getNewToday, addNewToday } from '@/lib/daily';
 import { XP_VALUES } from '@/lib/xp-system';
 import type { FlashCard, FlashcardRating } from '@/lib/types';
 import ydsWords from '@/data/yds-words.json';
@@ -31,18 +32,18 @@ type Screen = 'queue' | 'review' | 'complete' | 'add';
 type Category = 'all' | 'yds' | 'maritime' | 'daily' | 'academic';
 
 const CATEGORY_LABELS: Record<Category, string> = {
-  all: 'All',
+  all: 'Tümü',
   yds: 'YDS',
-  maritime: 'Maritime',
-  daily: 'Daily',
-  academic: 'Academic',
+  maritime: 'Denizcilik',
+  daily: 'Günlük',
+  academic: 'Akademik',
 };
 
 const RATING_CONFIG = [
-  { rating: 1 as FlashcardRating, label: 'Again', color: 'bg-error text-white', shortcut: '1' },
-  { rating: 2 as FlashcardRating, label: 'Hard', color: 'bg-warning text-white', shortcut: '2' },
-  { rating: 3 as FlashcardRating, label: 'Good', color: 'bg-success text-white', shortcut: '3' },
-  { rating: 4 as FlashcardRating, label: 'Easy', color: 'bg-accent text-white', shortcut: '4' },
+  { rating: 1 as FlashcardRating, label: 'Tekrar', color: 'bg-error text-white', shortcut: '1' },
+  { rating: 2 as FlashcardRating, label: 'Zor', color: 'bg-warning text-white', shortcut: '2' },
+  { rating: 3 as FlashcardRating, label: 'İyi', color: 'bg-success text-white', shortcut: '3' },
+  { rating: 4 as FlashcardRating, label: 'Kolay', color: 'bg-accent text-white', shortcut: '4' },
 ];
 
 function ensureCardsLoaded(): FlashCard[] {
@@ -77,9 +78,11 @@ function ensureCardsLoaded(): FlashCard[] {
 }
 
 export default function FlashcardsPage() {
-  const { addXP } = useStore();
+  const { addXP, settings } = useStore();
+  const newPerDay = settings.newCardsPerDay ?? 30;
 
   const [screen, setScreen] = useState<Screen>('queue');
+  const [newToday, setNewToday] = useState(0);
   const [allCards, setAllCards] = useState<FlashCard[]>([]);
   const [queue, setQueue] = useState<FlashCard[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -103,6 +106,7 @@ export default function FlashcardsPage() {
   useEffect(() => {
     const cards = ensureCardsLoaded();
     setAllCards(cards);
+    setNewToday(getNewToday());
   }, []);
 
   const filteredCards = allCards.filter((c) => {
@@ -111,12 +115,26 @@ export default function FlashcardsPage() {
     return matchCat && matchSearch;
   });
 
-  const dueCards = getDueCards(filteredCards);
+  // Tekrar zamanı gelmiş, daha önce görülmüş kartlar
+  const reviewDue = filteredCards.filter((c) => c.lastReview !== null && isDue(c));
+  // Henüz hiç çalışılmamış (yeni) kartlar
+  const newCardsAll = filteredCards.filter((c) => c.repetition === 0 && c.lastReview === null);
+  // Günlük yeni kelime hedefinden kalan hak
+  const newRemaining = Math.max(0, newPerDay - newToday);
+  const newInLimit = Math.min(newRemaining, newCardsAll.length);
+  // Bugün çalışılacak toplam (tekrarlar + limit dahilindeki yeniler)
+  const dueTotal = reviewDue.length + newInLimit;
+  // Limitin ötesinde çalışılabilecek fazladan yeni kelime var mı?
+  const extraNewCount = Math.min(newPerDay, newCardsAll.length - newInLimit);
 
-  const startReview = useCallback(() => {
-    const due = getDueCards(filteredCards);
-    if (due.length === 0) return;
-    setQueue([...due].sort(() => Math.random() - 0.5));
+  const startReview = useCallback((newLimit: number) => {
+    const due = filteredCards.filter((c) => c.lastReview !== null && isDue(c));
+    const fresh = filteredCards
+      .filter((c) => c.repetition === 0 && c.lastReview === null)
+      .slice(0, Math.max(0, newLimit));
+    const session = [...due, ...fresh];
+    if (session.length === 0) return;
+    setQueue(session.sort(() => Math.random() - 0.5));
     setCurrentIndex(0);
     setIsFlipped(false);
     setDeepAnalysis(null);
@@ -128,6 +146,10 @@ export default function FlashcardsPage() {
 
   const handleRating = (rating: FlashcardRating) => {
     if (!currentCard) return;
+
+    // Bu kart daha önce hiç çalışılmadıysa günlük "yeni" sayacına ekle
+    const wasNew = currentCard.repetition === 0 && currentCard.lastReview === null;
+    if (wasNew) setNewToday(addNewToday(1));
 
     const updated = applyReview(currentCard, rating);
     const newAllCards = allCards.map((c) => (c.id === updated.id ? updated : c));
@@ -195,7 +217,7 @@ export default function FlashcardsPage() {
       id: `custom-${Date.now()}`,
       english: newCard.english.trim(),
       turkish: newCard.turkish.trim(),
-      example: newCard.example.trim() || `Example: ${newCard.english}`,
+      example: newCard.example.trim(),
       category: newCard.category,
       difficulty: newCard.difficulty,
       tags: ['custom'],
@@ -231,7 +253,7 @@ export default function FlashcardsPage() {
               <ArrowLeft size={20} />
             </button>
             <div className="text-center">
-              <span className="text-xs font-bold text-gray-400 block tracking-widest uppercase">REVIEWING</span>
+              <span className="text-xs font-bold text-gray-400 block tracking-widest uppercase">ÇALIŞMA</span>
               <span className="text-sm font-black text-accent">{currentIndex + 1} / {queue.length}</span>
             </div>
             <div className="w-10" />
@@ -263,7 +285,7 @@ export default function FlashcardsPage() {
                     <h2 className="text-4xl font-black text-[#1A1A1A] dark:text-[#F5F5F5] tracking-tight">
                       {currentCard.english}
                     </h2>
-                    <p className="text-xs text-gray-400 mt-8 font-medium animate-pulse">Tap to reveal translation</p>
+                    <p className="text-xs text-gray-400 mt-8 font-medium animate-pulse">Çevirmek için dokun</p>
                   </motion.div>
                 ) : (
                   <motion.div
@@ -273,12 +295,16 @@ export default function FlashcardsPage() {
                     exit={{ rotateY: 90, opacity: 0 }}
                     className="absolute inset-0 bg-white dark:bg-[#242424] rounded-[2.5rem] border-2 border-accent/20 shadow-xl flex flex-col items-center justify-center p-8 text-center"
                   >
-                    <p className="text-xs font-black text-accent uppercase tracking-widest mb-4">TRANSLATION</p>
+                    <p className="text-xs font-black text-accent uppercase tracking-widest mb-4">ANLAMI</p>
                     <p className="text-3xl font-black text-[#1A1A1A] dark:text-[#F5F5F5] mb-6">{currentCard.turkish}</p>
-                    <div className="h-px bg-gray-50 dark:bg-gray-800 w-full mb-6" />
-                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-medium">
-                      &ldquo;{currentCard.example}&rdquo;
-                    </p>
+                    {currentCard.example && (
+                      <>
+                        <div className="h-px bg-gray-50 dark:bg-gray-800 w-full mb-6" />
+                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-medium">
+                          &ldquo;{currentCard.example}&rdquo;
+                        </p>
+                      </>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -294,12 +320,12 @@ export default function FlashcardsPage() {
                   className="w-full py-4 rounded-2xl bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-900/30 text-amber-700 dark:text-amber-400 text-sm font-bold flex items-center justify-center gap-2 hover:bg-amber-100 transition-colors"
                 >
                   <Sparkles size={18} />
-                  Explain More with AI
+                  AI ile Daha Fazla Açıkla
                 </button>
               ) : loadingDeepAnalysis ? (
                 <div className="w-full py-4 rounded-2xl bg-gray-50 dark:bg-gray-800 flex items-center justify-center gap-2 text-gray-500 text-sm">
                   <Loader2 size={18} className="animate-spin" />
-                  AI is analyzing the word...
+                  AI kelimeyi analiz ediyor...
                 </div>
               ) : deepAnalysis ? (
                 <motion.div 
@@ -373,7 +399,7 @@ export default function FlashcardsPage() {
                 onClick={() => setIsFlipped(true)}
                 className="rounded-2xl h-14 text-lg font-bold shadow-xl"
               >
-                Reveal Answer
+                Cevabı Göster
               </Button>
             )}
           </AnimatePresence>
@@ -396,17 +422,17 @@ export default function FlashcardsPage() {
           <CheckCircle size={48} className="text-success" />
         </motion.div>
         
-        <h2 className="text-3xl font-black text-[#1A1A1A] dark:text-[#F5F5F5] mb-2">Power Session!</h2>
-        <p className="text-gray-500 dark:text-gray-400 mb-10 font-medium">Your vocabulary is growing stronger</p>
+        <h2 className="text-3xl font-black text-[#1A1A1A] dark:text-[#F5F5F5] mb-2">Süper çalışma!</h2>
+        <p className="text-gray-500 dark:text-gray-400 mb-10 font-medium">Kelime dağarcığın güçleniyor</p>
 
         <div className="w-full grid grid-cols-3 gap-4 mb-10">
           <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-[2rem] text-center border border-gray-100 dark:border-gray-700">
             <p className="text-3xl font-black text-[#1A1A1A] dark:text-[#F5F5F5]">{sessionStats.total}</p>
-            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1">Words</p>
+            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1">Kelime</p>
           </div>
           <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-[2rem] text-center border border-gray-100 dark:border-gray-700">
             <p className="text-3xl font-black text-success">{accuracy}%</p>
-            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1">Recall</p>
+            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1">Doğru</p>
           </div>
           <div className="bg-gray-50 dark:bg-gray-800 p-5 rounded-[2rem] text-center border border-gray-100 dark:border-gray-700">
             <p className="text-3xl font-black text-warning">+{sessionStats.xp}</p>
@@ -420,18 +446,18 @@ export default function FlashcardsPage() {
             fullWidth
             size="lg"
             className="rounded-2xl h-14 text-lg font-bold"
-            onClick={() => { setScreen('queue'); setAllCards(ensureCardsLoaded()); }}
+            onClick={() => { setScreen('queue'); setAllCards(ensureCardsLoaded()); setNewToday(getNewToday()); }}
           >
-            Done for now
+            Bugünlük bitti
           </Button>
           <Button
             variant="ghost"
             fullWidth
             size="lg"
             className="rounded-2xl h-14 text-lg font-bold"
-            onClick={startReview}
+            onClick={() => startReview(newPerDay)}
           >
-            Review Again
+            Devam et
           </Button>
         </div>
       </div>
@@ -445,13 +471,13 @@ export default function FlashcardsPage() {
           <button onClick={() => setScreen('queue')} className="p-2 -ml-2 rounded-full hover:bg-gray-100">
             <ArrowLeft size={20} />
           </button>
-          <h1 className="text-xl font-bold">New Flashcard</h1>
+          <h1 className="text-xl font-bold">Yeni Kart</h1>
         </div>
 
         <div className="space-y-6">
           <Card className="p-6 space-y-5">
             <div>
-              <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">English Term</label>
+              <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">İngilizce Kelime</label>
               <input
                 type="text"
                 value={newCard.english}
@@ -461,7 +487,7 @@ export default function FlashcardsPage() {
               />
             </div>
             <div>
-              <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Turkish Translation</label>
+              <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Türkçe Anlamı</label>
               <input
                 type="text"
                 value={newCard.turkish}
@@ -471,31 +497,31 @@ export default function FlashcardsPage() {
               />
             </div>
             <div>
-              <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Contextual Example</label>
+              <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Örnek Cümle</label>
               <textarea
                 value={newCard.example}
                 onChange={(e) => setNewCard({ ...newCard, example: e.target.value })}
                 rows={3}
                 className="w-full px-4 py-3 rounded-xl border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-accent outline-none text-sm leading-relaxed"
-                placeholder="How is it used in a sentence?"
+                placeholder="Cümle içinde nasıl kullanılıyor?"
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Category</label>
+                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Kategori</label>
                 <select
                   value={newCard.category}
                   onChange={(e) => setNewCard({ ...newCard, category: e.target.value as FlashCard['category'] })}
                   className="w-full px-3 py-3 rounded-xl border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-accent outline-none text-xs font-bold"
                 >
                   <option value="yds">YDS</option>
-                  <option value="maritime">Maritime</option>
-                  <option value="daily">Daily</option>
-                  <option value="academic">Academic</option>
+                  <option value="maritime">Denizcilik</option>
+                  <option value="daily">Günlük</option>
+                  <option value="academic">Akademik</option>
                 </select>
               </div>
               <div>
-                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Difficulty</label>
+                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Seviye</label>
                 <select
                   value={newCard.difficulty}
                   onChange={(e) => setNewCard({ ...newCard, difficulty: e.target.value as FlashCard['difficulty'] })}
@@ -518,7 +544,7 @@ export default function FlashcardsPage() {
             onClick={handleAddCard}
             disabled={!newCard.english.trim() || !newCard.turkish.trim()}
           >
-            Create Card
+            Kart Oluştur
           </Button>
         </div>
       </div>
@@ -534,7 +560,7 @@ export default function FlashcardsPage() {
           <Link href="/" className="p-2 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
             <ArrowLeft size={20} />
           </Link>
-          <h1 className="text-2xl font-black text-[#1A1A1A] dark:text-[#F5F5F5] tracking-tight">Flashcards</h1>
+          <h1 className="text-2xl font-black text-[#1A1A1A] dark:text-[#F5F5F5] tracking-tight">Kartlar</h1>
         </div>
         <button
           onClick={() => setScreen('add')}
@@ -545,33 +571,54 @@ export default function FlashcardsPage() {
       </div>
 
       {/* Stats row */}
-      <div className="grid grid-cols-3 gap-3 mb-8">
+      <div className="grid grid-cols-3 gap-3 mb-6">
         <div className="bg-red-50 dark:bg-red-900/10 p-3 rounded-2xl border border-red-100 dark:border-red-900/30">
-          <p className="text-xl font-black text-error">{dueCards.length}</p>
-          <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-0.5">To Review</p>
+          <p className="text-xl font-black text-error">{reviewDue.length}</p>
+          <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Tekrar</p>
         </div>
         <div className="bg-blue-50 dark:bg-blue-900/10 p-3 rounded-2xl border border-blue-100 dark:border-blue-900/30">
-          <p className="text-xl font-black text-accent">{filteredCards.length}</p>
-          <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Total</p>
+          <p className="text-xl font-black text-accent">{newInLimit}</p>
+          <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Yeni</p>
         </div>
         <div className="bg-green-50 dark:bg-green-900/10 p-3 rounded-2xl border border-green-100 dark:border-green-900/30">
           <p className="text-xl font-black text-success">{filteredCards.filter((c) => c.interval > 21).length}</p>
-          <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Mastered</p>
+          <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Öğrenildi</p>
         </div>
       </div>
+
+      {/* Toplam bilgisi */}
+      <p className="text-center text-xs text-gray-400 font-medium mb-6">
+        Destede toplam <span className="font-black text-gray-500 dark:text-gray-300">{filteredCards.length}</span> kelime
+        {' · '}bugün <span className="font-black text-gray-500 dark:text-gray-300">{newToday}</span>/{newPerDay} yeni çalışıldı
+      </p>
 
       {/* Start button */}
       <Button
         variant="primary"
         fullWidth
         size="lg"
-        onClick={startReview}
-        disabled={dueCards.length === 0}
-        className="rounded-[2rem] h-16 text-lg font-black shadow-xl shadow-accent/20 mb-8"
+        onClick={() => startReview(newRemaining)}
+        disabled={dueTotal === 0}
+        className="rounded-[2rem] h-16 text-lg font-black shadow-xl shadow-accent/20 mb-3"
       >
         <RotateCcw size={20} className="mr-2" />
-        {dueCards.length > 0 ? `Practice ${dueCards.length} Words` : 'Goal Reached!'}
+        {dueTotal > 0 ? `${dueTotal} kelime çalış` : 'Bugünlük hedef tamam 🎉'}
       </Button>
+
+      {/* Limit ötesi "daha fazla çalış" */}
+      {extraNewCount > 0 && (
+        <Button
+          variant="ghost"
+          fullWidth
+          size="lg"
+          onClick={() => startReview(newRemaining + newPerDay)}
+          className="rounded-2xl h-12 text-sm font-bold mb-8"
+        >
+          <Plus size={16} className="mr-1" />
+          Daha fazla çalış (+{extraNewCount} yeni)
+        </Button>
+      )}
+      {extraNewCount === 0 && <div className="mb-8" />}
 
       {/* Search & Filter Section */}
       <div className="space-y-4 mb-8">
@@ -581,7 +628,7 @@ export default function FlashcardsPage() {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Find a word..."
+            placeholder="Kelime ara..."
             className="w-full pl-12 pr-12 py-4 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 text-[#1A1A1A] dark:text-[#F5F5F5] text-sm font-medium focus:ring-2 focus:ring-accent outline-none"
           />
         </div>

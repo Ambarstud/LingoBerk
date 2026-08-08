@@ -1,0 +1,124 @@
+{
+  "examDate": "2026-11-22",
+  "weeks": [
+    {
+      "week": 1,
+      "startDate": "2026-08-10",
+      "theme": "Tenses + Passive",
+      "tasks": [
+        {
+          "id": "w1t1",
+          "type": "video",
+          "label": "YDS Publishing – Tenses",
+          "url": ""
+        },
+        {
+          "id": "w1t2",
+          "type": "book",
+          "label": "Gramer kitabı, Ünite 1-2"
+        },
+        {
+          "id": "w1t3",
+          "type": "questions",
+          "label": "Ünite 1-2 soruları",
+          "target": 80
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "startDate": "2026-08-17",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 3,
+      "startDate": "2026-08-24",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 4,
+      "startDate": "2026-08-31",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 5,
+      "startDate": "2026-09-07",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 6,
+      "startDate": "2026-09-14",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 7,
+      "startDate": "2026-09-21",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 8,
+      "startDate": "2026-09-28",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 9,
+      "startDate": "2026-10-05",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 10,
+      "startDate": "2026-10-12",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 11,
+      "startDate": "2026-10-19",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 12,
+      "startDate": "2026-10-26",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 13,
+      "startDate": "2026-11-02",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 14,
+      "startDate": "2026-11-09",
+      "theme": "TBD",
+      "tasks": []
+    },
+    {
+      "week": 15,
+      "startDate": "2026-11-16",
+      "theme": "Genel Tekrar + Deneme",
+      "tasks": [
+        {
+          "id": "w15t1",
+          "type": "exam",
+          "label": "Tam deneme sınavı (süreli)"
+        },
+        {
+          "id": "w15t2",
+          "type": "review",
+          "label": "Yanlışların tekrarı"
+        }
+      ]
+    }
+  ]
+}

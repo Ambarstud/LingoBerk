@@ -43,6 +43,8 @@ export interface StreakData {
 
 export interface UserSettings {
   dailyGoal: number;
+  newCardsPerDay: number;
+  examDate: string; // ISO date, e.g. "2026-11-22"
   darkMode: boolean;
   notifications: boolean;
   preferredProvider: 'claude' | 'gpt' | 'gemini' | 'groq' | 'openrouter';

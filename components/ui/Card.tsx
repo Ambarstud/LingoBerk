@@ -4,10 +4,11 @@ interface CardProps {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
-  padding?: 'sm' | 'md' | 'lg';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
 }
 
 const paddingMap = {
+  none: '',
   sm: 'p-3',
   md: 'p-4',
   lg: 'p-6',

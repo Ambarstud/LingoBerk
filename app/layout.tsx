@@ -5,7 +5,7 @@ import { StoreInitializer } from '@/components/layout/StoreInitializer';
 
 export const metadata: Metadata = {
   title: 'LingoBerk',
-  description: 'Personal English learning app with YDS focus',
+  description: 'YDS odaklı kişisel İngilizce çalışma uygulaması',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
@@ -27,7 +27,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="tr" suppressHydrationWarning>
       <head>
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <script

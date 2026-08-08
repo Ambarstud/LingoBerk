@@ -24,3 +24,9 @@ public/worker-*.js
 public/sw.js.map
 public/workbox-*.js.map
 public/worker-*.js.map
+
+# Yerel yedekler
+*.zip
+
+# Ham kelime desteleri (kaynak; çıktı data/yds-words.json'da)
+kelime destesi/

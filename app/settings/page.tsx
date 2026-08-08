@@ -10,8 +10,9 @@ import { storage, STORAGE_KEYS } from '@/lib/storage';
 import type { FlashCard, UserStats, StreakData, UserSettings } from '@/lib/types';
 
 export default function SettingsPage() {
-  const { settings, userStats, streakData, setDarkMode, setDailyGoal, refreshStats } = useStore();
+  const { settings, userStats, streakData, setDarkMode, setDailyGoal, setNewCardsPerDay, setExamDate, refreshStats } = useStore();
   const [goalInput, setGoalInput] = useState(settings.dailyGoal.toString());
+  const [newCardsInput, setNewCardsInput] = useState((settings.newCardsPerDay ?? 30).toString());
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -26,6 +27,14 @@ export default function SettingsPage() {
     const num = parseInt(value);
     if (!isNaN(num) && num >= 50 && num <= 2000) {
       setDailyGoal(num);
+    }
+  }
+
+  function handleNewCardsChange(value: string) {
+    setNewCardsInput(value);
+    const num = parseInt(value);
+    if (!isNaN(num) && num >= 5 && num <= 500) {
+      setNewCardsPerDay(num);
     }
   }
 
@@ -51,7 +60,7 @@ export default function SettingsPage() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    showToast('Data exported successfully');
+    showToast('Veriler dışa aktarıldı');
   }
 
   function importData(event: React.ChangeEvent<HTMLInputElement>) {
@@ -70,9 +79,9 @@ export default function SettingsPage() {
         if (data.settings) storage.set(STORAGE_KEYS.SETTINGS, data.settings);
         if (data.streak) storage.set(STORAGE_KEYS.STREAK, data.streak);
         refreshStats();
-        showToast('Data imported successfully');
+        showToast('Veriler içe aktarıldı');
       } catch {
-        showToast('Error: invalid file format');
+        showToast('Hata: geçersiz dosya biçimi');
       }
     };
     reader.readAsText(file);
@@ -84,7 +93,7 @@ export default function SettingsPage() {
     storage.clear();
     refreshStats();
     setShowClearConfirm(false);
-    showToast('All data cleared');
+    showToast('Tüm veriler silindi');
   }
 
   return (
@@ -101,13 +110,13 @@ export default function SettingsPage() {
         <Link href="/" className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 min-h-[44px] min-w-[44px] flex items-center justify-center">
           <ArrowLeft size={20} />
         </Link>
-        <h1 className="text-xl font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">Settings</h1>
+        <h1 className="text-xl font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">Ayarlar</h1>
       </div>
 
       <div className="space-y-4">
         {/* Daily Goal */}
         <Card>
-          <h2 className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5] mb-3">Daily XP Goal</h2>
+          <h2 className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5] mb-3">Günlük XP Hedefi</h2>
           <div className="flex items-center gap-3">
             <input
               type="range"
@@ -130,7 +139,48 @@ export default function SettingsPage() {
               <span className="pr-2 text-sm text-gray-500 dark:text-gray-400">XP</span>
             </div>
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Current: {settings.dailyGoal} XP/day</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Şu an: günde {settings.dailyGoal} XP</p>
+        </Card>
+
+        {/* Günlük Yeni Kelime */}
+        <Card>
+          <h2 className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5] mb-1">Günlük Yeni Kelime</h2>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">Her gün kaç yeni kelime gösterilsin (tekrarlar buna dahil değil).</p>
+          <div className="flex items-center gap-3">
+            <input
+              type="range"
+              min={5}
+              max={100}
+              step={5}
+              value={parseInt(newCardsInput) || (settings.newCardsPerDay ?? 30)}
+              onChange={(e) => handleNewCardsChange(e.target.value)}
+              className="flex-1 accent-accent h-2 rounded-lg appearance-none cursor-pointer"
+            />
+            <div className="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <input
+                type="number"
+                value={newCardsInput}
+                onChange={(e) => handleNewCardsChange(e.target.value)}
+                min={5}
+                max={500}
+                className="w-16 px-2 py-1.5 text-center text-sm bg-white dark:bg-[#242424] text-[#1A1A1A] dark:text-[#F5F5F5] focus:outline-none"
+              />
+              <span className="pr-2 text-sm text-gray-500 dark:text-gray-400">kelime</span>
+            </div>
+          </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Şu an: günde {settings.newCardsPerDay ?? 30} yeni kelime</p>
+        </Card>
+
+        {/* Sınav Tarihi */}
+        <Card>
+          <h2 className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5] mb-1">Sınav Tarihi</h2>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">Ana ekrandaki geri sayım bu tarihe göre hesaplanır.</p>
+          <input
+            type="date"
+            value={settings.examDate ?? '2026-11-22'}
+            onChange={(e) => setExamDate(e.target.value)}
+            className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#242424] text-[#1A1A1A] dark:text-[#F5F5F5] text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+          />
         </Card>
 
         {/* Dark Mode */}
@@ -139,8 +189,8 @@ export default function SettingsPage() {
             <div className="flex items-center gap-3">
               {settings.darkMode ? <Moon size={20} className="text-accent" /> : <Sun size={20} className="text-warning" />}
               <div>
-                <p className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5]">Dark Mode</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">{settings.darkMode ? 'Dark theme active' : 'Light theme active'}</p>
+                <p className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5]">Karanlık Mod</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{settings.darkMode ? 'Koyu tema açık' : 'Açık tema aktif'}</p>
               </div>
             </div>
             <button
@@ -159,30 +209,30 @@ export default function SettingsPage() {
 
         {/* Stats Summary */}
         <Card>
-          <h2 className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5] mb-3">Your Progress</h2>
+          <h2 className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5] mb-3">İlerlemen</h2>
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
               <p className="text-lg font-bold text-accent">{userStats.totalXP}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Total XP</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Toplam XP</p>
             </div>
             <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
               <p className="text-lg font-bold text-[#1A1A1A] dark:text-[#F5F5F5]">{userStats.cardsReviewed}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Cards Reviewed</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Çalışılan Kart</p>
             </div>
             <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
               <p className="text-lg font-bold text-success">{streakData.bestStreak}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Best Streak</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">En İyi Seri</p>
             </div>
             <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
               <p className="text-lg font-bold text-warning">{streakData.currentStreak}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Current Streak</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Güncel Seri</p>
             </div>
           </div>
         </Card>
 
         {/* Data Management */}
         <Card>
-          <h2 className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5] mb-3">Data Management</h2>
+          <h2 className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5] mb-3">Veri Yönetimi</h2>
           <div className="space-y-3">
             <Button
               variant="secondary"
@@ -190,7 +240,7 @@ export default function SettingsPage() {
               onClick={exportData}
             >
               <Download size={16} />
-              Export All Data
+              Verileri Dışa Aktar
             </Button>
 
             <Button
@@ -199,7 +249,7 @@ export default function SettingsPage() {
               onClick={() => fileInputRef.current?.click()}
             >
               <Upload size={16} />
-              Import Data
+              Verileri İçe Aktar
             </Button>
             <input
               ref={fileInputRef}
@@ -215,19 +265,19 @@ export default function SettingsPage() {
         <Card>
           <h2 className="font-semibold text-error mb-3 flex items-center gap-2">
             <AlertTriangle size={16} />
-            Danger Zone
+            Tehlikeli Bölge
           </h2>
           {showClearConfirm ? (
             <div className="space-y-3">
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                This will permanently delete ALL your data including flashcard progress, streaks, and stats. This cannot be undone.
+                Bu işlem TÜM verilerini (kart ilerlemesi, seriler, istatistikler) kalıcı olarak siler. Geri alınamaz.
               </p>
               <div className="flex gap-2">
                 <Button variant="danger" fullWidth onClick={clearAllData}>
-                  Yes, Clear Everything
+                  Evet, Hepsini Sil
                 </Button>
                 <Button variant="secondary" fullWidth onClick={() => setShowClearConfirm(false)}>
-                  Cancel
+                  Vazgeç
                 </Button>
               </div>
             </div>
@@ -238,7 +288,7 @@ export default function SettingsPage() {
               onClick={() => setShowClearConfirm(true)}
             >
               <Trash2 size={16} />
-              Clear All Data
+              Tüm Verileri Sil
             </Button>
           )}
         </Card>
@@ -246,7 +296,7 @@ export default function SettingsPage() {
         {/* App Info */}
         <div className="text-center py-4">
           <p className="text-sm text-gray-400 dark:text-gray-600">LingoBerk v0.1.0</p>
-          <p className="text-xs text-gray-400 dark:text-gray-600 mt-1">Phase 1 — Foundation + Flashcards</p>
+          <p className="text-xs text-gray-400 dark:text-gray-600 mt-1">YDS'ye kişisel hazırlık</p>
         </div>
       </div>
     </div>
