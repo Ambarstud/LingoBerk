@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Moon, Sun, Download, Upload, Trash2, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Moon, Sun, Download, Upload, Trash2, AlertTriangle, Cloud, RefreshCw, Loader2 } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { useStore } from '@/store/useStore';
 import { storage, STORAGE_KEYS } from '@/lib/storage';
+import { getSecret, setSecret, clearSecret, getLastSyncedAt, syncNow, type SyncResult } from '@/lib/sync';
 import type { FlashCard, UserStats, StreakData, UserSettings } from '@/lib/types';
 
 export default function SettingsPage() {
@@ -16,6 +17,58 @@ export default function SettingsPage() {
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Bulut senkron durumu
+  const [secretInput, setSecretInput] = useState('');
+  const [syncing, setSyncing] = useState(false);
+  const [lastSynced, setLastSynced] = useState<string | null>(null);
+  const [syncMsg, setSyncMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    setSecretInput(getSecret() ?? '');
+    setLastSynced(getLastSyncedAt());
+  }, []);
+
+  function syncResultMessage(r: SyncResult): string {
+    switch (r.status) {
+      case 'pulled': return 'Buluttan güncel veri alındı, sayfa yenileniyor…';
+      case 'pushed': return 'Veriler buluta gönderildi ✓';
+      case 'nochange':
+      case 'ok': return 'Zaten güncel ✓';
+      case 'empty': return 'Bulut boştu, veriler gönderildi ✓';
+      case 'no-secret': return 'Önce senkron anahtarını kaydet.';
+      case 'bad-secret': return 'Senkron anahtarı hatalı.';
+      case 'not-configured': return 'Senkron sunucuda yapılandırılmamış.';
+      default: return r.message ? `Hata: ${r.message}` : 'Senkron hatası.';
+    }
+  }
+
+  async function handleSync() {
+    setSyncing(true);
+    setSyncMsg(null);
+    try {
+      const res = await syncNow();
+      setSyncMsg(syncResultMessage(res));
+      setLastSynced(getLastSyncedAt());
+      if (res.status === 'pulled') {
+        setTimeout(() => window.location.reload(), 800);
+      }
+    } finally {
+      setSyncing(false);
+    }
+  }
+
+  function handleSaveSecret() {
+    const val = secretInput.trim();
+    if (!val) {
+      clearSecret();
+      setSyncMsg('Senkron anahtarı silindi.');
+      return;
+    }
+    setSecret(val);
+    showToast('Senkron anahtarı kaydedildi');
+    handleSync();
+  }
 
   function showToast(msg: string) {
     setToast(msg);
@@ -181,6 +234,51 @@ export default function SettingsPage() {
             onChange={(e) => setExamDate(e.target.value)}
             className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#242424] text-[#1A1A1A] dark:text-[#F5F5F5] text-sm focus:outline-none focus:ring-2 focus:ring-accent"
           />
+        </Card>
+
+        {/* Bulut Senkron */}
+        <Card>
+          <div className="flex items-center gap-2 mb-1">
+            <Cloud size={18} className="text-accent" />
+            <h2 className="font-semibold text-[#1A1A1A] dark:text-[#F5F5F5]">Bulut Senkron</h2>
+          </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+            Aynı senkron anahtarını hem MacBook&apos;ta hem iPhone&apos;da gir; ilerlemen cihazlar arasında otomatik eşitlenir.
+          </p>
+          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Senkron Anahtarı</label>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              value={secretInput}
+              onChange={(e) => setSecretInput(e.target.value)}
+              placeholder="senkron anahtarını yapıştır"
+              className="flex-1 min-w-0 px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#242424] text-[#1A1A1A] dark:text-[#F5F5F5] text-sm font-mono focus:outline-none focus:ring-2 focus:ring-accent"
+            />
+            <Button variant="primary" onClick={handleSaveSecret} className="shrink-0">
+              Kaydet
+            </Button>
+          </div>
+
+          <Button
+            variant="secondary"
+            fullWidth
+            onClick={handleSync}
+            disabled={syncing}
+            className="mt-3"
+          >
+            {syncing ? <Loader2 size={16} className="animate-spin" /> : <RefreshCw size={16} />}
+            {syncing ? 'Senkronlanıyor…' : 'Şimdi Senkronla'}
+          </Button>
+
+          {syncMsg && <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">{syncMsg}</p>}
+          {lastSynced && (
+            <p className="text-[11px] text-gray-400 mt-1">
+              Son senkron: {new Date(lastSynced).toLocaleString('tr-TR')}
+            </p>
+          )}
         </Card>
 
         {/* Dark Mode */}

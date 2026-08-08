@@ -30,3 +30,4 @@ public/worker-*.js.map
 
 # Ham kelime desteleri (kaynak; çıktı data/yds-words.json'da)
 kelime destesi/
+.env*.local
