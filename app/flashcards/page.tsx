@@ -78,11 +78,17 @@ function ensureCardsLoaded(): FlashCard[] {
 }
 
 export default function FlashcardsPage() {
-  const { addXP, settings } = useStore();
+  const { addXP, settings, setImmersive } = useStore();
   const newPerDay = settings.newCardsPerDay ?? 30;
 
   const [screen, setScreen] = useState<Screen>('queue');
   const [newToday, setNewToday] = useState(0);
+
+  // Çalışma/bitiş ekranında alt menüyü gizle (butonlar tam görünsün)
+  useEffect(() => {
+    setImmersive(screen === 'review' || screen === 'complete');
+    return () => setImmersive(false);
+  }, [screen, setImmersive]);
   const [allCards, setAllCards] = useState<FlashCard[]>([]);
   const [queue, setQueue] = useState<FlashCard[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -372,7 +378,10 @@ export default function FlashcardsPage() {
         </div>
 
         {/* Rating buttons at the very bottom */}
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/80 dark:bg-[#1A1A1A]/80 backdrop-blur-md max-w-lg mx-auto">
+        <div
+          className="fixed bottom-0 left-0 right-0 p-4 bg-white/80 dark:bg-[#1A1A1A]/80 backdrop-blur-md max-w-lg mx-auto z-50"
+          style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))' }}
+        >
           <AnimatePresence>
             {isFlipped ? (
               <motion.div

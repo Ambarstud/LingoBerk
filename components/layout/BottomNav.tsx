@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, BookOpen, CalendarDays, PenLine, MessagesSquare } from 'lucide-react';
+import { useStore } from '@/store/useStore';
 
 const navItems = [
   { href: '/', label: 'Ana Sayfa', icon: Home },
@@ -14,6 +15,9 @@ const navItems = [
 
 export function BottomNav() {
   const pathname = usePathname();
+  const immersive = useStore((s) => s.immersive);
+
+  if (immersive) return null;
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-[#242424] border-t border-gray-100 dark:border-gray-800">

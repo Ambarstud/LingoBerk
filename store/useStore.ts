@@ -10,7 +10,9 @@ interface AppState {
   userStats: UserStats;
   streakData: StreakData;
   settings: UserSettings;
+  immersive: boolean; // tam ekran çalışma modu (alt menüyü gizler)
   // Actions
+  setImmersive: (value: boolean) => void;
   addXP: (amount: number) => void;
   refreshStats: () => void;
   updateStreakData: () => void;
@@ -34,6 +36,9 @@ export const useStore = create<AppState>((set, get) => ({
   userStats: getDefaultStats(),
   streakData: getDefaultStreak(),
   settings: DEFAULT_SETTINGS,
+  immersive: false,
+
+  setImmersive: (value: boolean) => set({ immersive: value }),
 
   initStore: () => {
     const stats = storage.get<UserStats>(STORAGE_KEYS.USER_STATS) ?? getDefaultStats();
